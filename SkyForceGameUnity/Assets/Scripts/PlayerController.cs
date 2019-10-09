@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Hello");
         radius = Vector3.Magnitude(target.transform.position - gameObject.transform.position);
     }
 
