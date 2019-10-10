@@ -18,6 +18,6 @@ public class MainMenuController : MonoBehaviour
 
     public void StartGame()
     {
-        Application.LoadLevel("PlayScene");
+        //Application.LoadLevel("PlayScene");
     }
 }

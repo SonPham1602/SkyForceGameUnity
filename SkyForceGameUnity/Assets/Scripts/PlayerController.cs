@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public GameObject target;
     public GameObject bullet;
     public int numberBullet = 1;
-    private float speedShip = 10f;
+    private float speedShip = 20f;
 
     private float radius;
     private float lastTimeFire = 0;
