@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField]
+    private int numberEnemy = 1;
     public float gravity = 20.0f;
    // public float speed = 6.0f;
     public float heal = 100f;
