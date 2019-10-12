@@ -190,7 +190,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -401,11 +401,11 @@ RectTransform:
   m_Father: {fileID: 9996915}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 115, y: 225}
-  m_SizeDelta: {x: 50, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -52.5, y: -21.7}
+  m_SizeDelta: {x: 30, y: 30}
+  m_Pivot: {x: 0.49999994, y: 0.5}
 --- !u!114 &712177942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,11 +506,11 @@ MonoBehaviour:
   numberEnemy: 1
   gravity: 20
   heal: 100
-  anchor: 0
-  typePath: 2
+  anchor: 4
+  typePath: 1
   fly_up: 0
-  speedTurn: 1
-  speedMove: 6
+  speedTurn: 0.5
+  speedMove: 10
 --- !u!1 &1045008886
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +798,13 @@ PrefabInstance:
       propertyPath: moveSpeed
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5372251327051273439, guid: 171c77abb6d1574408999b436e9c93d1,
+        type: 3}
+      propertyPath: m_UsedByComposite
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5372251327051273436, guid: 171c77abb6d1574408999b436e9c93d1, type: 3}
     - {fileID: 5372251327051273438, guid: 171c77abb6d1574408999b436e9c93d1, type: 3}
+    - {fileID: 3076662640976198404, guid: 171c77abb6d1574408999b436e9c93d1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 171c77abb6d1574408999b436e9c93d1, type: 3}

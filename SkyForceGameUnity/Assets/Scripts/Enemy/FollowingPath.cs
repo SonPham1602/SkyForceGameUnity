@@ -47,7 +47,7 @@ public class FollowingPath : MonoBehaviour
                waypoints[waypointIndex].transform.position,
                moveSpeed * Time.deltaTime);
             Debug.Log("Vi tri enemy"+ transform.position);
-             Debug.Log("Vi tri way" + waypoints[waypointIndex].transform.position);
+            Debug.Log("Vi tri way" + waypoints[waypointIndex].transform.position);
             // If Enemy reaches position of waypoint he walked towards
             // then waypointIndex is increased by 1
             // and Enemy starts to walk to the next waypoint
