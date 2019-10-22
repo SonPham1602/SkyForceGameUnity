@@ -31,4 +31,11 @@ public class BulletController : MonoBehaviour
     {
         myBody.velocity = vecFire * moveSpeed;
     }
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag == "enemy")
+        {
+            Debug.Log("Button touch enemy");
+            Destroy(gameObject);
+        }
+    }
 }
