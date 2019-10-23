@@ -8,6 +8,7 @@ TagManager:
   - enemy
   - bulletEnemy
   - ShipPlayer
+  - brokenEnemy
   layers:
   - Default
   - TransparentFX

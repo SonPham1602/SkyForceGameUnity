@@ -13,6 +13,7 @@ public class BattleShipEnemy : MonoBehaviour
     public float Health;
     public float NumberBulletShip;
     public Sprite brokenSpriteBattleship;
+    public GameObject turret;
     private bool isBroken;//Check enemy can shoot
     // Start is called before the first frame update
     void Start()
@@ -37,7 +38,18 @@ public class BattleShipEnemy : MonoBehaviour
         {
             timeBtwShots-=Time.deltaTime;
         }
-        transform.position = new Vector3(transform.position.x, transform.position.y - speed * Time.deltaTime * 2, transform.position.z);
+        Vector3 difference = player.position-gameObject.transform.position;
+        float rotationZ = Mathf.Atan2(difference.y,difference.x)*Mathf.Rad2Deg;
+        turret.transform.rotation=Quaternion.Euler(0.0f,0.0f,rotationZ+90);
+        if(isBroken==true)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y - 2*speed * Time.deltaTime, transform.position.z);
+        }
+        else
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y + speed * Time.deltaTime, transform.position.z);
+        }
+       
     }
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag=="bullet")
@@ -46,8 +58,11 @@ public class BattleShipEnemy : MonoBehaviour
             if(NumberBulletShip==Health)
             {
                 isBroken = true;
-               GetComponent<SpriteRenderer>().sprite = brokenSpriteBattleship;
+                GetComponent<SpriteRenderer>().sprite = brokenSpriteBattleship;
+                this.gameObject.tag="brokenEnemy";
+                turret.SetActive(false);      
             }
+            
           
         }
     }

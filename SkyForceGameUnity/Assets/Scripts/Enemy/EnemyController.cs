@@ -19,6 +19,11 @@ public class EnemyController : MonoBehaviour
     private GameManager _gameManager;
     private Vector2 saveScale;
     public bool canMove;
+    public Color color;
+    public GameObject starItem;
+    public GameObject explostionEffect;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +52,23 @@ public class EnemyController : MonoBehaviour
         Debug.Log("Dan");
         if(other.gameObject.tag == "bullet")
         {
+           // Instantiate(starItem,transform.position,Quaternion.identity);
+           // StartCoroutine(getHit());
+            Instantiate(explostionEffect,transform.position,Quaternion.identity);
             Destroy(gameObject);
+        }
+    }
+    IEnumerator getHit()
+    {
+        StopCoroutine("getHit");
+        SpriteRenderer sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            color = Color.red;
+            sr.color = color;
+            yield return new WaitForSeconds(0.1f);
+            color = Color.white;
+            sr.color = color;
         }
     }
     public void Move()
