@@ -25,19 +25,28 @@ public class EnemyController : MonoBehaviour
 
 
     // Start is called before the first frame update
+    Vector2 screenBounds;
     void Start()
     {
         offset = Time.deltaTime * speedMove;
         rigidbody2d = GetComponent<Rigidbody2D>();
         saveScale = transform.localScale;
         _gameManager = FindObjectOfType<GameManager>();
-        
 
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Mathf.Abs(transform.position.x) > screenBounds.x+10)
+        {
+            Destroy(this.gameObject);
+        }
+        else if (Mathf.Abs(transform.position.y) > screenBounds.y+10)
+        {
+            Destroy(this.gameObject);
+        }
        //transform.Translate(0,1*Time.deltaTime,0);
     }
     private void FixedUpdate() {

@@ -1418,6 +1418,52 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.621273, y: 6.8656216}
   m_EdgeRadius: 0
+--- !u!1 &814859756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 814859758}
+  - component: {fileID: 814859757}
+  m_Layer: 0
+  m_Name: WaveEnenyController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &814859757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814859756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de6ab569c99c9f4469419f26138caa2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveEnemy:
+  - {fileID: 1969023513561668789, guid: e011cb577e3f76f42903b7908e319215, type: 3}
+  - {fileID: 4442489736433239046, guid: 7442441b11184124a8175f9d995e938e, type: 3}
+--- !u!4 &814859758
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814859756}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.9502885, y: -11.368122, z: -4.3046875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1033656916
 GameObject:
   m_ObjectHideFlags: 0
@@ -2190,7 +2236,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2077481557
 MonoBehaviour:
   m_ObjectHideFlags: 0
