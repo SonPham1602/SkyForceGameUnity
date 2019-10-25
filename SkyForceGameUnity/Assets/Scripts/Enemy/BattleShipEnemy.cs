@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class BattleShipEnemy : MonoBehaviour
 {
     public float speed;//speed of bullet
@@ -11,9 +10,10 @@ public class BattleShipEnemy : MonoBehaviour
     private Transform player;
     public GameObject bullet;
     public float Health;
-    public float NumberBulletShip;
+    private float NumberBulletShip;
     public Sprite brokenSpriteBattleship;
     public GameObject turret;
+    public GameObject startFire;
     private bool isBroken;//Check enemy can shoot
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,7 @@ public class BattleShipEnemy : MonoBehaviour
         {
             if(isBroken==false)
             {
-                Instantiate(bullet, transform.position, Quaternion.identity);   
+                Instantiate(bullet, startFire.transform.position, Quaternion.identity);   
             }
             timeBtwShots = startTimeBtwShots;
         }
