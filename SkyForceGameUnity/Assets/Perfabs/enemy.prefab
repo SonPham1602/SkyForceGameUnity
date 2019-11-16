@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3076662640976198404}
   m_Layer: 0
   m_Name: enemy
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,7 +94,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -122,9 +122,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd79fe177aa6924449e2e5f7b06ce428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberEnemy: 1
   gravity: 20
-  speed: 0
   heal: 100
+  anchor: 0
+  typePath: 0
+  fly_up: 0
+  speedTurn: 0
+  speedMove: 0
+  canMove: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
+  starItem: {fileID: 3584385979561779101, guid: a003813cca37bfd4796a9aa70e9ddd52,
+    type: 3}
+  explostionEffect: {fileID: 3466153542694025480, guid: 39c5cdd680fb8e447ab2fdd7ae4803e0,
+    type: 3}
 --- !u!50 &5372251327051273436
 Rigidbody2D:
   serializedVersion: 4

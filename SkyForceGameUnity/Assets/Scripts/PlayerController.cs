@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Hello");
+       
         radius = Vector3.Magnitude(target.transform.position - gameObject.transform.position);
     }
 
@@ -35,7 +35,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        gameObject.transform.Translate((mousePosition - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y)) * Time.deltaTime * speedShip);
+        if(Mathf.Abs(mousePosition.x)<=28 && Mathf.Abs(mousePosition.y)<=16)
+        {
+            gameObject.transform.Translate((mousePosition - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y)) * Time.deltaTime * speedShip);
+        }
+       
 
         if (Input.GetMouseButton(0) && Time.time - lastTimeFire >= 0.2f)
         {
