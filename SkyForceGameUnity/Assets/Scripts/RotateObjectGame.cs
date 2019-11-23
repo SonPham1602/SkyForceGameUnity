@@ -14,6 +14,12 @@ public class RotateObjectGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0.0f, 0.0f, transform.rotation.z + speedSpin );
+        if (transform.rotation.z + speedSpin >= 360)
+        {
+            transform.Rotate(0.0f, 0.0f, speedSpin);
+        } else
+        {
+            transform.Rotate(0.0f, 0.0f, transform.rotation.z + speedSpin);
+        }
     }
 }

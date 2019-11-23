@@ -9,6 +9,7 @@ public class HelicoperEnemy : MonoBehaviour
     private float timeBtwShots;
     private Transform player;
     public GameObject bullet;
+    public GameObject smokeEffect;
     private bool isBroken;//Check enemy can shoot
     private float angle;
     private int hp;
@@ -25,7 +26,8 @@ public class HelicoperEnemy : MonoBehaviour
             angle = 70;
         }
         timeBtwShots = startTimeBtwShots;
-        HP = 1000;
+        HP = 10;
+        smokeEffect.SetActive(false);
     }
 
     // Update is called once per frameS
@@ -45,19 +47,29 @@ public class HelicoperEnemy : MonoBehaviour
         {
             timeBtwShots -= Time.deltaTime;
         }
-        transform.position = new Vector3(transform.position.x + maxNextPosition, transform.position.y + Mathf.Abs(Mathf.Tan(angle)) * maxNextPosition, transform.position.z);
-        angle -= 0.001f;
+        if (HP > 0)
+        {
+            transform.parent.transform.position = new Vector3(transform.position.x + maxNextPosition, transform.position.y + Mathf.Abs(Mathf.Tan(angle)) * maxNextPosition, transform.position.z);
+            angle -= 0.001f;
+        }
+        else
+        {
+            transform.parent.transform.position = new Vector3(transform.position.x + maxNextPosition, transform.position.y - 5 * maxNextPosition, transform.position.z);
+        }
     }
 
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "bullet")
+        if (other.gameObject.tag == "bullet" && HP > 0)
         {
             HP -= other.gameObject.GetComponent<BulletController>().Power;
             if (HP <= 0)
             {
-                Destroy(gameObject);
+                gameObject.AddComponent<RotateObjectGame>();
+                gameObject.GetComponent<RotateObjectGame>().speedSpin = 5;
+                smokeEffect.SetActive(true);
+                Destroy(gameObject, 10f);
             }
         }
     }
