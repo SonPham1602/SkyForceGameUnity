@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlaneChildController : MonoBehaviour
 {
     public GameObject target;
     public GameObject bullet;
     public int numberBullet = 1;
-    private int hp;
     private float speedShip = 20f;
+
+    private int hp;
 
     private float radius;
     private float lastTimeFire = 0;
-
-    public GameObject[] planeChild;
 
     public int HP { get => hp; set => hp = value; }
 
@@ -33,19 +32,13 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         radius = Vector3.Magnitude(target.transform.position - gameObject.transform.position);
-        this.HP = 1000;
+        numberBullet = 1;
+        this.HP = 100;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if(Mathf.Abs(mousePosition.x)<=28 && Mathf.Abs(mousePosition.y)<=16)
-        {
-            gameObject.transform.Translate((mousePosition - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y)) * Time.deltaTime * speedShip);
-        }
-       
-
         if (Input.GetMouseButton(0) && Time.time - lastTimeFire >= 0.2f)
         {
             lastTimeFire = Time.time;
@@ -84,7 +77,6 @@ public class PlayerController : MonoBehaviour
 		GameObject b = Instantiate(bullet, gameObject.transform.position, Quaternion.identity);
         b.GetComponent<BulletController>().targetPosition = pos;
         b.GetComponent<BulletController>().moveSpeed = speed;
-        b.GetComponent<BulletController>().Power = 50;
     }
 
     private void setBulletPos(out BulletPos pos, float goc)
@@ -145,22 +137,6 @@ public class PlayerController : MonoBehaviour
         {
             nghiem.x1 = (-heSoPtBac2.y + Mathf.Sqrt(delta)) / (2 * heSoPtBac2.x);
             nghiem.x2 = (-heSoPtBac2.y - Mathf.Sqrt(delta)) / (2 * heSoPtBac2.x);
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "bulletEnemy")
-        {
-            HP -= other.gameObject.GetComponent<BulletEnemyController>().Power;
-            if (HP <= 0)
-            {
-                GameManager gameManager = FindObjectOfType<GameManager>();
-                if (gameManager != null)
-                {
-                    gameManager.gameOver();
-                }
-            }
         }
     }
 }

@@ -7,7 +7,7 @@ public enum GameState
     None,
     Play,
     Pause,
-    EndGame
+    EndGame,
 }
 public class GameManager : MonoBehaviour
 {
@@ -27,9 +27,15 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
     public void gameWin()
     {
         gameState = GameState.EndGame;
-        
     }
+
+    public void gameOver()
+    {
+        Time.timeScale = 0f;
+    }
+
 }

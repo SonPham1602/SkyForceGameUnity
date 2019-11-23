@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7696924828118341869
+--- !u!1 &3483345227818446284
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7696924828118341865}
-  - component: {fileID: 7696924828118341870}
-  - component: {fileID: 7696924828118341871}
-  - component: {fileID: 7696924828118341868}
-  - component: {fileID: 145778461174384062}
+  - component: {fileID: 3483345227818446286}
+  - component: {fileID: 3483345227818446285}
+  - component: {fileID: 3483345227818446280}
+  - component: {fileID: 3483345227818446287}
+  - component: {fileID: 5063515585922023591}
   m_Layer: 0
-  m_Name: bullet
-  m_TagString: bullet
+  m_Name: missileEnemy
+  m_TagString: bulletEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7696924828118341865
+--- !u!4 &3483345227818446286
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7696924828118341869}
+  m_GameObject: {fileID: 3483345227818446284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3685, y: 7.1563, z: 0}
-  m_LocalScale: {x: 3.4537983, y: 3.8263376, z: 1}
+  m_LocalPosition: {x: -3.6411, y: -7.8654, z: 0}
+  m_LocalScale: {x: 4.6314454, y: 3.9756598, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7696924828118341870
+--- !u!212 &3483345227818446285
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7696924828118341869}
+  m_GameObject: {fileID: 3483345227818446284}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -72,40 +72,40 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3f252ced6e240e14a99af30049a56a5a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fea00ee259cb23c418f0b20d039683ef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.22, y: 0.26}
+  m_Size: {x: 0.13, y: 0.31}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7696924828118341871
+--- !u!114 &3483345227818446280
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7696924828118341869}
+  m_GameObject: {fileID: 3483345227818446284}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ec5f73010f4a98479cf6d82ed3e7882, type: 3}
+  m_Script: {fileID: 11500000, guid: ac821c87595cb3f4eaaf26dac8831b0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPosition: {x: 0, y: 0, z: 0}
-  moveSpeed: 10
---- !u!50 &7696924828118341868
+  Speed: 5
+  RotateSpeed: 100
+--- !u!50 &3483345227818446287
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7696924828118341869}
-  m_BodyType: 0
+  m_GameObject: {fileID: 3483345227818446284}
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -118,29 +118,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &145778461174384062
-BoxCollider2D:
+--- !u!70 &5063515585922023591
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7696924828118341869}
+  m_GameObject: {fileID: 3483345227818446284}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0038175993, y: 0.038419567}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.19, y: 0.43}
-    newSize: {x: 0.22, y: 0.26}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.090201505, y: 0.2658363}
-  m_EdgeRadius: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.12999998, y: 0.31}
+  m_Direction: 0

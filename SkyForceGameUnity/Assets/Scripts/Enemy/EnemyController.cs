@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField]
-    private int numberEnemy = 1;
     public float gravity = 20.0f;
-   // public float speed = 6.0f;
-    public float heal = 100f;
-    private Rigidbody2D rigidbody2d;
+    // public float speed = 6.0f;
+    protected Rigidbody2D rigidbody2d;
     public Anchor_Plane anchor;
     public TypePath  typePath;
     public bool fly_up;
     public float speedTurn;
-    private float offset;
+    protected float offset;
     public float speedMove;
-    private GameManager _gameManager;
-    private Vector2 saveScale;
+    protected GameManager _gameManager;
+    protected Vector2 saveScale;
     public bool canMove;
     public Color color;
     public GameObject starItem;
@@ -26,6 +23,9 @@ public class EnemyController : MonoBehaviour
 
     // Start is called before the first frame update
     Vector2 screenBounds;
+
+    public float HP { get; set; }
+
     void Start()
     {
         offset = Time.deltaTime * speedMove;
@@ -34,6 +34,7 @@ public class EnemyController : MonoBehaviour
         _gameManager = FindObjectOfType<GameManager>();
 
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+        HP = 100;
     }
 
     // Update is called once per frame
@@ -49,7 +50,7 @@ public class EnemyController : MonoBehaviour
         }
        //transform.Translate(0,1*Time.deltaTime,0);
     }
-    private void FixedUpdate() {
+    protected void FixedUpdate() {
         offset = Time.deltaTime*speedMove;
         if(canMove==true)
         {
@@ -58,13 +59,16 @@ public class EnemyController : MonoBehaviour
         
     }
     void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("Dan");
         if(other.gameObject.tag == "bullet")
         {
-           // Instantiate(starItem,transform.position,Quaternion.identity);
-           // StartCoroutine(getHit());
-            Instantiate(explostionEffect,transform.position,Quaternion.identity);
-            Destroy(gameObject);
+            // Instantiate(starItem,transform.position,Quaternion.identity);
+            // StartCoroutine(getHit());
+            HP -= other.gameObject.GetComponent<BulletController>().Power;
+            if (HP <= 0)
+            {
+                Instantiate(explostionEffect, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
         }
     }
     IEnumerator getHit()
