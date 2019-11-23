@@ -11,6 +11,10 @@ public class BulletEnemyController : MonoBehaviour
     private Vector3 target;// current targer position
     // Start is called before the first frame update
     private Vector2 screenBounds;
+    private int power;
+
+    public int Power { get => power; set => power = value; }
+
     private void Awake() 
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -19,6 +23,7 @@ public class BulletEnemyController : MonoBehaviour
         RotationZ = Mathf.Atan2(difference.y,difference.x)*Mathf.Rad2Deg;
         Debug.Log("Vi tri player trong bullet enmey: x "+player.position.x+" y "+player.position.y);
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height,Camera.main.transform.position.z));
+        Power = 10;
     }
 
     // Update is called once per frame
@@ -41,7 +46,14 @@ public class BulletEnemyController : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-   private void OnCollisionEnter2D(Collision2D other) {
-       
-   }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP -= Power;
+            Debug.Log("HP" + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP);
+            Destroy(gameObject);
+        }
+    }
 }

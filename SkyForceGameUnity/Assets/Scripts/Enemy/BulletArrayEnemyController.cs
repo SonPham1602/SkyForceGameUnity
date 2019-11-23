@@ -5,14 +5,15 @@ using UnityEngine;
 public class BulletArrayEnemyController : MonoBehaviour
 {
     public float speed;
-    public Transform player;
+    private GameObject player;
     Vector3 difference;
     private Vector3 target;
      float RotationZ;
      private Vector2 screenBounds;
     private void Awake() {
+        player = GameObject.FindGameObjectWithTag("Player");
         RotationZ = player.transform.rotation.z;
-        Debug.Log("Vi tri player trong bullet enmey: x "+player.position.x+" y "+player.position.y);
+        Debug.Log("Vi tri player trong bullet enmey: x "+player.transform.position.x+" y "+ player.transform.position.y);
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height,Camera.main.transform.position.z));
     }
     // Start is called before the first frame update
