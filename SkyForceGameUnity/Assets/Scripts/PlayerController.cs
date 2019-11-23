@@ -141,4 +141,11 @@ public class PlayerController : MonoBehaviour
             nghiem.x2 = (-heSoPtBac2.y - Mathf.Sqrt(delta)) / (2 * heSoPtBac2.x);
         }
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag=="bulletEnemy")
+        {
+            Destroy(other.gameObject);
+        }
+    }
 }

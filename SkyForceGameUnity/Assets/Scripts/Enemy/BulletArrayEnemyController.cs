@@ -2,25 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletEnemyController : MonoBehaviour
+public class BulletArrayEnemyController : MonoBehaviour
 {
-    public float speed;// speed of bullet enemy
-    private Transform player;
-    float RotationZ;
+    public float speed;
+    public Transform player;
     Vector3 difference;
-    private Vector3 target;// current targer position
-    // Start is called before the first frame update
-    private Vector2 screenBounds;
-    private void Awake() 
-    {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        target = new Vector3(player.position.x, player.position.y,player.position.z);
-        difference = target-transform.position;
-        RotationZ = Mathf.Atan2(difference.y,difference.x)*Mathf.Rad2Deg;
+    private Vector3 target;
+     float RotationZ;
+     private Vector2 screenBounds;
+    private void Awake() {
+        RotationZ = player.transform.rotation.z;
         Debug.Log("Vi tri player trong bullet enmey: x "+player.position.x+" y "+player.position.y);
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height,Camera.main.transform.position.z));
     }
-
+    // Start is called before the first frame update
+   
     // Update is called once per frame
     void Update()
     {
@@ -41,7 +37,4 @@ public class BulletEnemyController : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-   private void OnCollisionEnter2D(Collision2D other) {
-       
-   }
 }

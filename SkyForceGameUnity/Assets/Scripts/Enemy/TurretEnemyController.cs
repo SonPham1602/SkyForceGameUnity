@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TurretEnemyController : MonoBehaviour
 {
+    public float rotationObject;
     public GameObject turret;
     public float startTimeBtwShots;//time to shot 
     public float health;
@@ -11,11 +12,14 @@ public class TurretEnemyController : MonoBehaviour
     private float numberBulletTurret;
     public Sprite spriteOfBrokenTurret;
     private float timeBtwShots;
-    
+    private float timeStart;
+    public float timeToStartShoot;
+
     private bool isBroken;
     private Transform player;
+    public GameObject bulletMain;
     public GameObject bullet;
-    public GameObject bulletStart;
+    public GameObject[] bulletStart;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,20 +31,34 @@ public class TurretEnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timeBtwShots <= 0)
+        if (timeToStartShoot <= timeStart)
         {
-            if (isBroken == false)
+            if (timeBtwShots <= 0)
             {
-                Instantiate(bullet, bulletStart.transform.position, Quaternion.identity);
+                if (isBroken == false)
+                {
+                    for (int i = 0; i < bulletStart.Length; i++)
+                    {
+                        Instantiate(bullet, bulletStart[i].transform.position, Quaternion.identity);
+                    }
+
+                }
+                timeBtwShots = startTimeBtwShots;
             }
-            timeBtwShots = startTimeBtwShots;
+            else
+            {
+                timeBtwShots -= Time.deltaTime;
+            }
         }
         else
         {
-            timeBtwShots -= Time.deltaTime;
+            timeStart += Time.deltaTime;
         }
+
+
+       
         Vector3 difference = player.position - gameObject.transform.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        turret.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ-90);
+        turret.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ - rotationObject);
     }
 }
