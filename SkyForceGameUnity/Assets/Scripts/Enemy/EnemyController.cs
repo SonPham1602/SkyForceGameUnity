@@ -59,16 +59,20 @@ public class EnemyController : MonoBehaviour
         
     }
     void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.tag == "bullet")
+        if (other.gameObject.tag == "bullet")
         {
-            // Instantiate(starItem,transform.position,Quaternion.identity);
-            // StartCoroutine(getHit());
             HP -= other.gameObject.GetComponent<BulletController>().Power;
             if (HP <= 0)
             {
                 Instantiate(explostionEffect, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
+        }
+        else if (other.gameObject.tag == "Player")
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP -= HP;
+            Instantiate(explostionEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
     IEnumerator getHit()

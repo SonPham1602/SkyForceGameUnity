@@ -31,6 +31,8 @@ public class HelicoperEnemy : MonoBehaviour
     // Update is called once per frameS
     void Update()
     {
+        if (FindObjectOfType<GameManager>().gameState != GameState.Play)
+            return;
         if (timeBtwShots <= 0)
         {
             if (isBroken == false)

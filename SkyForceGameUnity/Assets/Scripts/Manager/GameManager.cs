@@ -8,6 +8,7 @@ public enum GameState
     Play,
     Pause,
     EndGame,
+    GameOver,
 }
 public class GameManager : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     public void gameOver()
     {
+        gameState = GameState.GameOver;
         Time.timeScale = 0f;
     }
 

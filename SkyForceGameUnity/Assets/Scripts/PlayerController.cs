@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public GameObject target;
     public GameObject bullet;
     public int numberBullet = 1;
-    private int hp;
+    private float hp;
     private float speedShip = 20f;
 
     private float radius;
@@ -15,7 +15,17 @@ public class PlayerController : MonoBehaviour
 
     public GameObject[] planeChild;
 
-    public int HP { get => hp; set => hp = value; }
+    public float HP {
+        get => hp;
+        set
+        {
+            hp = value;
+            if (hp <= 0)
+            {
+                FindObjectOfType<GameManager>().gameOver();
+            }
+        }
+    }
 
     struct BulletPos
     {
@@ -33,7 +43,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         radius = Vector3.Magnitude(target.transform.position - gameObject.transform.position);
-        this.HP = 1000;
+        this.HP = 5000f;
     }
 
     // Update is called once per frame
@@ -150,17 +160,6 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "bulletEnemy")
-        {
-            HP -= other.gameObject.GetComponent<BulletEnemyController>().Power;
-            if (HP <= 0)
-            {
-                GameManager gameManager = FindObjectOfType<GameManager>();
-                if (gameManager != null)
-                {
-                    gameManager.gameOver();
-                }
-            }
-        }
+        
     }
 }

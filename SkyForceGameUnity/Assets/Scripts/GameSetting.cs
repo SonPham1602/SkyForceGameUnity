@@ -18,17 +18,19 @@ public class GameSetting : MonoBehaviour
         instance = this;
         sizeCam = new Vector2(2f*Camera.main.aspect*Camera.main.orthographicSize,2f * Camera.main.orthographicSize);
         positionCam = Camera.main.transform.position;
-        setting_plane();   
+        setting_plane();
+        FindObjectOfType<GameManager>().gameState = GameState.Play;
+
     }
+
     void Start()
     {
         
     }
+
     void setting_plane()
     {
         level = PlayerPrefs.GetInt(MenuScript.LEVEL_KEY);
-        
-
     }
 
     // Update is called once per frame

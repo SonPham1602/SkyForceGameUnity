@@ -9,6 +9,7 @@ TagManager:
   - bulletEnemy
   - ShipPlayer
   - brokenEnemy
+  - misileEnemy
   layers:
   - Default
   - TransparentFX

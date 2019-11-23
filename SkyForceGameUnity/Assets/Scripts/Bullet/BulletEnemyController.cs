@@ -51,6 +51,8 @@ public class BulletEnemyController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP -= Power;
+            Debug.Log("HP" + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP);
             Destroy(gameObject);
         }
     }

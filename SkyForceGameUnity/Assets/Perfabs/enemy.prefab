@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 5372251327051273425}
   - component: {fileID: 5372251327051273424}
   - component: {fileID: 5372251327051273439}
-  - component: {fileID: 5372251327051273438}
-  - component: {fileID: 5372251327051273436}
-  - component: {fileID: 3076662640976198404}
+  - component: {fileID: 8807276820569914129}
+  - component: {fileID: 3354200682888993872}
   m_Layer: 0
   m_Name: enemy
   m_TagString: enemy
@@ -110,7 +109,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.62, y: 0.62}
   m_EdgeRadius: 0
---- !u!114 &5372251327051273438
+--- !u!114 &8807276820569914129
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,21 +121,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd79fe177aa6924449e2e5f7b06ce428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberEnemy: 1
   gravity: 20
-  heal: 100
   anchor: 0
-  typePath: 0
+  typePath: 1
   fly_up: 0
-  speedTurn: 0
-  speedMove: 0
+  speedTurn: 0.5
+  speedMove: 10
   canMove: 0
   color: {r: 0, g: 0, b: 0, a: 0}
   starItem: {fileID: 3584385979561779101, guid: a003813cca37bfd4796a9aa70e9ddd52,
     type: 3}
   explostionEffect: {fileID: 3466153542694025480, guid: 39c5cdd680fb8e447ab2fdd7ae4803e0,
     type: 3}
---- !u!50 &5372251327051273436
+--- !u!50 &3354200682888993872
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -144,7 +141,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5372251327051273427}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -157,17 +154,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3076662640976198404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5372251327051273427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09a04a291a7c5774a8340c41ba05d694, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waypoints: []
-  moveSpeed: 2

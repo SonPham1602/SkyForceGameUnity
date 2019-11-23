@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HomingMissile : MonoBehaviour
+public class HomingMissile : BulletController
 {
     public float Speed;
     public float RotateSpeed;
@@ -13,6 +13,7 @@ public class HomingMissile : MonoBehaviour
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
+        Power = 100;
         Destroy(gameObject, 10f);
     }
 
@@ -35,6 +36,8 @@ public class HomingMissile : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP -= Power;
+            Debug.Log("HP" + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP);
             Destroy(gameObject);
         }
     }
