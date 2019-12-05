@@ -12,12 +12,16 @@ public enum GameState
 }
 public class GameManager : MonoBehaviour
 {
-
-    public GameObject[] list_plane;
+    
+    public GameObject[] list_plane;//Danh sach may bay cua nguoi choi
     public Transform pointGen;
     public int point;
     public GameState gameState = GameState.None;
-    // Start is called before the first frame update
+    // Start is called before the first frame updat
+
+    public GameObject titleStartGame;
+    public GameObject cloudStartGame;
+    public Transform targetmove;
     void Start()
     {
         
@@ -26,7 +30,24 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+         if(Input.anyKeyDown && gameState==GameState.None)
+          {
+               if (Input.GetMouseButtonDown(0) 
+                 || Input.GetMouseButtonDown(1)
+                 || Input.GetMouseButtonDown(2))
+                     return; //Do Nothing
+            Debug.Log("Press Any Key");
+            titleStartGame.SetActive(false);
+           
+           // Destroy(titleStartGame);
+            FindObjectOfType<GameManager>().gameState = GameState.Play;
+
+          }
+          if(gameState == GameState.Play)
+          {
+                cloudStartGame.gameObject.transform.position=Vector2.MoveTowards(  cloudStartGame.gameObject.transform.position,targetmove.position,8*Time.deltaTime);
+          }
+           
     }
 
     public void gameWin()

@@ -37,8 +37,8 @@ public class AnchorPlane : MonoBehaviour
         right = new Vector2(positionCam.x + size.x, positionCam.y);
         botton_left = new Vector2(-5, positionCam.y - size.y);
         botton_right = new Vector2(5, positionCam.y - size.y);
-        Debug.Log("Top:x " + top.x + " y:" + top.y);
-        Debug.Log("Size:x " + size.x + " y:" + size.y);
+        //Debug.Log("Top:x " + top.x + " y:" + top.y);
+        //Debug.Log("Size:x " + size.x + " y:" + size.y);
         transform.position = resultPosition();
     }
 

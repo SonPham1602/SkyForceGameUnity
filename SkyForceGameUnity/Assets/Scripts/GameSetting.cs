@@ -13,19 +13,19 @@ public class GameSetting : MonoBehaviour
     public static float speed_plane;
     public static float armor_plane;
     public static float attack_plane;
+    private bool StartGame;
     // Start is called before the first frame update
     private void Awake() {
         instance = this;
         sizeCam = new Vector2(2f*Camera.main.aspect*Camera.main.orthographicSize,2f * Camera.main.orthographicSize);
         positionCam = Camera.main.transform.position;
-        setting_plane();
-        FindObjectOfType<GameManager>().gameState = GameState.Play;
+       
 
     }
 
     void Start()
     {
-        
+         
     }
 
     void setting_plane()
@@ -36,6 +36,7 @@ public class GameSetting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+      
     }
 }

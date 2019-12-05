@@ -18,14 +18,18 @@ public class WaveEnemyController : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         while (true)
         {
-            Debug.Log("current wave:"+currentWave);
+            while(gameManager.gameState!=GameState.Play)
+            {
+                yield return 0;
+            }
+         //   Debug.Log("current wave:"+currentWave);
             if(currentWave<waveEnemy.Length)
             {
                 GameObject wave = (GameObject)Instantiate(waveEnemy[currentWave],transform.position,Quaternion.identity);
                 wave.transform.parent = transform;
                 while(0<wave.transform.childCount)
                 {
-                    Debug.Log("childCount"+wave.transform.childCount);
+                    //Debug.Log("childCount"+wave.transform.childCount);
                     yield return 0;
                 }
                 Destroy(wave);
@@ -38,6 +42,11 @@ public class WaveEnemyController : MonoBehaviour
             currentWave++;
             if(currentWave>=waveEnemy.Length)
             {
+                WaveEnemyController[] wave = FindObjectsOfType<WaveEnemyController>();
+                if(wave.Length<=1)
+                {
+                    gameManager.gameWin();
+                }
                 Destroy(gameObject);
             }
         }
