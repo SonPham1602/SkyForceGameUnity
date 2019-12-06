@@ -10,6 +10,7 @@ TagManager:
   - ShipPlayer
   - brokenEnemy
   - misileEnemy
+  - destroyBulletPlayer
   layers:
   - Default
   - TransparentFX

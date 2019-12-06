@@ -40,5 +40,9 @@ public class BulletController : MonoBehaviour
             Debug.Log("Button touch enemy");
             Destroy(gameObject);
         }
+        else if(other.gameObject.tag == "destroyBulletPlayer")
+        {
+             Destroy(gameObject);
+        }
     }
 }
