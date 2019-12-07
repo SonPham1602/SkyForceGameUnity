@@ -65,7 +65,7 @@ public class EnemyController : MonoBehaviour
             HP -= other.gameObject.GetComponent<BulletController>().Power;
             if (HP <= 0)
             {
-              
+                GameSetting.ScoreGame+=10;
                 Instantiate(explostionEffect, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
