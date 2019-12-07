@@ -11,6 +11,7 @@ TagManager:
   - brokenEnemy
   - misileEnemy
   - destroyBulletPlayer
+  - destroyEnemy
   layers:
   - Default
   - TransparentFX

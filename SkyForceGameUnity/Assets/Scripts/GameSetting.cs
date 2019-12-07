@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameSetting : MonoBehaviour
 {
+    public static int ScoreGame;
     public static GameSetting instance;
     public static Vector2 sizeCam;
     public static Vector2 positionCam;

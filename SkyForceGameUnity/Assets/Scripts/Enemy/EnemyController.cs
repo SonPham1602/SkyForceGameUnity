@@ -60,10 +60,12 @@ public class EnemyController : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "bullet")
-        {
+        {  
+            StartCoroutine(getHit());
             HP -= other.gameObject.GetComponent<BulletController>().Power;
             if (HP <= 0)
             {
+              
                 Instantiate(explostionEffect, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
@@ -77,8 +79,9 @@ public class EnemyController : MonoBehaviour
     }
     IEnumerator getHit()
     {
+        Debug.Log("Get hit");
         StopCoroutine("getHit");
-        SpriteRenderer sr = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        SpriteRenderer sr = transform.GetComponent<SpriteRenderer>();
         if (sr != null)
         {
             color = Color.red;
