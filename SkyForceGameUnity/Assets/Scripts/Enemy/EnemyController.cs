@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public int ScoreTake;// Quy dinh bao nhieu diem khi tieu diet enemy
     public float gravity = 20.0f;
     // public float speed = 6.0f;
     protected Rigidbody2D rigidbody2d;
@@ -65,7 +66,7 @@ public class EnemyController : MonoBehaviour
             HP -= other.gameObject.GetComponent<BulletController>().Power;
             if (HP <= 0)
             {
-                GameSetting.ScoreGame+=10;
+                GameSetting.ScoreGame+=ScoreTake;
                 Instantiate(explostionEffect, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
