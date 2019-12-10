@@ -66,7 +66,7 @@ public class MainMenuController : MonoBehaviour
     {
       
              for(int i = 0;i<currentLevel-1;i++)
-            {
+            {   
               ButtonLevels[i].gameObject.GetComponent<LevelController>().SetStatusComplete();
 
             }
