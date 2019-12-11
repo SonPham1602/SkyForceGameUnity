@@ -8,23 +8,40 @@ public class MainMenuController : MonoBehaviour
      public  int currentLevel;
      public int numberOfLevel;
     public GameObject[] ButtonLevels;
-  
+    GameState gameState;
     [SerializeField] GameObject PanelSetting;
     [SerializeField] GameObject PanelUpgrade;
 
     [SerializeField] GameObject PanelMapGame;
+    [SerializeField] GameObject PanelButtons;
+    [SerializeField] GameObject ImagePressAnyKey;
     // Start is called before the first frame update
     void Start()
     {
-       
-          PanelSetting.SetActive(false);
-          SetupLevelSpriteScreen();
+        gameState = GameState.None;
+        ImagePressAnyKey.SetActive(true);
+        PanelButtons.SetActive(false);
+        PanelSetting.SetActive(false);
+        SetupLevelSpriteScreen();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+         if(Input.anyKeyDown && gameState==GameState.None)
+          {
+               if (Input.GetMouseButtonDown(0) 
+                 || Input.GetMouseButtonDown(1)
+                 || Input.GetMouseButtonDown(2))
+                     return; //Do Nothing
+            Debug.Log("Press Any Key");
+            gameState = GameState.Play;
+            ImagePressAnyKey.SetActive(false);
+            PanelButtons.SetActive(true);
+
+         
+          }
+       
     }
 
     public void StartGame()
