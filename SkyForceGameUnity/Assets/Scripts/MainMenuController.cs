@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
      public  int currentLevel;
+     public int numberOfLevel;
     public GameObject[] ButtonLevels;
   
     [SerializeField] GameObject PanelSetting;
@@ -15,7 +16,7 @@ public class MainMenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentLevel = 3;
+       
           PanelSetting.SetActive(false);
           SetupLevelSpriteScreen();
     }
@@ -28,7 +29,8 @@ public class MainMenuController : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("PlayScene");
+        OpenMapGame();
+       
     }
     
     public void OpenSettingGame()
@@ -51,12 +53,17 @@ public class MainMenuController : MonoBehaviour
     {
         PanelMapGame.SetActive(true);
     }
+    public void HideMapGame()
+    {
+        PanelMapGame.SetActive(false);
+    }
     public void OpenShopGame()
     {
 
     }
     public void RunLevel1()
     {
+        
         GameObject star = ButtonLevels[0].transform.GetChild(0).gameObject;
         star.GetComponent<StarLevelController>().SetStar(1);
         Debug.Log("Run Level 1");
@@ -68,12 +75,20 @@ public class MainMenuController : MonoBehaviour
              for(int i = 0;i<currentLevel-1;i++)
             {   
               ButtonLevels[i].gameObject.GetComponent<LevelController>().SetStatusComplete();
+             
 
+            }
+            for(int i = numberOfLevel-1;i>currentLevel-1;i--)
+            {
+                 ButtonLevels[i].gameObject.transform.GetChild(0).gameObject.SetActive(false);
             }
             ButtonLevels[currentLevel -1].gameObject.GetComponent<LevelController>().SetStatusAttackGame();
     }
 
-
+    public void StartLevel()
+    {
+         SceneManager.LoadScene("PlayScene");
+    }
     public void QuitGame()
     {
         Application.Quit();
