@@ -15,6 +15,10 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] GameObject PanelMapGame;
     [SerializeField] GameObject PanelButtons;
     [SerializeField] GameObject ImagePressAnyKey;
+    [SerializeField] GameObject PanelSoundSetting;
+    [SerializeField] GameObject PanelControllerSetting;
+    [SerializeField] GameObject PanelScreenSetting;
+    [SerializeField] GameObject PanelHelpSetting;
     // Start is called before the first frame update
     void Start()
     {
@@ -109,6 +113,14 @@ public class MainMenuController : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+    public void ShowSoundSettingInSetting()
+    {
+        PanelSoundSetting.SetActive(true);
+    }
+    public void HideSoundSettingInSetting()
+    {
+        PanelSoundSetting.SetActive(false);
     }
 
 }
