@@ -116,11 +116,31 @@ public class MainMenuController : MonoBehaviour
     }
     public void ShowSoundSettingInSetting()
     {
+        HideAllPanelSettingInSetting();
         PanelSoundSetting.SetActive(true);
     }
-    public void HideSoundSettingInSetting()
+    public void ShowControllerSettingInSetting()
     {
-        PanelSoundSetting.SetActive(false);
+        HideAllPanelSettingInSetting();
+        PanelControllerSetting.SetActive(true);
     }
+    public void ShowScreenSettingInSetting()
+    {
+        HideAllPanelSettingInSetting();
+        PanelScreenSetting.SetActive(true);
+    }
+    public void ShowHelpInSetting()
+    {
+        HideAllPanelSettingInSetting();
+        PanelHelpSetting.SetActive(true);
+    }
+    public void HideAllPanelSettingInSetting()
+    {
+        PanelHelpSetting.SetActive(false);
+        PanelScreenSetting.SetActive(false);
+        PanelSoundSetting.SetActive(false);
+        PanelControllerSetting.SetActive(false);
+    }
+   
 
 }

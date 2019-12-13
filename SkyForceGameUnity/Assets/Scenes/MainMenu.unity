@@ -951,6 +951,79 @@ MonoBehaviour:
   CompleteGame: {fileID: 21300000, guid: 28d5dda8f449d7048aa4812a18be8f43, type: 3}
   LockGame: {fileID: 21300000, guid: b77c84c16214f97448e754e967a34b37, type: 3}
   image: {fileID: 479606905}
+--- !u!1 &483715768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 483715769}
+  - component: {fileID: 483715771}
+  - component: {fileID: 483715770}
+  m_Layer: 5
+  m_Name: TitleTypeController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &483715769
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483715768}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1709873029}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 67.937}
+  m_SizeDelta: {x: 722.9, y: 47.373}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &483715770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483715768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 40d9696c32bce944fbaae3c25b068479, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &483715771
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483715768}
+  m_CullTransparentMesh: 0
 --- !u!1 &504399105
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,7 +1039,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &504399106
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1320,6 +1393,7 @@ GameObject:
   - component: {fileID: 610038591}
   - component: {fileID: 610038590}
   - component: {fileID: 610038589}
+  - component: {fileID: 610038592}
   m_Layer: 5
   m_Name: ControllerButtonSetting
   m_TagString: Untagged
@@ -1390,7 +1464,51 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 314884162}
-        m_MethodName: 
+        m_MethodName: ShowControllerSettingInSetting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 610038592}
+        m_MethodName: SetPressedSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1331183461}
+        m_MethodName: SetUnPressedSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 800753607}
+        m_MethodName: SetUnPressedSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1194448700}
+        m_MethodName: SetUnPressedSprite
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1436,6 +1554,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 610038587}
   m_CullTransparentMesh: 0
+--- !u!114 &610038592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610038587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904215bf9e6efb3448a9321c9068869b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritePressed: {fileID: 21300000, guid: b73eea542cac05b46b6840eac61429ac, type: 3}
+  sprite: {fileID: 21300000, guid: e85c187ba64b2a04e8a74053e6ac4878, type: 3}
+  image: {fileID: 610038590}
 --- !u!1 &624527568
 GameObject:
   m_ObjectHideFlags: 0
@@ -1668,6 +1801,7 @@ GameObject:
   - component: {fileID: 800753606}
   - component: {fileID: 800753605}
   - component: {fileID: 800753604}
+  - component: {fileID: 800753607}
   m_Layer: 5
   m_Name: ScreenButtonSetting
   m_TagString: Untagged
@@ -1738,7 +1872,51 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 314884162}
-        m_MethodName: 
+        m_MethodName: ShowScreenSettingInSetting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 800753607}
+        m_MethodName: SetPressedSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1331183461}
+        m_MethodName: SetUnPressedSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 610038592}
+        m_MethodName: SetUnPressedSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1194448700}
+        m_MethodName: SetUnPressedSprite
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1784,6 +1962,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 800753602}
   m_CullTransparentMesh: 0
+--- !u!114 &800753607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800753602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904215bf9e6efb3448a9321c9068869b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritePressed: {fileID: 21300000, guid: 5fcf7ed9dcf535c4081e5fc4ec55027a, type: 3}
+  sprite: {fileID: 21300000, guid: 5b95b95512ae8df47a1a2f5865327e18, type: 3}
+  image: {fileID: 800753605}
 --- !u!1 &811581364
 GameObject:
   m_ObjectHideFlags: 0
@@ -2860,6 +3053,7 @@ GameObject:
   - component: {fileID: 1194448699}
   - component: {fileID: 1194448698}
   - component: {fileID: 1194448697}
+  - component: {fileID: 1194448700}
   m_Layer: 5
   m_Name: HelpButtonSetting
   m_TagString: Untagged
@@ -2930,7 +3124,51 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 314884162}
-        m_MethodName: 
+        m_MethodName: ShowHelpInSetting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1194448700}
+        m_MethodName: SetPressedSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1331183461}
+        m_MethodName: SetUnPressedSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 610038592}
+        m_MethodName: SetUnPressedSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 800753607}
+        m_MethodName: SetUnPressedSprite
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2976,6 +3214,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1194448695}
   m_CullTransparentMesh: 0
+--- !u!114 &1194448700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194448695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904215bf9e6efb3448a9321c9068869b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritePressed: {fileID: 21300000, guid: 1d6b4403cac3b054b9531172c1938532, type: 3}
+  sprite: {fileID: 21300000, guid: d9cb02cef73f9d542aa73e7fd83cea3b, type: 3}
+  image: {fileID: 1194448698}
 --- !u!1 &1247140157
 GameObject:
   m_ObjectHideFlags: 0
@@ -3279,6 +3532,7 @@ GameObject:
   - component: {fileID: 1331183460}
   - component: {fileID: 1331183459}
   - component: {fileID: 1331183458}
+  - component: {fileID: 1331183461}
   m_Layer: 5
   m_Name: SoundButtonSetting
   m_TagString: Untagged
@@ -3359,6 +3613,50 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1331183461}
+        m_MethodName: SetPressedSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 610038592}
+        m_MethodName: SetUnPressedSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 800753607}
+        m_MethodName: SetUnPressedSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1194448700}
+        m_MethodName: SetUnPressedSprite
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1331183459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3395,6 +3693,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1331183456}
   m_CullTransparentMesh: 0
+--- !u!114 &1331183461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331183456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904215bf9e6efb3448a9321c9068869b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritePressed: {fileID: 21300000, guid: 2c25a07671759ab4f93f304c7c3c1575, type: 3}
+  sprite: {fileID: 21300000, guid: 3c779b687b344fc43aeab7e6c93853f4, type: 3}
+  image: {fileID: 1331183459}
 --- !u!1 &1414629836
 GameObject:
   m_ObjectHideFlags: 0
@@ -4053,7 +4366,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 483715769}
   m_Father: {fileID: 1828801372}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
