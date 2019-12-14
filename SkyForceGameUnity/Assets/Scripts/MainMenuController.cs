@@ -19,6 +19,10 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] GameObject PanelControllerSetting;
     [SerializeField] GameObject PanelScreenSetting;
     [SerializeField] GameObject PanelHelpSetting;
+    [SerializeField] GameObject LogoGame;
+    [SerializeField] GameObject MiddleButtons;
+    [SerializeField] GameObject RightButtons;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +46,9 @@ public class MainMenuController : MonoBehaviour
             gameState = GameState.Play;
             ImagePressAnyKey.SetActive(false);
             PanelButtons.SetActive(true);
-
+            LogoGame.GetComponent<Animator>().SetBool("Move",true);
+            MiddleButtons.GetComponent<Animator>().SetBool("Move",true);
+            RightButtons.GetComponent<Animator>().SetBool("Move",true);
          
           }
        
