@@ -8,14 +8,18 @@ public class PlayerController : MonoBehaviour
     public GameObject bullet;
     public int numberBullet = 1;
     private float hp;
-    private float speedShip = 20f;
+    public float speedShip = 100f;
 
     private float radius;
     private float lastTimeFire = 0;
 
     public GameObject[] planeChild;
+    private Rigidbody2D rb;
+    Vector2 direction;
+    private bool isMove;
 
-    public float HP {
+    public float HP
+    {
         get => hp;
         set
         {
@@ -44,17 +48,50 @@ public class PlayerController : MonoBehaviour
     {
         radius = Vector3.Magnitude(target.transform.position - gameObject.transform.position);
         this.HP = 5000f;
+        rb = GetComponent<Rigidbody2D>();
+    }
+    private void OnMouseOver()
+    {
+        isMove = false;
+        Debug.Log("Move false");
+    }
+    /// <summary>
+    /// Called when the mouse is not any longer over the GUIElement or Collider.
+    /// </summary>
+    void OnMouseExit()
+    {
+        isMove = true;
+        Debug.Log("Move true");
     }
 
     // Update is called once per frame
     void Update()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if(Mathf.Abs(mousePosition.x)<=28 && Mathf.Abs(mousePosition.y)<=16)
+        if (Mathf.Abs(mousePosition.x) <= 28 && Mathf.Abs(mousePosition.y) <= 16)
         {
-            gameObject.transform.Translate((mousePosition - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y)) * Time.deltaTime * speedShip);
+
+            direction = (mousePosition - new Vector2(transform.position.x, transform.position.y)).normalized;
+            // Debug.Log(direction.x+ "   " + direction.y);
+            // Debug.Log(mousePosition.x+ "   " + mousePosition.y + "   " + transform.position.x + "  "  + transform.position.y);
+            if (isMove != false)
+            {
+                rb.velocity = new Vector2(direction.x * speedShip, direction.y * speedShip);
+            }
+            else
+            {
+                rb.velocity = Vector2.zero;
+                gameObject.transform.Translate((mousePosition - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y)) * Time.deltaTime * speedShip);
+            }
+
+
+
+            //gameObject.transform.Translate((mousePosition - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y)) * Time.deltaTime * speedShip);
+
+
         }
-       
+
+
 
         if (Input.GetMouseButton(0) && Time.time - lastTimeFire >= 0.2f)
         {
@@ -90,8 +127,8 @@ public class PlayerController : MonoBehaviour
     }
 
     void CreateOneBullet(Vector3 pos, GameObject bullet, float speed)
-	{
-		GameObject b = Instantiate(bullet, gameObject.transform.position, Quaternion.identity);
+    {
+        GameObject b = Instantiate(bullet, gameObject.transform.position, Quaternion.identity);
         b.GetComponent<BulletController>().targetPosition = pos;
         b.GetComponent<BulletController>().moveSpeed = speed;
         b.GetComponent<BulletController>().Power = 50;
@@ -159,7 +196,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag=="bulletEnemy")
+        if (other.gameObject.tag == "bulletEnemy")
         {
             Destroy(other.gameObject);
         }
