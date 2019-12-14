@@ -1482,6 +1482,7 @@ MonoBehaviour:
   LogoGame: {fileID: 449346757}
   MiddleButtons: {fileID: 1994013755}
   RightButtons: {fileID: 101500009}
+  cursonTexture: {fileID: 2800000, guid: c18416f148631df43a435c16af78e841, type: 3}
 --- !u!4 &314884163
 Transform:
   m_ObjectHideFlags: 0

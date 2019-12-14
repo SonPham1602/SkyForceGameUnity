@@ -23,6 +23,10 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] GameObject MiddleButtons;
     [SerializeField] GameObject RightButtons;
 
+    Vector2 hotspot= Vector2.zero;
+    public Texture2D  cursonTexture;
+    CursorMode cursorMode = CursorMode.Auto;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +55,7 @@ public class MainMenuController : MonoBehaviour
             RightButtons.GetComponent<Animator>().SetBool("Move",true);
          
           }
+          Cursor.SetCursor(cursonTexture,hotspot,cursorMode);
        
     }
 
