@@ -277,13 +277,14 @@ GameObject:
   - component: {fileID: 54030400}
   - component: {fileID: 54030399}
   - component: {fileID: 54030398}
+  - component: {fileID: 54030401}
   m_Layer: 5
   m_Name: PressAnyKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &54030398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,6 +340,25 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: -123.7}
   m_SizeDelta: {x: 182.33, y: 30.76}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &54030401
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54030397}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 97fa642649e748c45bd9aa3dcd675e77, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &91355339
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,7 +618,7 @@ GameObject:
   - component: {fileID: 219600036}
   - component: {fileID: 219600035}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ButtonLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1091,7 +1111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &300018425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3022,7 +3042,7 @@ GameObject:
   - component: {fileID: 615067604}
   - component: {fileID: 615067603}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: PanelArmor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3390,7 +3410,7 @@ GameObject:
   - component: {fileID: 779831980}
   - component: {fileID: 779831979}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: PanelPower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5571,7 +5591,7 @@ GameObject:
   - component: {fileID: 1241315808}
   - component: {fileID: 1241315807}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: ButtonRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6688,7 +6708,7 @@ GameObject:
   - component: {fileID: 1511991864}
   - component: {fileID: 1511991863}
   m_Layer: 5
-  m_Name: Image
+  m_Name: PanelHelth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
