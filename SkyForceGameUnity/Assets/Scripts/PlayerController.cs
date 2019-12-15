@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
             direction = (mousePosition - new Vector2(transform.position.x, transform.position.y)).normalized;
             // Debug.Log(direction.x+ "   " + direction.y);
-            // Debug.Log(mousePosition.x+ "   " + mousePosition.y + "   " + transform.position.x + "  "  + transform.position.y);
+             Debug.Log(mousePosition.x+ "   " + mousePosition.y + "   " + transform.position.x + "  "  + transform.position.y);
             if (isMove != false)
             {
                 rb.velocity = new Vector2(direction.x * speedShip, direction.y * speedShip);
@@ -83,12 +83,50 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 gameObject.transform.Translate((mousePosition - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y)) * Time.deltaTime * speedShip);
             }
+        }
+        else
+        {
 
+            if (((mousePosition.x) > 28))
+            {
+                mousePosition.x = 26;
+                isMove = false;
+            }
+            else if (mousePosition.x < -28)
+            {
+                mousePosition.x = -26;
+               isMove = false;
+            }
+            if (((mousePosition.y) > 16))
+            {
+                mousePosition.y = 14;
+                isMove = false;
+            }
+            else if (mousePosition.y < -16)
+            {
+                mousePosition.y = -14;
+                isMove = false;
+            }
+            direction = (mousePosition - new Vector2(transform.position.x, transform.position.y)).normalized;
+            if (isMove != false)
+            {
+                rb.velocity = new Vector2(direction.x * speedShip, direction.y * speedShip);
+            }
+            else
+            {
+                if (Mathf.Abs(mousePosition.x) > 24 || Mathf.Abs(mousePosition.y) > 12)
+                {
+                    rb.velocity = Vector2.zero;
+                    gameObject.transform.Translate((mousePosition - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y)) * Time.deltaTime * speedShip);
+                }
+                else
+                {
+                     rb.velocity = new Vector2(direction.x * speedShip, direction.y * speedShip);
+                }
 
+            }
 
-            //gameObject.transform.Translate((mousePosition - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y)) * Time.deltaTime * speedShip);
-
-
+            //rb.velocity = Vector2.zero;
         }
 
 

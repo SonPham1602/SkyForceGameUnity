@@ -22,6 +22,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] GameObject LogoGame;
     [SerializeField] GameObject MiddleButtons;
     [SerializeField] GameObject RightButtons;
+    [SerializeField] GameObject PanelExit;
 
     Vector2 hotspot= Vector2.zero;
     public Texture2D  cursonTexture;
@@ -123,7 +124,15 @@ public class MainMenuController : MonoBehaviour
     }
     public void QuitGame()
     {
+        PanelExit.SetActive(true);
+    }
+    public void ExitGame()
+    {
         Application.Quit();
+    }
+      public void CancelExitGame()
+    {
+       PanelExit.SetActive(false);
     }
     public void ShowSoundSettingInSetting()
     {
