@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -23,10 +25,17 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] GameObject MiddleButtons;
     [SerializeField] GameObject RightButtons;
     [SerializeField] GameObject PanelExit;
+    //Button In Setting Screen
+    
+    //Sound Button Setting
+    [SerializeField] Toggle ToggleMusic;
+    [SerializeField] Toggle ToggleSFX;
+
 
     Vector2 hotspot= Vector2.zero;
     public Texture2D  cursonTexture;
     CursorMode cursorMode = CursorMode.Auto;
+    public AudioMixer audioMixer;
 
     // Start is called before the first frame update
     void Start()
@@ -165,6 +174,28 @@ public class MainMenuController : MonoBehaviour
         PanelScreenSetting.SetActive(false);
         PanelSoundSetting.SetActive(false);
         PanelControllerSetting.SetActive(false);
+    }
+    public void SetVolumeMusic()
+    {
+        if(ToggleMusic.isOn ==  true)
+        {
+            audioMixer.SetFloat("Music",0);
+        }
+        else
+        {
+             audioMixer.SetFloat("Music",-80);
+        }
+    }
+    public void SetVolumeSFX()
+    {
+        if(ToggleSFX.isOn == true)
+        {
+            audioMixer.SetFloat("SFX",0);
+        }   
+        else
+        {
+            audioMixer.SetFloat("SFX",-80);
+        }
     }
    
 
