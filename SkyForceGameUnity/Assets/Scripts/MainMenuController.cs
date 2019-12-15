@@ -124,7 +124,10 @@ public class MainMenuController : MonoBehaviour
     }
     public void QuitGame()
     {
-        PanelExit.SetActive(true);
+        
+       
+        PanelExit.gameObject.GetComponent<Animator>().SetBool("Show",true);
+         PanelExit.gameObject.GetComponent<Animator>().SetBool("Hide",false);
     }
     public void ExitGame()
     {
@@ -132,7 +135,9 @@ public class MainMenuController : MonoBehaviour
     }
       public void CancelExitGame()
     {
-       PanelExit.SetActive(false);
+       PanelExit.gameObject.GetComponent<Animator>().SetBool("Hide",true);
+       PanelExit.gameObject.GetComponent<Animator>().SetBool("Show",false);
+        //PanelExit.SetActive(false);
     }
     public void ShowSoundSettingInSetting()
     {
