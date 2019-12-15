@@ -17,12 +17,15 @@ public class GameSetting : MonoBehaviour
     public static float speed_plane;
     public static float armor_plane;
     public static float attack_plane;
+
+    public static TypeControllerGame typeControllerGame;
     private bool StartGame;
     // Start is called before the first frame update
     private void Awake() {
         instance = this;
         sizeCam = new Vector2(2f*Camera.main.aspect*Camera.main.orthographicSize,2f * Camera.main.orthographicSize);
         positionCam = Camera.main.transform.position;
+        typeControllerGame = TypeControllerGame.GamePad;
        
 
     }

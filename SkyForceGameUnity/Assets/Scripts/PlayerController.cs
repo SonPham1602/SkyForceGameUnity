@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
         radius = Vector3.Magnitude(target.transform.position - gameObject.transform.position);
         this.HP = 5000f;
         rb = GetComponent<Rigidbody2D>();
+        typeControllerGame = GameSetting.typeControllerGame;
     }
     private void OnMouseOver()
     {
@@ -259,5 +260,6 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
+        
     }
 }

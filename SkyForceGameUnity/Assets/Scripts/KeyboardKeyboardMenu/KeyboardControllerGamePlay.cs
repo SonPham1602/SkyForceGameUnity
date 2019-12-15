@@ -10,26 +10,50 @@ public class KeyboardControllerGamePlay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-           ResumeGame();
+        ResumeGame();
     }
 
-  
+
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (GameSetting.typeControllerGame == TypeControllerGame.Mouse)
         {
-            GameIsPaused =! GameIsPaused;
-            if(GameIsPaused == true)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                PauseGame();
+                GameIsPaused = !GameIsPaused;
+                if (GameIsPaused == true)
+                {
+                    PauseGame();
+                }
+                else
+                {
+                    ResumeGame();
+                }
+
             }
-            else
-            {
-                ResumeGame();
-            }
-            
         }
+        else if (GameSetting.typeControllerGame == TypeControllerGame.GamePad)
+        {
+            // System.Array values = System.Enum.GetValues(typeof(KeyCode));
+            // foreach (KeyCode code in values)
+            // {
+            //     if (Input.GetKeyDown(code)) { print(System.Enum.GetName(typeof(KeyCode), code)); }
+            // }
+            if(Input.GetKeyDown("joystick button 6"))
+            {
+                 GameIsPaused = !GameIsPaused;
+                if (GameIsPaused == true)
+                {
+                    PauseGame();
+                }
+                else
+                {
+                    ResumeGame();
+                }
+            }
+        }
+
     }
     void PauseGame()
     {
