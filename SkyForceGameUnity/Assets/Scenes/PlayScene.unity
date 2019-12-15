@@ -4448,6 +4448,11 @@ PrefabInstance:
       propertyPath: speedShip
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 2044952476517342740, guid: 146e8d5d9ae8d1f49b888fb855c5a0c7,
+        type: 3}
+      propertyPath: typeControllerGame
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2044952476027459894, guid: 146e8d5d9ae8d1f49b888fb855c5a0c7,
         type: 3}
       propertyPath: m_IsTrigger

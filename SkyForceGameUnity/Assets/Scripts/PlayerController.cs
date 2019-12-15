@@ -1,7 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public enum TypeControllerGame
+{
+    Mouse,
+    GamePad,
+    Keyboard
+}
 public class PlayerController : MonoBehaviour
 {
     public GameObject target;
@@ -17,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     Vector2 direction;
     private bool isMove;
+    public TypeControllerGame typeControllerGame;
 
     public float HP
     {
@@ -68,74 +74,89 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (Mathf.Abs(mousePosition.x) <= 28 && Mathf.Abs(mousePosition.y) <= 16)
+        if (typeControllerGame == TypeControllerGame.Mouse)
         {
+            if (Mathf.Abs(mousePosition.x) <= 28 && Mathf.Abs(mousePosition.y) <= 16)
+            {
 
-            direction = (mousePosition - new Vector2(transform.position.x, transform.position.y)).normalized;
-            // Debug.Log(direction.x+ "   " + direction.y);
-             Debug.Log(mousePosition.x+ "   " + mousePosition.y + "   " + transform.position.x + "  "  + transform.position.y);
-            if (isMove != false)
-            {
-                rb.velocity = new Vector2(direction.x * speedShip, direction.y * speedShip);
-            }
-            else
-            {
-                rb.velocity = Vector2.zero;
-                gameObject.transform.Translate((mousePosition - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y)) * Time.deltaTime * speedShip);
-            }
-        }
-        else
-        {
-
-            if (((mousePosition.x) > 28))
-            {
-                mousePosition.x = 26;
-                isMove = false;
-            }
-            else if (mousePosition.x < -28)
-            {
-                mousePosition.x = -26;
-               isMove = false;
-            }
-            if (((mousePosition.y) > 16))
-            {
-                mousePosition.y = 14;
-                isMove = false;
-            }
-            else if (mousePosition.y < -16)
-            {
-                mousePosition.y = -14;
-                isMove = false;
-            }
-            direction = (mousePosition - new Vector2(transform.position.x, transform.position.y)).normalized;
-            if (isMove != false)
-            {
-                rb.velocity = new Vector2(direction.x * speedShip, direction.y * speedShip);
-            }
-            else
-            {
-                if (Mathf.Abs(mousePosition.x) > 24 || Mathf.Abs(mousePosition.y) > 12)
+                direction = (mousePosition - new Vector2(transform.position.x, transform.position.y)).normalized;
+                // Debug.Log(direction.x+ "   " + direction.y);
+                Debug.Log(mousePosition.x + "   " + mousePosition.y + "   " + transform.position.x + "  " + transform.position.y);
+                if (isMove != false)
+                {
+                    rb.velocity = new Vector2(direction.x * speedShip, direction.y * speedShip);
+                }
+                else
                 {
                     rb.velocity = Vector2.zero;
                     gameObject.transform.Translate((mousePosition - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y)) * Time.deltaTime * speedShip);
                 }
+            }
+            else
+            {
+
+                if (((mousePosition.x) > 28))
+                {
+                    mousePosition.x = 26;
+                    isMove = false;
+                }
+                else if (mousePosition.x < -28)
+                {
+                    mousePosition.x = -26;
+                    isMove = false;
+                }
+                if (((mousePosition.y) > 16))
+                {
+                    mousePosition.y = 14;
+                    isMove = false;
+                }
+                else if (mousePosition.y < -16)
+                {
+                    mousePosition.y = -14;
+                    isMove = false;
+                }
+                direction = (mousePosition - new Vector2(transform.position.x, transform.position.y)).normalized;
+                if (isMove != false)
+                {
+                    rb.velocity = new Vector2(direction.x * speedShip, direction.y * speedShip);
+                }
                 else
                 {
-                     rb.velocity = new Vector2(direction.x * speedShip, direction.y * speedShip);
-                }
+                    if (Mathf.Abs(mousePosition.x) > 24 || Mathf.Abs(mousePosition.y) > 12)
+                    {
+                        rb.velocity = Vector2.zero;
+                        gameObject.transform.Translate((mousePosition - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y)) * Time.deltaTime * speedShip);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(direction.x * speedShip, direction.y * speedShip);
+                    }
 
+                }
+            }
+
+            if (Input.GetMouseButton(0) && Time.time - lastTimeFire >= 0.2f)
+            {
+                lastTimeFire = Time.time;
+                CreateBullet(bullet);
             }
 
             //rb.velocity = Vector2.zero;
         }
-
-
-
-        if (Input.GetMouseButton(0) && Time.time - lastTimeFire >= 0.2f)
+        else if (typeControllerGame == TypeControllerGame.GamePad)
         {
-            lastTimeFire = Time.time;
-            CreateBullet(bullet);
+            float translationY = Input.GetAxis("Vertical") * speedShip * Time.deltaTime;
+            float translationX = Input.GetAxis("Horizontal") * speedShip * Time.deltaTime;
+            transform.Translate(translationX, translationY, 0);
+            if(Input.GetKeyDown("joystick button 0") && Time.time - lastTimeFire >= 0.2f)
+            {
+                 lastTimeFire = Time.time;
+                CreateBullet(bullet);
+            }
         }
+
+
+
     }
 
     //Create bullet

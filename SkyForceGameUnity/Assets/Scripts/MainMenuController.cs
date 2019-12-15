@@ -66,7 +66,8 @@ public class MainMenuController : MonoBehaviour
          
           }
           Cursor.SetCursor(cursonTexture,hotspot,cursorMode);
-       
+          
+        //Debug.Log(Input.GetJoystickNames.ge);
     }
 
     public void StartGame()
@@ -88,11 +89,15 @@ public class MainMenuController : MonoBehaviour
     }
      public void OpenUpgradeGame()
     {
-        PanelUpgrade.SetActive(true);
+        //PanelUpgrade.SetActive(true);
+        PanelUpgrade.gameObject.GetComponent<Animator>().SetBool("Show",true);
+        PanelUpgrade.gameObject.GetComponent<Animator>().SetBool("Hide",false);
     }
     public void CloseUpgradeGame()
     {
-        PanelUpgrade.SetActive(false);
+        //PanelUpgrade.SetActive(false);
+         PanelUpgrade.gameObject.GetComponent<Animator>().SetBool("Hide",true);
+        PanelUpgrade.gameObject.GetComponent<Animator>().SetBool("Show",false);
     }
     public void OpenMapGame()
     {
