@@ -43,7 +43,7 @@ public class MainMenuController : MonoBehaviour
         gameState = GameState.None;
         ImagePressAnyKey.SetActive(true);
         PanelButtons.SetActive(false);
-        PanelSetting.SetActive(false);
+       // PanelSetting.SetActive(false);
         SetupLevelSpriteScreen();
     }
 
@@ -77,11 +77,14 @@ public class MainMenuController : MonoBehaviour
     
     public void OpenSettingGame()
     {
-        PanelSetting.SetActive(true);
+        PanelSetting.GetComponent<Animator>().SetBool("Show",true);
+        PanelSetting.gameObject.GetComponent<Animator>().SetBool("Hide",false);
+        ShowSoundSettingInSetting();
     }
     public void CloseSettingGame()
     {
-        PanelSetting.SetActive(false);
+        PanelSetting.GetComponent<Animator>().SetBool("Hide",true);
+        PanelSetting.gameObject.GetComponent<Animator>().SetBool("Show",false);
     }
      public void OpenUpgradeGame()
     {
