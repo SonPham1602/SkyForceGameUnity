@@ -16,4 +16,8 @@ public class ControllerListEnemy : MonoBehaviour
     {
         transform.position = new Vector2(transform.position.x,transform.position.y+speedMove*Time.deltaTime);
     }
+    public void StopMovingListEnemy()
+    {
+        speedMove = 0f;
+    }
 }
