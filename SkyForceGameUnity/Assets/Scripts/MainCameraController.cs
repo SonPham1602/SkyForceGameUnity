@@ -19,4 +19,8 @@ public class MainCameraController : MonoBehaviour
        //transform.position = new Vector3(transform.position.x,transform.position.y-1*Time.deltaTime*2,transform.position.z);
         bgRend.material.mainTextureOffset+= new Vector2(0f,speedMove*Time.deltaTime);
     }
+    public void PauseAnimation()
+    {
+        speedMove=0;
+    }
 }

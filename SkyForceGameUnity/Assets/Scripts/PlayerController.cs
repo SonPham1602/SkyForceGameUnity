@@ -148,10 +148,23 @@ public class PlayerController : MonoBehaviour
         {
             float translationY = Input.GetAxis("Vertical") * speedShip * Time.deltaTime;
             float translationX = Input.GetAxis("Horizontal") * speedShip * Time.deltaTime;
-            transform.Translate(translationX, translationY, 0);
-            if(Input.GetKeyDown("joystick button 0") && Time.time - lastTimeFire >= 0.2f)
+            if (Mathf.Abs(transform.position.x) > 28)
             {
-                 lastTimeFire = Time.time;
+                speedShip=0;
+            }
+            
+            if (Mathf.Abs(transform.position.y) > 16)
+            {
+                speedShip=16;
+            }
+           
+            transform.Translate(translationX, translationY, 0);
+
+
+
+            if (Input.GetKeyDown("joystick button 0") && Time.time - lastTimeFire >= 0.2f)
+            {
+                lastTimeFire = Time.time;
                 CreateBullet(bullet);
             }
         }
@@ -260,6 +273,6 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
-        
+
     }
 }
