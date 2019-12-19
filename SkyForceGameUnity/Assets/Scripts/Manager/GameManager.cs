@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState 
+public enum GameState
 {
     None,
     Play,
@@ -12,11 +12,12 @@ public enum GameState
 }
 public class GameManager : MonoBehaviour
 {
-    
+
     public GameObject[] list_plane;//Danh sach may bay cua nguoi choi
     public Transform pointGen;
     public int point;
     public GameState gameState = GameState.None;
+    public TypeControllerGame typeControllerGame;
     // Start is called before the first frame updat
 
     public GameObject titleStartGame;
@@ -25,34 +26,39 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject listEnemy;
     void Start()
     {
-        titleStartGame.GetComponent<Animator>().SetBool("Show",true);
-        titleStartGame.GetComponent<Animator>().SetBool("Hide",false);
+        titleStartGame.GetComponent<Animator>().SetBool("Show", true);
+        titleStartGame.GetComponent<Animator>().SetBool("Hide", false);
+        typeControllerGame = GameSetting.typeControllerGame;
     }
 
     // Update is called once per frame
     void Update()
     {
-         if(Input.anyKeyDown && gameState==GameState.None)
-          {
-               if (Input.GetMouseButtonDown(0) 
-                 || Input.GetMouseButtonDown(1)
-                 || Input.GetMouseButtonDown(2))
-                     return; //Do Nothing
-            Debug.Log("Press Any Key");
-           // titleStartGame.SetActive(false);
-            titleStartGame.GetComponent<Animator>().SetBool("Show",false);
-            titleStartGame.GetComponent<Animator>().SetBool("Hide",true);
-           
-           // Destroy(titleStartGame);
-            FindObjectOfType<GameManager>().gameState = GameState.Play;
+        if (typeControllerGame == TypeControllerGame.GamePad)
+        {
+            if (Input.GetKeyDown("joystick button 0") && gameState == GameState.None)
+            {
+                if (Input.GetMouseButtonDown(0)
+                  || Input.GetMouseButtonDown(1)
+                  || Input.GetMouseButtonDown(2))
+                    return; //Do Nothing
+                Debug.Log("Press Any Key");
+                // titleStartGame.SetActive(false);
+                titleStartGame.GetComponent<Animator>().SetBool("Show", false);
+                titleStartGame.GetComponent<Animator>().SetBool("Hide", true);
 
-          }
-          if(gameState == GameState.Play)
-          {
+                // Destroy(titleStartGame);
+                FindObjectOfType<GameManager>().gameState = GameState.Play;
+
+            }
+            if (gameState == GameState.Play)
+            {
                 listEnemy.GetComponent<ControllerListEnemy>().StartOrCountinueMovingEnemy();
-                cloudStartGame.gameObject.transform.position=Vector2.MoveTowards(  cloudStartGame.gameObject.transform.position,targetmove.position,8*Time.deltaTime);
-          }
-           
+                cloudStartGame.gameObject.transform.position = Vector2.MoveTowards(cloudStartGame.gameObject.transform.position, targetmove.position, 8 * Time.deltaTime);
+            }
+
+        }
+
     }
 
     public void gameWin()
