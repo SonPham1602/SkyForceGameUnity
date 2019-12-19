@@ -35,7 +35,7 @@ public class EnemyController : MonoBehaviour
         _gameManager = FindObjectOfType<GameManager>();
 
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        HP = 100;
+        HP = 10;
     }
 
     // Update is called once per frame

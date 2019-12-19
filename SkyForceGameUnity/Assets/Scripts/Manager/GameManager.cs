@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public GameObject titleStartGame;
     public GameObject cloudStartGame;
     public Transform targetmove;
+    [SerializeField] GameObject listEnemy;
     void Start()
     {
         
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
           }
           if(gameState == GameState.Play)
           {
+                listEnemy.GetComponent<ControllerListEnemy>().StartOrCountinueMovingEnemy();
                 cloudStartGame.gameObject.transform.position=Vector2.MoveTowards(  cloudStartGame.gameObject.transform.position,targetmove.position,8*Time.deltaTime);
           }
            

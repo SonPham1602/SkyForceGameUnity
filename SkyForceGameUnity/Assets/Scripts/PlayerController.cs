@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public GameObject target;
     public GameObject bullet;
     public int numberBullet = 1;
-    private float hp;
+    private float hp;// hp cua may bay
     public float speedShip = 100f;
 
     private float radius;
@@ -23,14 +23,24 @@ public class PlayerController : MonoBehaviour
     Vector2 direction;
     private bool isMove;
     public TypeControllerGame typeControllerGame;
+    [SerializeField] GameObject hitLayer;
+
+    public bool canMove;
 
     public float HP
     {
+
         get => hp;
         set
         {
             hp = value;
-            if (hp <= 0)
+            if (hp <= 30)
+            {
+
+                hitLayer.GetComponent<Animator>().SetTrigger("ShowLowHealth");
+
+            }
+            else if (hp <= 0)
             {
                 FindObjectOfType<GameManager>().gameOver();
             }
@@ -53,7 +63,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         radius = Vector3.Magnitude(target.transform.position - gameObject.transform.position);
-        this.HP = 5000f;
+        this.HP = 100;
         rb = GetComponent<Rigidbody2D>();
         typeControllerGame = GameSetting.typeControllerGame;
     }
@@ -74,8 +84,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (typeControllerGame == TypeControllerGame.Mouse)
+        if (typeControllerGame == TypeControllerGame.Mouse && canMove == true)
         {
             if (Mathf.Abs(mousePosition.x) <= 28 && Mathf.Abs(mousePosition.y) <= 16)
             {
@@ -142,22 +153,23 @@ public class PlayerController : MonoBehaviour
                 CreateBullet(bullet);
             }
 
+
             //rb.velocity = Vector2.zero;
         }
-        else if (typeControllerGame == TypeControllerGame.GamePad)
+        else if (typeControllerGame == TypeControllerGame.GamePad && canMove == true)
         {
             float translationY = Input.GetAxis("Vertical") * speedShip * Time.deltaTime;
             float translationX = Input.GetAxis("Horizontal") * speedShip * Time.deltaTime;
             if (Mathf.Abs(transform.position.x) > 28)
             {
-                speedShip=0;
+                speedShip = 0;
             }
-            
+
             if (Mathf.Abs(transform.position.y) > 16)
             {
-                speedShip=16;
+                speedShip = 16;
             }
-           
+
             transform.Translate(translationX, translationY, 0);
 
 
@@ -170,6 +182,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
+        // check low health of player
 
     }
 
@@ -273,6 +286,11 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
+        else if (other.gameObject.tag == "enemy")
+        {
+            hitLayer.GetComponent<Animator>().SetTrigger("ShowOneHit");
+        }
 
     }
+
 }
