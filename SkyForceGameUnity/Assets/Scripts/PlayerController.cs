@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public GameObject target;
     public GameObject bullet;
     public int numberBullet = 1;
-    private float hp;// hp cua may bay
+    public float hp;// hp cua may bay
     public float speedShip = 100f;
 
     private float radius;

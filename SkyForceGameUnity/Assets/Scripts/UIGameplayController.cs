@@ -16,6 +16,8 @@ public class UIGameplayController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UIHeart.fillAmount = UIHeartValue;
+         UIHeartValue = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().hp/100;
+         UIHeart.fillAmount = UIHeartValue;
+         
     }
 }
