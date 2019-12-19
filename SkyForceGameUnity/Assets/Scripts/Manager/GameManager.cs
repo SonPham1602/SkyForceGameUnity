@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject listEnemy;
     void Start()
     {
-        
+        titleStartGame.GetComponent<Animator>().SetBool("Show",true);
+        titleStartGame.GetComponent<Animator>().SetBool("Hide",false);
     }
 
     // Update is called once per frame
@@ -38,7 +39,9 @@ public class GameManager : MonoBehaviour
                  || Input.GetMouseButtonDown(2))
                      return; //Do Nothing
             Debug.Log("Press Any Key");
-            titleStartGame.SetActive(false);
+           // titleStartGame.SetActive(false);
+            titleStartGame.GetComponent<Animator>().SetBool("Show",false);
+            titleStartGame.GetComponent<Animator>().SetBool("Hide",true);
            
            // Destroy(titleStartGame);
             FindObjectOfType<GameManager>().gameState = GameState.Play;
