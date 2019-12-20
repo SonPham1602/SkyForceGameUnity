@@ -30,12 +30,12 @@ public class PlayerController : MonoBehaviour
 
     public float HP
     {
-
+        
         get => hp;
         set
         {
             hp = value;
-            if (hp <= 30)
+            if (hp <= 30 && hp >0)
             {
 
                 hitLayer.GetComponent<Animator>().SetTrigger("ShowLowHealth");

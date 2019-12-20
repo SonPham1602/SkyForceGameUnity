@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     public Transform targetmove;
     [SerializeField] GameObject listEnemy;
     [SerializeField] GameObject missionController;
+    [SerializeField] GameObject panelGameOver;
+    [SerializeField] GameObject panelGameComplete;
     void Start()
     {
         titleStartGame.GetComponent<Animator>().SetBool("Show", true);
@@ -71,6 +73,7 @@ public class GameManager : MonoBehaviour
     public void gameOver()
     {
         gameState = GameState.GameOver;
+        panelGameOver.SetActive(true);
         Time.timeScale = 0f;
     }
     void SetupMissionGame()
