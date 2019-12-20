@@ -24,11 +24,13 @@ public class GameManager : MonoBehaviour
     public GameObject cloudStartGame;
     public Transform targetmove;
     [SerializeField] GameObject listEnemy;
+    [SerializeField] GameObject missionController;
     void Start()
     {
         titleStartGame.GetComponent<Animator>().SetBool("Show", true);
         titleStartGame.GetComponent<Animator>().SetBool("Hide", false);
         typeControllerGame = GameSetting.typeControllerGame;
+        SetupMissionGame();
     }
 
     // Update is called once per frame
@@ -70,6 +72,11 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.GameOver;
         Time.timeScale = 0f;
+    }
+    void SetupMissionGame()
+    {
+        
+        missionController.GetComponent<MissionController>().UnsetAllToggel();
     }
 
 }

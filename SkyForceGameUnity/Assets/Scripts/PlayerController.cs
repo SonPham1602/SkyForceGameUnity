@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private bool isMove;
     public TypeControllerGame typeControllerGame;
     [SerializeField] GameObject hitLayer;
+    
 
     public bool canMove;
 
@@ -160,17 +161,14 @@ public class PlayerController : MonoBehaviour
         {
             float translationY = Input.GetAxis("Vertical") * speedShip * Time.deltaTime;
             float translationX = Input.GetAxis("Horizontal") * speedShip * Time.deltaTime;
-            if (Mathf.Abs(transform.position.x) > 28)
+            
+            //float MoveX = Mathf.Clamp(translationX+transform.position,GameSetting.sizeCam.x*-1,GameSetting.sizeCam.x);
+            if(Mathf.Abs(transform.position.x + translationX)<=GameSetting.screenBound.x && Mathf.Abs(transform.position.y + translationY)<=GameSetting.screenBound.y)
             {
-                speedShip = 0;
+                transform.Translate(translationX, translationY, 0);
             }
-
-            if (Mathf.Abs(transform.position.y) > 16)
-            {
-                speedShip = 16;
-            }
-
-            transform.Translate(translationX, translationY, 0);
+         
+            //transform.position = viewPos;
 
 
 

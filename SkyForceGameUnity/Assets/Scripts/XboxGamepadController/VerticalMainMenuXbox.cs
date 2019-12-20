@@ -9,6 +9,11 @@ public enum TypeXboxGamepad
     VerticalGamepad,
     HorizontalGamepad
 }
+public enum TypeControllerGamepad
+{
+    JoystickController,
+    LRBController
+}
 public class VerticalMainMenuXbox : MonoBehaviour
 {
     bool selectedPanel;
@@ -18,12 +23,14 @@ public class VerticalMainMenuXbox : MonoBehaviour
     [SerializeField] TypeXboxGamepad typeXboxGamepad;
     public UnityEvent eventBack;
     private bool check;
+    public TypeControllerGamepad typeControllerGamepad;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        select = 1;
+        select = 0;
         mainMenuController = GameObject.FindObjectOfType<MainMenuController>();
     }
 
@@ -66,25 +73,58 @@ public class VerticalMainMenuXbox : MonoBehaviour
                 }
                 else if (typeXboxGamepad == TypeXboxGamepad.HorizontalGamepad)
                 {
-                    float updowncheck = Input.GetAxis("Horizontal");
-                    if (updowncheck > 0)
+                    if (typeControllerGamepad == TypeControllerGamepad.JoystickController)
                     {
-                        if (select >= 1)
+                        float updowncheck = Input.GetAxis("Horizontal");
+                        if (updowncheck > 0)
                         {
-                            Debug.Log("right");
-                            select--;
-                        }
+                            if (select >= 1)
+                            {
 
+                                Debug.Log("right");
+                                select--;
+                                UnpressAllButton();
+                                listButton[select].GetComponent<ButtonInSetting>().SetPressedSprite();
+                            }
+
+                        }
+                        else if (updowncheck < 0)
+                        {
+                            if (select < listButton.Length - 1)
+                            {
+                                Debug.Log("left");
+                                select++;
+                                UnpressAllButton();
+                                listButton[select].GetComponent<ButtonInSetting>().SetPressedSprite();
+                            }
+
+                        }
                     }
-                    else if (updowncheck < 0)
+                    else if (typeControllerGamepad == TypeControllerGamepad.LRBController)
                     {
-                        if (select < listButton.Length - 1)
+                        if (Input.GetKeyDown("joystick button 5"))
                         {
-                            Debug.Log("left");
-                            select++;
+                            Debug.Log("Right");
+                            if (select < listButton.Length - 1)
+                            {
+                                select++;
+                                UnpressAllButton();
+                                listButton[select].GetComponent<ButtonInSetting>().SetPressedSprite();
+                            }
                         }
-
+                        else if (Input.GetKeyDown("joystick button 4"))
+                        {
+                            if (select >= 1)
+                            {
+                                select--;
+                                UnpressAllButton();
+                                listButton[select].GetComponent<ButtonInSetting>().SetPressedSprite();
+                            }
+                            Debug.Log("Left");
+                        }
                     }
+
+
                 }
 
                 if (Input.GetKeyDown("joystick button 0"))
@@ -111,6 +151,13 @@ public class VerticalMainMenuXbox : MonoBehaviour
     public void unselectPanel()
     {
         selectedPanel = false;
+    }
+    void UnpressAllButton()
+    {
+        for (int i = 0; i < listButton.Length; i++)
+        {
+            listButton[i].GetComponent<ButtonInSetting>().SetUnPressedSprite();
+        }
     }
 
 }

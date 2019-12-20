@@ -658,6 +658,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  typeControllerGamepad: 0
 --- !u!1 &101500009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1698,6 +1699,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  typeControllerGamepad: 0
 --- !u!1 &302722075
 GameObject:
   m_ObjectHideFlags: 0
@@ -4600,6 +4602,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  typeControllerGamepad: 0
 --- !u!1 &841926149
 GameObject:
   m_ObjectHideFlags: 0
@@ -6981,6 +6984,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  typeControllerGamepad: 0
 --- !u!1 &1311551651
 GameObject:
   m_ObjectHideFlags: 0
@@ -9341,8 +9345,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd20ad361a6ee0745ae7d765d3588fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listButton: []
-  typeXboxGamepad: 0
+  listButton:
+  - {fileID: 1331183456}
+  - {fileID: 610038587}
+  - {fileID: 800753602}
+  - {fileID: 1194448695}
+  typeXboxGamepad: 1
   eventBack:
     m_PersistentCalls:
       m_Calls:
@@ -9357,6 +9365,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  typeControllerGamepad: 1
 --- !u!1 &1854187610
 GameObject:
   m_ObjectHideFlags: 0

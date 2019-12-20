@@ -8,34 +8,40 @@ public class MissionController : MonoBehaviour
     [SerializeField] Toggle toggleMission1;
 
     [SerializeField] Toggle toggleMission2;
-    
+
     [SerializeField] Toggle toggleMission3;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+    public void UnsetAllToggel()
+    {
+        toggleMission1.isOn = false;
+        toggleMission2.isOn = false;
+        toggleMission3.isOn = false;
     }
     public void SetToggle(int n)
     {
-        if(n == 1)
+        if (n == 1)
         {
             toggleMission1.Select();
         }
-        else if(n == 2)
+        else if (n == 2)
         {
             toggleMission2.Select();
         }
-        else if( n == 3)
+        else if (n == 3)
         {
             toggleMission3.Select();
         }
 
     }
-    
+
 }

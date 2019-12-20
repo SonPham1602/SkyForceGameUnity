@@ -839,6 +839,7 @@ MonoBehaviour:
   cloudStartGame: {fileID: 1748532793}
   targetmove: {fileID: 1238463567}
   listEnemy: {fileID: 1901894329}
+  missionController: {fileID: 917980240}
 --- !u!114 &140415101
 MonoBehaviour:
   m_ObjectHideFlags: 0
