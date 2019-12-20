@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState
 {
@@ -68,6 +69,8 @@ public class GameManager : MonoBehaviour
     public void gameWin()
     {
         gameState = GameState.EndGame;
+        panelGameComplete.SetActive(true);
+        
     }
 
     public void gameOver()
@@ -80,6 +83,11 @@ public class GameManager : MonoBehaviour
     {
         
         missionController.GetComponent<MissionController>().UnsetAllToggel();
+    }
+    public void BackToMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 
 }

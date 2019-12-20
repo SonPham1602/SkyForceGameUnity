@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PausePanelXboxController : MonoBehaviour
 {
@@ -38,6 +39,10 @@ public class PausePanelXboxController : MonoBehaviour
                 Debug.Log("Left");
             }
             Debug.Log("Select" + select);
+            if(Input.GetKeyDown("joystick button 0"))
+            {
+                listButton[select].GetComponent<Button>().onClick.Invoke();
+            }
            
         }
     }

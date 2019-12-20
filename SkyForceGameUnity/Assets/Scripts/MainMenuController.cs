@@ -42,8 +42,12 @@ public class MainMenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Khoi tao" + gameState.ToString());
         gameState = GameState.None;
         ImagePressAnyKey.SetActive(true);
+        ImagePressAnyKey.GetComponent<Animator>().enabled = false;
+        ImagePressAnyKey.GetComponent<Animator>().enabled = true;
+        ImagePressAnyKey.GetComponent<Animator>().Play("PressAnyKey");
         PanelButtons.SetActive(false);
         // PanelSetting.SetActive(false);
         SetupLevelSpriteScreen();
@@ -64,6 +68,7 @@ public class MainMenuController : MonoBehaviour
             ImagePressAnyKey.SetActive(false);
             PanelButtons.SetActive(true);
             LogoGame.GetComponent<Animator>().SetBool("Move", true);
+
             MiddleButtons.GetComponent<Animator>().SetBool("Move", true);
             RightButtons.GetComponent<Animator>().SetBool("Move", true);
 
