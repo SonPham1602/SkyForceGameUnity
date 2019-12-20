@@ -36,6 +36,7 @@ public class MainMenuController : MonoBehaviour
     public Texture2D  cursonTexture;
     CursorMode cursorMode = CursorMode.Auto;
     public AudioMixer audioMixer;
+    public  TypeControllerGame typeControllerGame;
 
     // Start is called before the first frame update
     void Start()
