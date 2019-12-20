@@ -16,7 +16,7 @@ public class RotateObjectGame : MonoBehaviour
     {
       
         
-            transform.Rotate(0.0f, 0.0f, transform.rotation.z + speedSpin);
+            transform.Rotate(Vector3.forward*speedSpin*Time.deltaTime);
         
     }
 }
