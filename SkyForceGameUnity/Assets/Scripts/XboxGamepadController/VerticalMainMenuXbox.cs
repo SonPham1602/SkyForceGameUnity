@@ -11,12 +11,15 @@ public enum TypeXboxGamepad
 }
 public class VerticalMainMenuXbox : MonoBehaviour
 {
-    
+    bool selectedPanel;
     [SerializeField] GameObject[] listButton;
     private int select;
     private MainMenuController mainMenuController;
     [SerializeField] TypeXboxGamepad typeXboxGamepad;
     public UnityEvent eventBack;
+    private bool check;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,64 +30,87 @@ public class VerticalMainMenuXbox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (mainMenuController.typeControllerGame == TypeControllerGame.GamePad)
+        if (selectedPanel == true)
         {
-            if (typeXboxGamepad == TypeXboxGamepad.VerticalGamepad)
+            if (mainMenuController.typeControllerGame == TypeControllerGame.GamePad)
             {
-                float updowncheck = Input.GetAxis("Vertical");
-                if (updowncheck > 0)
+                if (typeXboxGamepad == TypeXboxGamepad.VerticalGamepad)
                 {
-                    if (select >= 1)
+                    float updowncheck = Input.GetAxis("Vertical");
+                    if (updowncheck > 0)
                     {
-                        Debug.Log("up");
-                        select--;
-                    }
+                        if (select >= 1 && check == true)
+                        {
+                            Debug.Log("up");
+                            select--;
+                            check = false;
+                        }
 
+                    }
+                    else if (updowncheck < 0)
+                    {
+                        if (select < listButton.Length - 1 && check == true)
+                        {
+                            Debug.Log("down");
+                            select++;
+                            check = false;
+                        }
+
+                    }
+                    else if (updowncheck == 0)
+                    {
+                        check = true;
+                        Debug.Log("stand");
+                    }
+                    Debug.Log(select);
                 }
-                else if (updowncheck < 0)
+                else if (typeXboxGamepad == TypeXboxGamepad.HorizontalGamepad)
                 {
-                    if (select < listButton.Length - 1)
+                    float updowncheck = Input.GetAxis("Horizontal");
+                    if (updowncheck > 0)
                     {
-                        Debug.Log("down");
-                        select++;
-                    }
+                        if (select >= 1)
+                        {
+                            Debug.Log("right");
+                            select--;
+                        }
 
+                    }
+                    else if (updowncheck < 0)
+                    {
+                        if (select < listButton.Length - 1)
+                        {
+                            Debug.Log("left");
+                            select++;
+                        }
+
+                    }
                 }
-            }
-            else if (typeXboxGamepad == TypeXboxGamepad.HorizontalGamepad)
-            {
-                float updowncheck = Input.GetAxis("Horizontal");
-                if (updowncheck > 0)
+
+                if (Input.GetKeyDown("joystick button 0"))
                 {
-                    if (select >= 1)
-                    {
-                        Debug.Log("right");
-                        select--;
-                    }
-
+                    listButton[select].GetComponent<Button>().onClick.Invoke();
                 }
-                else if (updowncheck < 0)
+                if (Input.GetKeyDown("joystick button 1"))
                 {
-                    if (select < listButton.Length - 1)
-                    {
-                        Debug.Log("left");
-                        select++;
-                    }
-
+                    eventBack.Invoke();
                 }
-            }
+                //Debug.Log(updowncheck);
 
-            if (Input.GetKeyDown("joystick button 0"))
-            {
-                listButton[select].GetComponent<Button>().onClick.Invoke();
             }
-            if (Input.GetKeyDown("joystick button 1"))
-            {
-              eventBack.Invoke();
-            }
-            //Debug.Log(updowncheck);
-
         }
 
+
     }
+
+    public void selectPanel()
+    {
+        selectedPanel = true;
+    }
+
+    public void unselectPanel()
+    {
+        selectedPanel = false;
+    }
+
 }

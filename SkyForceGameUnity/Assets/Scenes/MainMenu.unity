@@ -643,10 +643,21 @@ MonoBehaviour:
   - {fileID: 1824562555}
   - {fileID: 377011991}
   - {fileID: 1959772293}
-  typeXboxGamepad: 1
+  typeXboxGamepad: 0
   eventBack:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 314884162}
+        m_MethodName: BackToPressToStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &101500009
 GameObject:
   m_ObjectHideFlags: 0
@@ -1576,6 +1587,7 @@ GameObject:
   - component: {fileID: 300018426}
   - component: {fileID: 300018425}
   - component: {fileID: 300018428}
+  - component: {fileID: 300018429}
   m_Layer: 5
   m_Name: UpgradeScreen
   m_TagString: Untagged
@@ -1658,6 +1670,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &300018429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300018424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd20ad361a6ee0745ae7d765d3588fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listButton: []
+  typeXboxGamepad: 0
+  eventBack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 314884162}
+        m_MethodName: CloseUpgradeGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &302722075
 GameObject:
   m_ObjectHideFlags: 0
@@ -1828,6 +1868,7 @@ MonoBehaviour:
   PanelExit: {fileID: 1268868847}
   ToggleMusic: {fileID: 2013266984}
   ToggleSFX: {fileID: 1148880224}
+  listButton: {fileID: 91355339}
   cursonTexture: {fileID: 2800000, guid: c18416f148631df43a435c16af78e841, type: 3}
   audioMixer: {fileID: 24100000, guid: 9743eb28f2811834e9dfb7de9e9fdaf5, type: 2}
   typeControllerGame: 1
@@ -4458,6 +4499,7 @@ GameObject:
   - component: {fileID: 811581365}
   - component: {fileID: 811581367}
   - component: {fileID: 811581366}
+  - component: {fileID: 811581368}
   m_Layer: 5
   m_Name: MapScreen
   m_TagString: Untagged
@@ -4530,6 +4572,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811581364}
   m_CullTransparentMesh: 0
+--- !u!114 &811581368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811581364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd20ad361a6ee0745ae7d765d3588fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listButton: []
+  typeXboxGamepad: 0
+  eventBack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 314884162}
+        m_MethodName: HideMapGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &841926149
 GameObject:
   m_ObjectHideFlags: 0
@@ -9176,6 +9246,7 @@ GameObject:
   - component: {fileID: 1828801371}
   - component: {fileID: 1828801370}
   - component: {fileID: 1828801373}
+  - component: {fileID: 1828801374}
   m_Layer: 5
   m_Name: SettingScreen
   m_TagString: Untagged
@@ -9258,6 +9329,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1828801374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828801369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd20ad361a6ee0745ae7d765d3588fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listButton: []
+  typeXboxGamepad: 0
+  eventBack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 314884162}
+        m_MethodName: CloseSettingGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1854187610
 GameObject:
   m_ObjectHideFlags: 0
