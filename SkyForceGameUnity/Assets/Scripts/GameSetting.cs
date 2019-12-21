@@ -6,7 +6,8 @@ using TMPro;
 
 public class GameSetting : MonoBehaviour
 {
-    public static int ScoreGame;
+    public static int ScoreGame;// So luong diem kiem dc o man choi
+    public static int StarGame;// so luong sao kiem duoc
     public TextMeshProUGUI titleScoreGame;
     public static GameSetting instance;
     public static Vector2 sizeCam;

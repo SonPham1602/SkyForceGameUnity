@@ -70,6 +70,8 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.EndGame;
         panelGameComplete.SetActive(true);
+        panelGameComplete.GetComponent<CompleteGamePanel>().SetupPanelCompleteGame(GameSetting.ScoreGame,GameSetting.StarGame);
+
         
     }
 
