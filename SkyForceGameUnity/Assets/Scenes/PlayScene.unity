@@ -6610,12 +6610,12 @@ PrefabInstance:
     - target: {fileID: 1380838379562065741, guid: 2b2e8acb7604fad43b362aa7307e0a48,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.27
+      value: -14.25
       objectReference: {fileID: 0}
     - target: {fileID: 1380838379562065741, guid: 2b2e8acb7604fad43b362aa7307e0a48,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20.19
+      value: -0.68
       objectReference: {fileID: 0}
     - target: {fileID: 1380838379562065741, guid: 2b2e8acb7604fad43b362aa7307e0a48,
         type: 3}
@@ -6682,6 +6682,16 @@ PrefabInstance:
       propertyPath: smokeEffect
       value: 
       objectReference: {fileID: 1386050544}
+    - target: {fileID: 1380838380472873056, guid: 2b2e8acb7604fad43b362aa7307e0a48,
+        type: 3}
+      propertyPath: startTimeBtwShots
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380838380472873056, guid: 2b2e8acb7604fad43b362aa7307e0a48,
+        type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1380838380704235371, guid: 2b2e8acb7604fad43b362aa7307e0a48,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -6697,7 +6707,13 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1380838379486499776, guid: 2b2e8acb7604fad43b362aa7307e0a48,
+        type: 3}
+      propertyPath: speedSpin
+      value: 500
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1380838379486499791, guid: 2b2e8acb7604fad43b362aa7307e0a48, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2b2e8acb7604fad43b362aa7307e0a48, type: 3}
 --- !u!1 &1929875053
 GameObject:

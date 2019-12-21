@@ -28,10 +28,10 @@ public class GameoverPanel : MonoBehaviour
     }
     void GoToMapScene()
     {
-        
+        SceneManager.LoadScene("MapGame");
     }
     void ResetGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 }

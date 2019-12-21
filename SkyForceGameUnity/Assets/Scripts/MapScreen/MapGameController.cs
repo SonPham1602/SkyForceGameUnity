@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MapGameController : MonoBehaviour
 {
@@ -21,6 +23,10 @@ public class MapGameController : MonoBehaviour
     }
     public void BackToMenu()
     {
-        
+        SceneManager.LoadScene("MainMenu");
+    }
+    public void GoToPlayGame(int n)
+    {
+        SceneManager.LoadScene(n);
     }
 }
