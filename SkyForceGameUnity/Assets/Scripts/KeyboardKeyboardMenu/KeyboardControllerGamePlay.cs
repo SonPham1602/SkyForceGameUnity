@@ -40,9 +40,9 @@ public class KeyboardControllerGamePlay : MonoBehaviour
             // {
             //     if (Input.GetKeyDown(code)) { print(System.Enum.GetName(typeof(KeyCode), code)); }
             // }
-            if(Input.GetKeyDown("joystick button 6"))
+            if (Input.GetKeyDown("joystick button 6"))
             {
-                 GameIsPaused = !GameIsPaused;
+                GameIsPaused = !GameIsPaused;
                 if (GameIsPaused == true)
                 {
                     PauseGame();
@@ -54,6 +54,18 @@ public class KeyboardControllerGamePlay : MonoBehaviour
             }
         }
 
+    }
+    public void OpenAndClosPausePanel()
+    {
+        GameIsPaused = !GameIsPaused;
+        if (GameIsPaused == true)
+        {
+            PauseGame();
+        }
+        else
+        {
+            ResumeGame();
+        }
     }
     void PauseGame()
     {
