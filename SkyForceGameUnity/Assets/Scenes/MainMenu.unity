@@ -1889,7 +1889,7 @@ MonoBehaviour:
   listButton: {fileID: 91355339}
   cursonTexture: {fileID: 2800000, guid: c18416f148631df43a435c16af78e841, type: 3}
   audioMixer: {fileID: 24100000, guid: 9743eb28f2811834e9dfb7de9e9fdaf5, type: 2}
-  typeControllerGame: 1
+  typeControllerGame: 2
 --- !u!4 &314884163
 Transform:
   m_ObjectHideFlags: 0
@@ -7064,7 +7064,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  typeControllerGamepad: 0
+  typeControllerGamepad: 1
 --- !u!1 &1311551651
 GameObject:
   m_ObjectHideFlags: 0

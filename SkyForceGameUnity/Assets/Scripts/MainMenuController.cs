@@ -38,6 +38,7 @@ public class MainMenuController : MonoBehaviour
     CursorMode cursorMode = CursorMode.Auto;
     public AudioMixer audioMixer;
     public TypeControllerGame typeControllerGame;
+    string[] names ;// name of controller
 
     // Start is called before the first frame update
     void Start()
@@ -53,9 +54,27 @@ public class MainMenuController : MonoBehaviour
         // PanelSetting.SetActive(false);
         SetupLevelSpriteScreen();
         SetSelectListButton();
+
+         names = Input.GetJoystickNames();
+        for (int x = 0; x < names.Length; x++)
+        {
+           // print(names[x].Length);
+            if(names[x].Length==33)
+            {
+                Debug.Log("Xbox 360 Connected");
+                typeControllerGame=TypeControllerGame.GamePad;
+            }
+            else{
+                typeControllerGame=TypeControllerGame.Keyboard;
+            }
+
+        }
     }
 
     // Update is called once per frame
+
+    private int Xbox_One_Controller = 0;
+    private int PS4_Controller = 0;
     void Update()
     {
         if (Input.anyKeyDown && gameState == GameState.None)
@@ -75,6 +94,22 @@ public class MainMenuController : MonoBehaviour
 
         }
         Cursor.SetCursor(cursonTexture, hotspot, cursorMode);
+        names = Input.GetJoystickNames();
+        for (int x = 0; x < names.Length; x++)
+        {
+           // print(names[x].Length);
+            if(names[x].Length==33)
+            {
+                Debug.Log("Xbox 360 Connected");
+                typeControllerGame=TypeControllerGame.GamePad;
+            }
+            else{
+                typeControllerGame=TypeControllerGame.Keyboard;
+            }
+
+        }
+
+
 
         //Debug.Log(Input.GetJoystickNames.ge);
     }

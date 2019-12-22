@@ -35,6 +35,7 @@ public class VerticalMainMenuXbox : MonoBehaviour
 
         if (mainMenuController.typeControllerGame == TypeControllerGame.GamePad && listButton.Length != 0)
         {
+            Debug.Log("Check");
             UnpressAllButton();
             listButton[select].GetComponent<ButtonInSetting>().SetPressedSprite();
         }
