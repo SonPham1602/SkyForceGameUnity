@@ -32,6 +32,13 @@ public class VerticalMainMenuXbox : MonoBehaviour
     {
         select = 0;
         mainMenuController = GameObject.FindObjectOfType<MainMenuController>();
+
+        if (mainMenuController.typeControllerGame == TypeControllerGame.GamePad && listButton.Length != 0)
+        {
+            UnpressAllButton();
+            listButton[select].GetComponent<ButtonInSetting>().SetPressedSprite();
+        }
+
     }
 
     // Update is called once per frame
@@ -50,6 +57,9 @@ public class VerticalMainMenuXbox : MonoBehaviour
                         {
                             Debug.Log("up");
                             select--;
+                            UnpressAllButton();
+                            listButton[select].GetComponent<ButtonInSetting>().SetPressedSprite();
+
                             check = false;
                         }
 
@@ -60,6 +70,8 @@ public class VerticalMainMenuXbox : MonoBehaviour
                         {
                             Debug.Log("down");
                             select++;
+                            UnpressAllButton();
+                            listButton[select].GetComponent<ButtonInSetting>().SetPressedSprite();
                             check = false;
                         }
 
@@ -154,10 +166,14 @@ public class VerticalMainMenuXbox : MonoBehaviour
     }
     void UnpressAllButton()
     {
-        for (int i = 0; i < listButton.Length; i++)
+        if (listButton.Length != 0)
         {
-            listButton[i].GetComponent<ButtonInSetting>().SetUnPressedSprite();
+            for (int i = 0; i < listButton.Length; i++)
+            {
+                listButton[i].GetComponent<ButtonInSetting>().SetUnPressedSprite();
+            }
         }
+
     }
 
 }

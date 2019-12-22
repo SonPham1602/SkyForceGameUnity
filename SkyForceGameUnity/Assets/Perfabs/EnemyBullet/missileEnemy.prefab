@@ -97,8 +97,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPosition: {x: 0, y: 0, z: 0}
   moveSpeed: 10
-  Speed: 10
-  RotateSpeed: 100
+  Speed: 15
+  RotateSpeed: 200
 --- !u!50 &3483345227818446287
 Rigidbody2D:
   serializedVersion: 4

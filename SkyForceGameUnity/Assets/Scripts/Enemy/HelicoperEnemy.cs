@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HelicoperEnemy : MonoBehaviour
+public class HelicoperEnemy : EnemyController
 {
     public float speed;//speed of bullet
     public float startTimeBtwShots;
@@ -14,7 +14,7 @@ public class HelicoperEnemy : MonoBehaviour
     private float angle;
     private int hp;
     private float maxNextPosition = 0.03f;
-    public int HP { get => hp; set => hp = value; }
+   
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +54,7 @@ public class HelicoperEnemy : MonoBehaviour
         }
         else
         {
+            isBroken = true;
             transform.parent.transform.position = new Vector3(transform.position.x + maxNextPosition, transform.position.y - 5 * maxNextPosition, transform.position.z);
         }
     }

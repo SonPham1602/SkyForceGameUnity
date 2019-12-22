@@ -42,6 +42,7 @@ public class MainMenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1f;
         Debug.Log("Khoi tao" + gameState.ToString());
         gameState = GameState.None;
         ImagePressAnyKey.SetActive(true);

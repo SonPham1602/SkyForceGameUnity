@@ -45,7 +45,7 @@ public class WaveEnemyController : MonoBehaviour
                 WaveEnemyController[] wave = FindObjectsOfType<WaveEnemyController>();
                 if(wave.Length<=1)
                 {
-                    gameManager.gameWin();
+                    //gameManager.gameWin();
                 }
                 Destroy(gameObject);
             }
