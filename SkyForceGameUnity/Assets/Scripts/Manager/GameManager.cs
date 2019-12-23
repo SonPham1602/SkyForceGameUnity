@@ -63,6 +63,20 @@ public class GameManager : MonoBehaviour
             }
 
         }
+        else if(typeControllerGame == TypeControllerGame.MouseAndKeyboard)
+        {
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                titleStartGame.GetComponent<Animator>().SetBool("Show",false);
+                titleStartGame.GetComponent<Animator>().SetBool("Hide",true);
+                FindObjectOfType<GameManager>().gameState = GameState.Play;
+            }
+            if(gameState == GameState.Play)
+            {
+                listEnemy.GetComponent<ControllerListEnemy>().StartOrCountinueMovingEnemy();
+                cloudStartGame.gameObject.transform.position = Vector2.MoveTowards(cloudStartGame.gameObject.transform.position, targetmove.position, 8 * Time.deltaTime);
+            }
+        }
 
     }
 
@@ -96,5 +110,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(1);
     }
+
+    
 
 }

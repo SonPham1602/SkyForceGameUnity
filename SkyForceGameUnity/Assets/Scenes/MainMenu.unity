@@ -3331,6 +3331,7 @@ GameObject:
   - component: {fileID: 557571431}
   - component: {fileID: 557571430}
   - component: {fileID: 557571429}
+  - component: {fileID: 557571432}
   m_Layer: 5
   m_Name: Shop
   m_TagString: Untagged
@@ -3436,6 +3437,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557571427}
   m_CullTransparentMesh: 0
+--- !u!114 &557571432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557571427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904215bf9e6efb3448a9321c9068869b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritePressed: {fileID: 21300000, guid: 17c94d3bde1a2de469f5b654b33df7ca, type: 3}
+  sprite: {fileID: 21300000, guid: 3cc3a04037003d140bcfb9a5f015a3d9, type: 3}
+  image: {fileID: 557571430}
 --- !u!1 &568310309
 GameObject:
   m_ObjectHideFlags: 0
@@ -4550,6 +4566,7 @@ GameObject:
   - component: {fileID: 811581367}
   - component: {fileID: 811581366}
   - component: {fileID: 811581368}
+  - component: {fileID: 811581369}
   m_Layer: 5
   m_Name: MapScreen
   m_TagString: Untagged
@@ -4634,8 +4651,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd20ad361a6ee0745ae7d765d3588fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listButton: []
-  typeXboxGamepad: 0
+  listButton:
+  - {fileID: 557571427}
+  - {fileID: 1961493965}
+  - {fileID: 1247140157}
+  typeXboxGamepad: 1
   eventBack:
     m_PersistentCalls:
       m_Calls:
@@ -4650,6 +4670,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  typeControllerGamepad: 1
+--- !u!114 &811581369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811581364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd20ad361a6ee0745ae7d765d3588fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listButton:
+  - {fileID: 479606902}
+  - {fileID: 2000958931}
+  - {fileID: 505454360}
+  - {fileID: 1084088952}
+  - {fileID: 1634278681}
+  - {fileID: 2025222432}
+  typeXboxGamepad: 1
+  eventBack:
+    m_PersistentCalls:
+      m_Calls: []
   typeControllerGamepad: 0
 --- !u!1 &841926149
 GameObject:
@@ -6787,6 +6831,7 @@ GameObject:
   - component: {fileID: 1247140161}
   - component: {fileID: 1247140160}
   - component: {fileID: 1247140159}
+  - component: {fileID: 1247140162}
   m_Layer: 5
   m_Name: BackToMenu
   m_TagString: Untagged
@@ -6903,6 +6948,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1247140157}
   m_CullTransparentMesh: 0
+--- !u!114 &1247140162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247140157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904215bf9e6efb3448a9321c9068869b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritePressed: {fileID: 21300000, guid: 91123d831ea7b0e418d25644b0119bd0, type: 3}
+  sprite: {fileID: 21300000, guid: 4a7a446ef95fbe14bb2d96948191b96f, type: 3}
+  image: {fileID: 1247140160}
 --- !u!1 &1249874979
 GameObject:
   m_ObjectHideFlags: 0
@@ -10233,6 +10293,7 @@ GameObject:
   - component: {fileID: 1961493969}
   - component: {fileID: 1961493968}
   - component: {fileID: 1961493967}
+  - component: {fileID: 1961493970}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -10349,6 +10410,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1961493965}
   m_CullTransparentMesh: 0
+--- !u!114 &1961493970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961493965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904215bf9e6efb3448a9321c9068869b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spritePressed: {fileID: 21300000, guid: f86582da54ab03d4b834bac477ca0328, type: 3}
+  sprite: {fileID: 21300000, guid: 79216e4ec8f3e1643882541e5be7d1a8, type: 3}
+  image: {fileID: 1961493968}
 --- !u!1 &1977898943
 GameObject:
   m_ObjectHideFlags: 0

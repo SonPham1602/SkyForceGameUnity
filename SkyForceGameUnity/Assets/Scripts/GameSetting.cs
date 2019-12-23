@@ -21,12 +21,13 @@ public class GameSetting : MonoBehaviour
     public static Vector2 screenBound;
     public static TypeControllerGame typeControllerGame;
     private bool StartGame;
+    string[] names;
     // Start is called before the first frame update
     private void Awake() {
         instance = this;
         sizeCam = new Vector2(2f*Camera.main.aspect*Camera.main.orthographicSize,2f * Camera.main.orthographicSize);
         positionCam = Camera.main.transform.position;
-        typeControllerGame = TypeControllerGame.GamePad;
+        
         screenBound = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height,Camera.main.transform.position.z));
        
 
@@ -34,6 +35,7 @@ public class GameSetting : MonoBehaviour
 
     void Start()
     {
+        
          ScoreGame = 0 ;
     }
 
@@ -56,6 +58,20 @@ public class GameSetting : MonoBehaviour
     {
         //Xu ly diem trong game
         titleScoreGame.text=CreateStringCharZero(12-ScoreGame.ToString().Length)+ScoreGame.ToString();
-     
+        names = Input.GetJoystickNames();
+        for (int x = 0; x < names.Length; x++)
+        {
+           // print(names[x].Length);
+            if(names[x].Length==33)
+            {
+                //Debug.Log("Xbox 360 Connected");
+                typeControllerGame=TypeControllerGame.GamePad;
+            }
+            else{
+                typeControllerGame=TypeControllerGame.MouseAndKeyboard;
+            }
+
+        }
+  
     }
 }

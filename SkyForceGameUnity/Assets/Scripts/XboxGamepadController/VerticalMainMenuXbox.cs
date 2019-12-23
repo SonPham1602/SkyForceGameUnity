@@ -80,7 +80,7 @@ public class VerticalMainMenuXbox : MonoBehaviour
                     else if (updowncheck == 0)
                     {
                         check = true;
-                        Debug.Log("stand");
+                       // Debug.Log("stand");
                     }
                     Debug.Log(select);
                 }

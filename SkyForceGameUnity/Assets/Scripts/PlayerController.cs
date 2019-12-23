@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum TypeControllerGame
 {
-    Mouse,
-    GamePad,
-    Keyboard
+    MouseAndKeyboard,
+    GamePad
+   
 }
 public class PlayerController : MonoBehaviour
 {
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
     {
 
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (typeControllerGame == TypeControllerGame.Mouse && canMove == true)
+        if (typeControllerGame == TypeControllerGame.MouseAndKeyboard && canMove == true)
         {
             if (Mathf.Abs(mousePosition.x) <= 28 && Mathf.Abs(mousePosition.y) <= 16)
             {

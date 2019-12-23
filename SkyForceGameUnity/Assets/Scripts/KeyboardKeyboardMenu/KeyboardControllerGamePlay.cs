@@ -17,7 +17,7 @@ public class KeyboardControllerGamePlay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameSetting.typeControllerGame == TypeControllerGame.Mouse)
+        if (GameSetting.typeControllerGame == TypeControllerGame.MouseAndKeyboard)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {

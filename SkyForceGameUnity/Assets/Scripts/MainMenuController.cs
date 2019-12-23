@@ -61,11 +61,11 @@ public class MainMenuController : MonoBehaviour
            // print(names[x].Length);
             if(names[x].Length==33)
             {
-                Debug.Log("Xbox 360 Connected");
+               // Debug.Log("Xbox 360 Connected");
                 typeControllerGame=TypeControllerGame.GamePad;
             }
             else{
-                typeControllerGame=TypeControllerGame.Keyboard;
+                typeControllerGame=TypeControllerGame.MouseAndKeyboard;
             }
 
         }
@@ -100,11 +100,11 @@ public class MainMenuController : MonoBehaviour
            // print(names[x].Length);
             if(names[x].Length==33)
             {
-                Debug.Log("Xbox 360 Connected");
+                //Debug.Log("Xbox 360 Connected");
                 typeControllerGame=TypeControllerGame.GamePad;
             }
             else{
-                typeControllerGame=TypeControllerGame.Keyboard;
+                typeControllerGame=TypeControllerGame.MouseAndKeyboard;
             }
 
         }
