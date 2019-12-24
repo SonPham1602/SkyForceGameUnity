@@ -11,18 +11,41 @@ public class Boss1Controller : MonoBehaviour
 
     public GameObject turret4;
     public GameObject MainTurret;
+    public float hp;
+    private bool checkTurretStillCanWork;
+    private bool checkAlive;// if check alive == false win game;
     // Start is called before the first frame update
     void Start()
     {
-        if(CanMove==false)
+        checkTurretStillCanWork = true;
+        if (CanMove == false)
         {
-            
+
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (checkTurretStillCanWork == false)
+        {
+            if (other.gameObject.tag == "bullet")
+            {
+                int damageOfBullet=  FindObjectOfType<BulletController>().Power;
+                hp= hp - damageOfBullet;
+                if(hp <= 0)
+                {
+                    FindObjectOfType<GameManager>().gameWin();
+                    Destroy(gameObject);
+                }
+            }
+        }
+
+    }
+
+
 }

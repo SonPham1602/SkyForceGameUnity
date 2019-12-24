@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
         radius = Vector3.Magnitude(target.transform.position - gameObject.transform.position);
         this.HP = 100;
         rb = GetComponent<Rigidbody2D>();
-        typeControllerGame = GameSetting.typeControllerGame;
+        
     }
     private void OnMouseOver()
     {
@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        typeControllerGame = GameSetting.typeControllerGame;
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (typeControllerGame == TypeControllerGame.MouseAndKeyboard && canMove == true)
         {

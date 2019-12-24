@@ -17,9 +17,10 @@ public class TurretEnemyController : MonoBehaviour
 
     private bool isBroken;
     private Transform player;
-    public GameObject bulletMain;
+
     public GameObject bullet;
-    public GameObject[] bulletStart;
+    public GameObject bulletStart;
+    public bool canShot;
 
     private int hp;
 
@@ -28,6 +29,7 @@ public class TurretEnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        canShot = false;
         numberBulletTurret = 0;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         timeBtwShots = startTimeBtwShots;
@@ -43,10 +45,9 @@ public class TurretEnemyController : MonoBehaviour
             {
                 if (isBroken == false)
                 {
-                    for (int i = 0; i < bulletStart.Length; i++)
-                    {
-                        Instantiate(bullet, bulletStart[i].transform.position, Quaternion.identity);
-                    }
+                    if(canShot==true)
+                     Instantiate(bullet, bulletStart.transform.position, Quaternion.identity);
+                    
 
                 }
                 timeBtwShots = startTimeBtwShots;

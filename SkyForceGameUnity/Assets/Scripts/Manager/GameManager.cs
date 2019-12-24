@@ -32,13 +32,14 @@ public class GameManager : MonoBehaviour
     {
         titleStartGame.GetComponent<Animator>().SetBool("Show", true);
         titleStartGame.GetComponent<Animator>().SetBool("Hide", false);
-        typeControllerGame = GameSetting.typeControllerGame;
+        
         SetupMissionGame();
     }
 
     // Update is called once per frame
     void Update()
     {
+        typeControllerGame = GameSetting.typeControllerGame;
         if (typeControllerGame == TypeControllerGame.GamePad)
         {
             if (Input.GetKeyDown("joystick button 0") && gameState == GameState.None)
