@@ -33,7 +33,7 @@ public class VerticalMainMenuXbox : MonoBehaviour
         select = 0;
         mainMenuController = GameObject.FindObjectOfType<MainMenuController>();
 
-        if (mainMenuController.typeControllerGame == TypeControllerGame.GamePad && listButton.Length != 0)
+        if (GameSetting.typeControllerGame == TypeControllerGame.GamePad && listButton.Length != 0)
         {
             Debug.Log("Check");
             UnpressAllButton();

@@ -13,7 +13,7 @@ public class MapGameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        SetupLevelSpriteScreen();
     }
 
     // Update is called once per frame
@@ -28,5 +28,20 @@ public class MapGameController : MonoBehaviour
     public void GoToPlayGame(int n)
     {
         SceneManager.LoadScene(n);
+    }
+     public void SetupLevelSpriteScreen()
+    {
+
+        for (int i = 0; i < currentLevel - 1; i++)
+        {
+            ButtonLevels[i].gameObject.GetComponent<LevelController>().SetStatusComplete();
+
+
+        }
+        for (int i = numberOfLevel - 1; i > currentLevel - 1; i--)
+        {
+            ButtonLevels[i].gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        }
+        ButtonLevels[currentLevel - 1].gameObject.GetComponent<LevelController>().SetStatusAttackGame();
     }
 }

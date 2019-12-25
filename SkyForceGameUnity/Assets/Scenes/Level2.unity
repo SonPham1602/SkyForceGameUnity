@@ -2454,6 +2454,7 @@ GameObject:
   - component: {fileID: 536870927}
   - component: {fileID: 536870926}
   - component: {fileID: 536870925}
+  - component: {fileID: 536870928}
   m_Layer: 5
   m_Name: PressToStart
   m_TagString: Untagged
@@ -2535,6 +2536,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 536870923}
   m_CullTransparentMesh: 0
+--- !u!114 &536870928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536870923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895447781cb4e6c47bb409b640b0467b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gamepadImage: {fileID: 21300000, guid: c47bc322ee29711419ce96b7a00e4786, type: 3}
+  keyboardImage: {fileID: 21300000, guid: 176613ad3aeb13d4297d5b8a6db5a97c, type: 3}
+  image: {fileID: 536870926}
 --- !u!1 &547145075 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2044952476517342825, guid: 146e8d5d9ae8d1f49b888fb855c5a0c7,
