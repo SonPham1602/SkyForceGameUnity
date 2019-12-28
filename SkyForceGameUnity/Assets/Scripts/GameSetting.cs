@@ -21,6 +21,7 @@ public class GameSetting : MonoBehaviour
     public static Vector2 screenBound;
     public static TypeControllerGame typeControllerGame;
     private bool StartGame;
+    public static int numberMissionComplete;
     string[] names;
     // Start is called before the first frame update
     private void Awake() {

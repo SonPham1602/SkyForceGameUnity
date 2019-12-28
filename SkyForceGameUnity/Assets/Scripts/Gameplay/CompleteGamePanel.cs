@@ -7,6 +7,12 @@ public class CompleteGamePanel : MonoBehaviour
 {
     public int numberScore;
     public int numberStar;
+
+    public Sprite oneStar;
+    public Sprite twoStar;
+    public Sprite threeStar;
+
+    [SerializeField] GameObject numberMissionComplete;
     [SerializeField] GameObject textScore;
     [SerializeField] GameObject textStar;
     // Start is called before the first frame update
@@ -19,12 +25,25 @@ public class CompleteGamePanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public void SetupPanelCompleteGame(int score,int star)
+    public void SetupPanelCompleteGame(int score, int star, int numberMission)
     {
         textScore.GetComponent<Text>().text = score.ToString();
         textStar.GetComponent<Text>().text = star.ToString();
+        if (numberMission == 1)
+        {
+            numberMissionComplete.gameObject.GetComponent<Image>().sprite = oneStar;
+        }
+        else if (numberMission == 2)
+        {
+             numberMissionComplete.gameObject.GetComponent<Image>().sprite = twoStar;
+        }
+        else if (numberMission == 3)
+        {
+             numberMissionComplete.gameObject.GetComponent<Image>().sprite = threeStar;
+        }
     }
+
 }
