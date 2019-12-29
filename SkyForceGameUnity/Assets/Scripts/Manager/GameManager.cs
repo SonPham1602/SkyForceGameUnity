@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
     public void ResetLevel()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Level1");
     }
     public void GoToMapGame()
     {
