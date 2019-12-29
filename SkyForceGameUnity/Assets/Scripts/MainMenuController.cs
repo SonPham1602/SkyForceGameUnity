@@ -194,7 +194,7 @@ public class MainMenuController : MonoBehaviour
 
     public void StartLevel()
     {
-        SceneManager.LoadScene("PlayScene");
+        SceneManager.LoadScene("Level1");
     }
     public void QuitGame()
     {

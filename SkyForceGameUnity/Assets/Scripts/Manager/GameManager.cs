@@ -111,6 +111,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(1);
     }
+    public void GoToMapGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MapGame");
+    }
 
     
 

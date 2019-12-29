@@ -25,7 +25,21 @@ public class CompleteGamePanel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(GameSetting.typeControllerGame == TypeControllerGame.GamePad)
+        {
 
+        }
+        else if(GameSetting.typeControllerGame==TypeControllerGame.MouseAndKeyboard)
+        {
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                GameObject.FindObjectOfType<GameManager>().ResetLevel();
+            }
+            else if(Input.GetKeyDown(KeyCode.Return))
+            {
+                GameObject.FindObjectOfType<GameManager>().GoToMapGame();
+            }
+        }
     }
 
     public void SetupPanelCompleteGame(int score, int star, int numberMission)

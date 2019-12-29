@@ -31,7 +31,7 @@ public class Boss1Controller : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (checkTurretStillCanWork == false)
+        if (checkTurretStillCanWork == true)
         {
             if (other.gameObject.tag == "bullet")
             {

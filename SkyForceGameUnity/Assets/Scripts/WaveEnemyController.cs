@@ -8,26 +8,42 @@ public class WaveEnemyController : MonoBehaviour
     GameObject[] waveEnemy;
     int currentWave;
     GameManager gameManager;
-  
-   
-    IEnumerator Start() {
-        if(waveEnemy.Length == 0)
+    public bool StartWave;// kiem luon bool cua first Wave
+    public float Timedelay;// thoi gian delay giua cac wave voi nhau
+    public void StartWaveEnenmy()
+    {
+        StartWave = true;
+        
+    }
+     
+    IEnumerator Start()
+    {
+        if (waveEnemy.Length == 0)
         {
             yield break;
         }
         gameManager = FindObjectOfType<GameManager>();
         while (true)
         {
-            while(gameManager.gameState!=GameState.Play)
+            //Chan khong cho bat dau
+            //Muc dich la de chan ko tu bat dau o wave tiep theo
+            while (StartWave == false )
             {
                 yield return 0;
             }
-         //   Debug.Log("current wave:"+currentWave);
-            if(currentWave<waveEnemy.Length)
+            while (gameManager.gameState != GameState.Play)
             {
-                GameObject wave = (GameObject)Instantiate(waveEnemy[currentWave],transform.position,Quaternion.identity);
+
+                yield return 0;
+            }
+          
+           
+            //   Debug.Log("current wave:"+currentWave);
+            if (currentWave < waveEnemy.Length)
+            {
+                GameObject wave = (GameObject)Instantiate(waveEnemy[currentWave], transform.position, Quaternion.identity);
                 wave.transform.parent = transform;
-                while(0<wave.transform.childCount)
+                while (0 < wave.transform.childCount)
                 {
                     //Debug.Log("childCount"+wave.transform.childCount);
                     yield return 0;
@@ -40,13 +56,18 @@ public class WaveEnemyController : MonoBehaviour
                 yield return 0;
             }
             currentWave++;
-            if(currentWave>=waveEnemy.Length)
+            if (currentWave >= waveEnemy.Length)
             {
+                // time deplay giua cac way
+                yield return new WaitForSeconds(Timedelay);
                 WaveEnemyController[] wave = FindObjectsOfType<WaveEnemyController>();
-                if(wave.Length<=1)
+                wave[0].StartWaveEnenmy();
+                if (wave.Length <= 1)
                 {
                     //gameManager.gameWin();
                 }
+                
+               
                 Destroy(gameObject);
             }
         }
