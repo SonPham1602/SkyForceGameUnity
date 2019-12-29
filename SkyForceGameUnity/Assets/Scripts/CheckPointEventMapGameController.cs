@@ -28,6 +28,7 @@ public class CheckPointEventMapGameController : MonoBehaviour
         if (other.gameObject.tag == "FightBoss")
         {
             Debug.Log("Dung map");
+            GameObject.FindObjectOfType<Boss1Controller>().ShowHealthBar();
             listEnemyOfMap.GetComponent<ControllerListEnemy>().StopMovingListEnemy();
         }
     }

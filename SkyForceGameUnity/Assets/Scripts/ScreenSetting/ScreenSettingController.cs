@@ -9,6 +9,7 @@ public class ScreenSettingController : MonoBehaviour
     [SerializeField] GameObject Resolution;
     [SerializeField] GameObject Graphics;
     int currentResolution;
+    int currentGraphics;
     FullScreenMode fullScreenMode;
     string[] listResolution = { "800 x 600", "1024 x 768", "1280 x 960", "1600 x 900", "1920 x 1080" };
     int[,] listResolutionArray = {
@@ -53,6 +54,14 @@ public class ScreenSettingController : MonoBehaviour
             Screen.SetResolution(listResolutionArray[currentResolution, 0], listResolutionArray[currentResolution, 1], fullScreenMode);
             Resolution.gameObject.GetComponent<Text>().text = listResolution[currentResolution];
         }
+
+    }
+    public void LeftGraphics()
+    {
+
+    }
+    public void RightGraphics()
+    {
 
     }
 }
