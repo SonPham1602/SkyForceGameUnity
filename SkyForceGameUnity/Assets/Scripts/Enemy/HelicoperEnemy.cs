@@ -13,12 +13,13 @@ public class HelicoperEnemy : EnemyController
     private bool isBroken;//Check enemy can shoot
     private float angle;
     private float maxNextPosition = 0.03f;
-   
-    private bool shooted; 
+
+    private bool shooted;
 
     // Start is called before the first frame update
     void Start()
     {
+        HP = 100;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         angle = Vector3.Angle(player.transform.position - transform.position, Vector3.right);
         if (angle < 70)
@@ -26,7 +27,7 @@ public class HelicoperEnemy : EnemyController
             angle = 70;
         }
         timeBtwShots = startTimeBtwShots;
-        HP = 200;
+        HP = 150;
         smokeEffect.SetActive(false);
     }
 
@@ -35,7 +36,7 @@ public class HelicoperEnemy : EnemyController
     {
         if (FindObjectOfType<GameManager>().gameState != GameState.Play)
             return;
-        if (timeBtwShots <= 0 && shooted==false)
+        if (timeBtwShots <= 0 && shooted == false)
         {
 
             if (isBroken == false)
@@ -61,11 +62,30 @@ public class HelicoperEnemy : EnemyController
             //transform.transform.position = new Vector3(transform.position.x + maxNextPosition, transform.position.y - 5 * maxNextPosition, transform.position.z);
         }
     }
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.tag == "destroyEnemy")
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+
+        if (other.gameObject.tag == "Player")
+        {
+            OnTriggerPlayerEnter(other.gameObject);
+        }
+        if (other.gameObject.tag == "destroyEnemy")
         {
             Destroy(gameObject);
         }
+        if (other.gameObject.tag == "bullet" && HP > 0)
+        {
+            OnTriggerBulletEnter(other.gameObject);
+            HP -= other.gameObject.GetComponent<BulletController>().Power;
+            if (HP <= 0)
+            {
+                gameObject.AddComponent<RotateObjectGame>();
+                gameObject.GetComponent<RotateObjectGame>().speedSpin = 5;
+                smokeEffect.SetActive(true);
+                Destroy(gameObject, 10f);
+            }
+        }
+
     }
 
 

@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour
     // public float speed = 6.0f;
     protected Rigidbody2D rigidbody2d;
     public Anchor_Plane anchor;
-    public TypePath  typePath;
+    public TypePath typePath;
     public bool fly_up;
     public float speedTurn;
     protected float offset;
@@ -41,41 +41,51 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Mathf.Abs(transform.position.x) > screenBounds.x+10)
+        if (Mathf.Abs(transform.position.x) > screenBounds.x + 10)
         {
             Destroy(this.gameObject);
         }
-        else if (Mathf.Abs(transform.position.y) > screenBounds.y+10)
+        else if (Mathf.Abs(transform.position.y) > screenBounds.y + 10)
         {
             Destroy(this.gameObject);
         }
-       //transform.Translate(0,1*Time.deltaTime,0);
+        //transform.Translate(0,1*Time.deltaTime,0);
     }
-    protected void FixedUpdate() {
-        offset = Time.deltaTime*speedMove;
-        if(canMove==true)
+    protected void FixedUpdate()
+    {
+        offset = Time.deltaTime * speedMove;
+        if (canMove == true)
         {
             Move();
         }
-        
+
     }
-    void OnTriggerEnter2D(Collider2D other) {
+    protected void OnTriggerBulletEnter(GameObject other)
+    {
+        StartCoroutine(getHit());
+        HP -= other.gameObject.GetComponent<BulletController>().Power;
+        if (HP <= 0)
+        {
+            GameSetting.ScoreGame += ScoreTake;
+            Instantiate(explostionEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+    }
+    protected void OnTriggerPlayerEnter(GameObject other)
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP -= HP;
+        Instantiate(explostionEffect, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
         if (other.gameObject.tag == "bullet")
-        {  
-            StartCoroutine(getHit());
-            HP -= other.gameObject.GetComponent<BulletController>().Power;
-            if (HP <= 0)
-            {
-                GameSetting.ScoreGame+=ScoreTake;
-                Instantiate(explostionEffect, transform.position, Quaternion.identity);
-                Destroy(gameObject);
-            }
+        {
+            OnTriggerBulletEnter(other.gameObject);
         }
         else if (other.gameObject.tag == "Player")
         {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP -= HP;
-            Instantiate(explostionEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            OnTriggerPlayerEnter(other.gameObject);
         }
     }
     IEnumerator getHit()
@@ -95,7 +105,7 @@ public class EnemyController : MonoBehaviour
     public void Move()
     {
         int direc;
-        if(fly_up)
+        if (fly_up)
         {
             direc = -1;
         }
@@ -104,11 +114,11 @@ public class EnemyController : MonoBehaviour
             direc = 1;
         }
 
-        if(typePath == TypePath.curve_up)
+        if (typePath == TypePath.curve_up)
         {
-            transform.localScale = new Vector3(direc * saveScale.x,saveScale.y,0);
-            transform.localRotation = Quaternion.Euler(new Vector3(0,0,transform.eulerAngles.z-speedTurn));
-            transform.position+=direc * transform.right * offset;
+            transform.localScale = new Vector3(direc * saveScale.x, saveScale.y, 0);
+            transform.localRotation = Quaternion.Euler(new Vector3(0, 0, transform.eulerAngles.z - speedTurn));
+            transform.position += direc * transform.right * offset;
         }
         if (typePath == TypePath.curve_down)
         {
@@ -116,37 +126,37 @@ public class EnemyController : MonoBehaviour
             transform.localRotation = Quaternion.Euler(new Vector3(0, 0, transform.eulerAngles.z + speedTurn));
             transform.position -= direc * transform.right * offset;
         }
-        if(typePath == TypePath.line)
+        if (typePath == TypePath.line)
         {
-            if(anchor == Anchor_Plane.top)
+            if (anchor == Anchor_Plane.top)
             {
                 //transform.localScale = new Vector3(direc*saveScale.x,saveScale.y,0);
-                transform.localRotation = Quaternion.Euler(new Vector3(0,0,-90));
+                transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -90));
                 transform.position += transform.right * offset;
             }
-            else if(anchor == Anchor_Plane.right)
+            else if (anchor == Anchor_Plane.right)
             {
                 //transform.localScale = new Vector3(saveScale.x, saveScale.y, 0);
                 transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 180));
                 transform.position += transform.right * offset;
             }
-            else if(anchor == Anchor_Plane.left)
+            else if (anchor == Anchor_Plane.left)
             {
-               // transform.localScale = new Vector3(saveScale.x, saveScale.y, 0);
+                // transform.localScale = new Vector3(saveScale.x, saveScale.y, 0);
                 transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
                 transform.position += transform.right * offset;
             }
-            else if(anchor == Anchor_Plane.top_left)
+            else if (anchor == Anchor_Plane.top_left)
             {
                 //transform.localScale = new Vector3(direc * saveScale.x, saveScale.y, 0);
                 transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -60));
                 transform.position += transform.right * offset;
             }
-            else if(anchor == Anchor_Plane.top_right)
+            else if (anchor == Anchor_Plane.top_right)
             {
                 //transform.localScale = new Vector3(direc * saveScale.x,saveScale.y,0);
                 transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -120));
-                transform.position+=transform.right*offset;
+                transform.position += transform.right * offset;
             }
         }
     }
