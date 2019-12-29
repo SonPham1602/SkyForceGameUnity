@@ -120,31 +120,31 @@ public class EnemyController : MonoBehaviour
         {
             if(anchor == Anchor_Plane.top)
             {
-                transform.localScale = new Vector3(direc*saveScale.x,saveScale.y,0);
+                //transform.localScale = new Vector3(direc*saveScale.x,saveScale.y,0);
                 transform.localRotation = Quaternion.Euler(new Vector3(0,0,-90));
                 transform.position += transform.right * offset;
             }
             else if(anchor == Anchor_Plane.right)
             {
-                transform.localScale = new Vector3(saveScale.x, saveScale.y, 0);
+                //transform.localScale = new Vector3(saveScale.x, saveScale.y, 0);
                 transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 180));
                 transform.position += transform.right * offset;
             }
             else if(anchor == Anchor_Plane.left)
             {
-                transform.localScale = new Vector3(saveScale.x, saveScale.y, 0);
+               // transform.localScale = new Vector3(saveScale.x, saveScale.y, 0);
                 transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
                 transform.position += transform.right * offset;
             }
             else if(anchor == Anchor_Plane.top_left)
             {
-                transform.localScale = new Vector3(direc * saveScale.x, saveScale.y, 0);
+                //transform.localScale = new Vector3(direc * saveScale.x, saveScale.y, 0);
                 transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -60));
                 transform.position += transform.right * offset;
             }
             else if(anchor == Anchor_Plane.top_right)
             {
-                transform.localScale = new Vector3(direc * saveScale.x,saveScale.y,0);
+                //transform.localScale = new Vector3(direc * saveScale.x,saveScale.y,0);
                 transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -120));
                 transform.position+=transform.right*offset;
             }

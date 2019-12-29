@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HelicoperEnemy : EnemyController
 {
-    public float speed;//speed of bullet
+    public float speedBullet;//speed of bullet
     public float startTimeBtwShots;
     private float timeBtwShots;
     private Transform player;
@@ -12,9 +12,9 @@ public class HelicoperEnemy : EnemyController
     public GameObject smokeEffect;
     private bool isBroken;//Check enemy can shoot
     private float angle;
-    private int hp;
     private float maxNextPosition = 0.03f;
    
+    private bool shooted; 
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +26,7 @@ public class HelicoperEnemy : EnemyController
             angle = 70;
         }
         timeBtwShots = startTimeBtwShots;
-        HP = 10;
+        HP = 200;
         smokeEffect.SetActive(false);
     }
 
@@ -35,13 +35,16 @@ public class HelicoperEnemy : EnemyController
     {
         if (FindObjectOfType<GameManager>().gameState != GameState.Play)
             return;
-        if (timeBtwShots <= 0)
+        if (timeBtwShots <= 0 && shooted==false)
         {
+
             if (isBroken == false)
             {
+                Debug.Log("Ten lua");
                 Instantiate(bullet, transform.position, Quaternion.identity);
+                shooted = true;
             }
-            timeBtwShots = startTimeBtwShots;
+            //timeBtwShots = startTimeBtwShots;
         }
         else
         {
@@ -49,29 +52,35 @@ public class HelicoperEnemy : EnemyController
         }
         if (HP > 0)
         {
-            transform.parent.transform.position = new Vector3(transform.position.x + maxNextPosition, transform.position.y + Mathf.Abs(Mathf.Tan(angle)) * maxNextPosition, transform.position.z);
+            //transform.transform.position = new Vector3(transform.position.x + maxNextPosition, transform.position.y + Mathf.Abs(Mathf.Tan(angle)) * maxNextPosition, transform.position.z);
             angle -= 0.001f;
         }
         else
         {
             isBroken = true;
-            transform.parent.transform.position = new Vector3(transform.position.x + maxNextPosition, transform.position.y - 5 * maxNextPosition, transform.position.z);
+            //transform.transform.position = new Vector3(transform.position.x + maxNextPosition, transform.position.y - 5 * maxNextPosition, transform.position.z);
         }
     }
-
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "bullet" && HP > 0)
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag == "destroyEnemy")
         {
-            HP -= other.gameObject.GetComponent<BulletController>().Power;
-            if (HP <= 0)
-            {
-                gameObject.AddComponent<RotateObjectGame>();
-                gameObject.GetComponent<RotateObjectGame>().speedSpin = 5;
-                smokeEffect.SetActive(true);
-                Destroy(gameObject, 10f);
-            }
+            Destroy(gameObject);
         }
     }
+
+
+    // void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.gameObject.tag == "bullet" && HP > 0)
+    //     {
+    //         HP -= other.gameObject.GetComponent<BulletController>().Power;
+    //         if (HP <= 0)
+    //         {
+    //             gameObject.AddComponent<RotateObjectGame>();
+    //             gameObject.GetComponent<RotateObjectGame>().speedSpin = 5;
+    //             smokeEffect.SetActive(true);
+    //             Destroy(gameObject, 10f);
+    //         }
+    //     }
+    // }
 }

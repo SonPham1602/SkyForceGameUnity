@@ -9,7 +9,10 @@ public enum TypeControllerGame
 }
 public class PlayerController : MonoBehaviour
 {
+    public int damageOfBullet;
+    public float timeSpeedShot;
     public GameObject target;
+     public GameObject startShot;
     public GameObject bullet;
     public int numberBullet = 1;
     public float hp;// hp cua may bay
@@ -71,7 +74,7 @@ public class PlayerController : MonoBehaviour
     private void OnMouseOver()
     {
         isMove = false;
-        Debug.Log("Move false");
+        //Debug.Log("Move false");
     }
     /// <summary>
     /// Called when the mouse is not any longer over the GUIElement or Collider.
@@ -79,7 +82,7 @@ public class PlayerController : MonoBehaviour
     void OnMouseExit()
     {
         isMove = true;
-        Debug.Log("Move true");
+        //Debug.Log("Move true");
     }
 
     // Update is called once per frame
@@ -94,7 +97,7 @@ public class PlayerController : MonoBehaviour
 
                 direction = (mousePosition - new Vector2(transform.position.x, transform.position.y)).normalized;
                 // Debug.Log(direction.x+ "   " + direction.y);
-                Debug.Log(mousePosition.x + "   " + mousePosition.y + "   " + transform.position.x + "  " + transform.position.y);
+                //Debug.Log(mousePosition.x + "   " + mousePosition.y + "   " + transform.position.x + "  " + transform.position.y);
                 if (isMove != false)
                 {
                     rb.velocity = new Vector2(direction.x * speedShip, direction.y * speedShip);
@@ -148,10 +151,11 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (Input.GetMouseButton(0) && Time.time - lastTimeFire >= 0.2f)
+            if (Time.time - lastTimeFire >= timeSpeedShot)
             {
                 lastTimeFire = Time.time;
-                CreateBullet(bullet);
+                //CreateBullet(bullet);
+                CreateOneBullet(target.transform.position,bullet,15);
             }
 
 
@@ -172,7 +176,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-            if (Input.GetKeyDown("joystick button 0") && Time.time - lastTimeFire >= 0.2f)
+            if (Time.time - lastTimeFire >= timeSpeedShot)
             {
                 lastTimeFire = Time.time;
                 CreateBullet(bullet);
@@ -212,10 +216,10 @@ public class PlayerController : MonoBehaviour
 
     void CreateOneBullet(Vector3 pos, GameObject bullet, float speed)
     {
-        GameObject b = Instantiate(bullet, gameObject.transform.position, Quaternion.identity);
+        GameObject b = Instantiate(bullet, startShot.transform.position, Quaternion.identity);
         b.GetComponent<BulletController>().targetPosition = pos;
         b.GetComponent<BulletController>().moveSpeed = speed;
-        b.GetComponent<BulletController>().Power = 50;
+        b.GetComponent<BulletController>().Power = damageOfBullet;
     }
 
     private void setBulletPos(out BulletPos pos, float goc)

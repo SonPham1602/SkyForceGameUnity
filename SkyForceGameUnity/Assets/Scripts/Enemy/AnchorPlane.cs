@@ -29,7 +29,8 @@ public class AnchorPlane : MonoBehaviour
     {
         positionCam = GameSetting.positionCam;
 
-        size = new Vector2(Mathf.Abs(GameSetting.sizeCam.x / 2) + 2, Mathf.Abs(GameSetting.sizeCam.y / 2) + 2);
+       size = new Vector2(Mathf.Abs(GameSetting.sizeCam.x / 2) + 3, Mathf.Abs(GameSetting.sizeCam.y / 2)+3 );
+
         top = new Vector2(0, positionCam.y + size.y);
         top_left = new Vector2(positionCam.x - size.x, positionCam.y + size.y);
         top_right = new Vector2(positionCam.x + size.x, positionCam.y + size.y);

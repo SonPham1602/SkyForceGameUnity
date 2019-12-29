@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     public Vector3 targetPosition;
-    public float moveSpeed = 10f;
+    public float moveSpeed;
     private int power;
 
     Rigidbody2D myBody;
