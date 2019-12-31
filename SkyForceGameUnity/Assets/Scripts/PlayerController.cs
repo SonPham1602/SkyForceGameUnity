@@ -150,8 +150,8 @@ public class PlayerController : MonoBehaviour
 
                 }
             }
-
-            if (Time.time - lastTimeFire >= timeSpeedShot)
+            // Ship will shot when press enter
+            if (Time.time - lastTimeFire >= timeSpeedShot && GameObject.FindObjectOfType<GameManager>().gameState == GameState.Play)
             {
                 lastTimeFire = Time.time;
                 //CreateBullet(bullet);
@@ -176,7 +176,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-            if (Time.time - lastTimeFire >= timeSpeedShot)
+            if (Time.time - lastTimeFire >= timeSpeedShot && GameObject.FindObjectOfType<GameManager>().gameState == GameState.Play)
             {
                 lastTimeFire = Time.time;
                 CreateBullet(bullet);
@@ -289,6 +289,10 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
         }
         else if (other.gameObject.tag == "enemy")
+        {
+            hitLayer.GetComponent<Animator>().SetTrigger("ShowOneHit");
+        }
+        else if(other.gameObject.tag == "misileEnemy")
         {
             hitLayer.GetComponent<Animator>().SetTrigger("ShowOneHit");
         }

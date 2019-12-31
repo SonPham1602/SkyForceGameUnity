@@ -58,6 +58,7 @@ public class WaveEnemyController : MonoBehaviour
             currentWave++;
             if (currentWave >= waveEnemy.Length)
             {
+                Debug.Log("test");
                 // time deplay giua cac way
                 yield return new WaitForSeconds(Timedelay);
                 WaveEnemyController[] wave = FindObjectsOfType<WaveEnemyController>();

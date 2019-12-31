@@ -24,7 +24,7 @@ public class CheckPointEventMapGameController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         string tagObject = other.gameObject.tag;
-        Debug.Log(tagObject);
+//        Debug.Log(tagObject);
         if (other.gameObject.tag == "FightBoss")
         {
             Debug.Log("Dung map");

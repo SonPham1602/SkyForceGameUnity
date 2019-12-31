@@ -36,7 +36,7 @@ public class HelicoperEnemy : EnemyController
     {
         if (FindObjectOfType<GameManager>().gameState != GameState.Play)
             return;
-        if (timeBtwShots <= 0 && shooted == false)
+        if (timeBtwShots <= 0 && shooted == false && canMove == true)
         {
 
             if (isBroken == false)
@@ -47,7 +47,7 @@ public class HelicoperEnemy : EnemyController
             }
             //timeBtwShots = startTimeBtwShots;
         }
-        else
+        else if(canMove == true)
         {
             timeBtwShots -= Time.deltaTime;
         }
