@@ -9,6 +9,8 @@ public enum TypeControllerGame
 }
 public class PlayerController : MonoBehaviour
 {
+    public AudioClip shootBulletSound;
+    public AudioSource audioSource;
     public int damageOfBullet;
     public float timeSpeedShot;
     public GameObject target;
@@ -66,6 +68,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         radius = Vector3.Magnitude(target.transform.position - gameObject.transform.position);
         this.HP = 100;
         rb = GetComponent<Rigidbody2D>();
@@ -156,6 +159,8 @@ public class PlayerController : MonoBehaviour
                 lastTimeFire = Time.time;
                 //CreateBullet(bullet);
                 CreateOneBullet(target.transform.position,bullet,15);
+                audioSource.clip = shootBulletSound;
+                audioSource.Play();
             }
 
 
@@ -180,6 +185,8 @@ public class PlayerController : MonoBehaviour
             {
                 lastTimeFire = Time.time;
                 CreateBullet(bullet);
+                audioSource.clip = shootBulletSound;
+                audioSource.Play();
             }
         }
 

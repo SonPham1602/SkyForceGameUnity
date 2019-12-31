@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HomingMissile : BulletController
 {
+    public AudioClip missileSound;
+    public AudioSource audioSource;
     public float Speed;
     public float RotateSpeed;
     private Rigidbody2D rb;
@@ -12,6 +14,8 @@ public class HomingMissile : BulletController
     // Start is called before the first frame update
     void Start()
     {
+        audioSource.clip = missileSound;
+        audioSource.Play();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
         Power = 20;

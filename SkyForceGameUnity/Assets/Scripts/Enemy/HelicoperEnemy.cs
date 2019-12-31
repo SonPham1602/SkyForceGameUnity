@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HelicoperEnemy : EnemyController
 {
+    public AudioClip soundFlyHelicoper;
+    public AudioSource audioSource;
     public float speedBullet;//speed of bullet
     public float startTimeBtwShots;
     private float timeBtwShots;
@@ -19,6 +21,9 @@ public class HelicoperEnemy : EnemyController
     // Start is called before the first frame update
     void Start()
     {
+        // Play sound Moving
+        audioSource.clip = soundFlyHelicoper;
+        audioSource.Play();
         HP = 100;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         angle = Vector3.Angle(player.transform.position - transform.position, Vector3.right);
@@ -41,7 +46,8 @@ public class HelicoperEnemy : EnemyController
 
             if (isBroken == false)
             {
-                Debug.Log("Ten lua");
+                
+                //Debug.Log("Ten lua");
                 Instantiate(bullet, transform.position, Quaternion.identity);
                 shooted = true;
             }

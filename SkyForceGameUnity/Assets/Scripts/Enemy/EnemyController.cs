@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+
+    public AudioClip soundExplosion;
+    public AudioSource audioSourceExplosion;
     public int ScoreTake;// Quy dinh bao nhieu diem khi tieu diet enemy
     public float gravity = 20.0f;
     // public float speed = 6.0f;
@@ -29,6 +32,8 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+        audioSourceExplosion.clip = soundExplosion;
+
         offset = Time.deltaTime * speedMove;
         rigidbody2d = GetComponent<Rigidbody2D>();
         saveScale = transform.localScale;
@@ -66,10 +71,23 @@ public class EnemyController : MonoBehaviour
         HP -= other.gameObject.GetComponent<BulletController>().Power;
         if (HP <= 0)
         {
+
             GameSetting.ScoreGame += ScoreTake;
+            audioSourceExplosion.Play();
+            //StartCoroutine(PlayExplosion());
+            gameObject.GetComponent<SpriteRenderer>().enabled =  false;
+            gameObject.GetComponent<BoxCollider2D>().enabled= false;
             Instantiate(explostionEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            Destroy(gameObject,soundExplosion.length);
         }
+    }
+    IEnumerator PlayExplosion()
+    {
+        audioSourceExplosion.Play();
+        yield return new WaitWhile(()=>audioSourceExplosion.isPlaying);
+    }
+    private void OnDestroy() {
+         //audioSourceExplosion.Play();
     }
     protected void OnTriggerPlayerEnter(GameObject other)
     {
