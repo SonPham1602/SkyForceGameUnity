@@ -38,7 +38,7 @@ public class PausePanelXboxController : MonoBehaviour
                 }
                 Debug.Log("Left");
             }
-            Debug.Log("Select" + select);
+//            Debug.Log("Select" + select);
             if(Input.GetKeyDown("joystick button 0"))
             {
                 listButton[select].GetComponent<Button>().onClick.Invoke();

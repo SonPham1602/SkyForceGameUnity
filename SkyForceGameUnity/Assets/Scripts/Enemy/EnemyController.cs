@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-
     public AudioClip soundExplosion;
     public AudioSource audioSourceExplosion;
     public int ScoreTake;// Quy dinh bao nhieu diem khi tieu diet enemy
@@ -78,17 +77,15 @@ public class EnemyController : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().enabled =  false;
             gameObject.GetComponent<BoxCollider2D>().enabled= false;
             Instantiate(explostionEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject,soundExplosion.length);
+            
         }
     }
-    IEnumerator PlayExplosion()
-    {
-        audioSourceExplosion.Play();
-        yield return new WaitWhile(()=>audioSourceExplosion.isPlaying);
-    }
-    private void OnDestroy() {
-         //audioSourceExplosion.Play();
-    }
+    // IEnumerator PlayExplosion()
+    // {
+    //     audioSourceExplosion.Play();
+    //     yield return new WaitWhile(()=>audioSourceExplosion.isPlaying);
+    // }
+   
     protected void OnTriggerPlayerEnter(GameObject other)
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP -= HP;
@@ -100,6 +97,8 @@ public class EnemyController : MonoBehaviour
         if (other.gameObject.tag == "bullet")
         {
             OnTriggerBulletEnter(other.gameObject);
+            gameObject.GetComponent<ControllerTrailEnemy>().DestroyTrailOfEnemy();
+            Destroy(gameObject,soundExplosion.length+0.5f);
         }
         else if (other.gameObject.tag == "Player")
         {

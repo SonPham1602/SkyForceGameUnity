@@ -17,6 +17,7 @@ public class HelicoperEnemy : EnemyController
     private float maxNextPosition = 0.03f;
 
     private bool shooted;
+    [SerializeField] GameObject wingHelocoper;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +33,7 @@ public class HelicoperEnemy : EnemyController
             angle = 70;
         }
         timeBtwShots = startTimeBtwShots;
-        HP = 150;
+        HP = 100;
         smokeEffect.SetActive(false);
     }
 
@@ -70,7 +71,7 @@ public class HelicoperEnemy : EnemyController
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-
+        Debug.Log("On aaa");
         if (other.gameObject.tag == "Player")
         {
             OnTriggerPlayerEnter(other.gameObject);
@@ -79,7 +80,7 @@ public class HelicoperEnemy : EnemyController
         {
             Destroy(gameObject);
         }
-        if (other.gameObject.tag == "bullet" && HP > 0)
+        if (other.gameObject.tag == "bullet")
         {
             OnTriggerBulletEnter(other.gameObject);
             HP -= other.gameObject.GetComponent<BulletController>().Power;
@@ -88,7 +89,9 @@ public class HelicoperEnemy : EnemyController
                 gameObject.AddComponent<RotateObjectGame>();
                 gameObject.GetComponent<RotateObjectGame>().speedSpin = 5;
                 smokeEffect.SetActive(true);
-                Destroy(gameObject, 10f);
+                Destroy(wingHelocoper);
+                Destroy(gameObject,0.5f);
+                
             }
         }
 

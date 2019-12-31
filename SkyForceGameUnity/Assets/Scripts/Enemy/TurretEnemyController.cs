@@ -7,7 +7,6 @@ public class TurretEnemyController : MonoBehaviour
     public float rotationObject;
     public GameObject turret;
     public float startTimeBtwShots;//time to shot 
-    public float health;
     public float speedOfBullet;
     private float numberBulletTurret;
     public Sprite spriteOfBrokenTurret;
@@ -25,6 +24,7 @@ public class TurretEnemyController : MonoBehaviour
     private int hp;
 
     public int HP { get => hp; set => hp = value; }
+    public Color color;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +33,7 @@ public class TurretEnemyController : MonoBehaviour
         numberBulletTurret = 0;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         timeBtwShots = startTimeBtwShots;
-        HP = 100;
+        HP = 200;
     }
 
     // Update is called once per frame
@@ -46,7 +46,11 @@ public class TurretEnemyController : MonoBehaviour
                 if (isBroken == false)
                 {
                     if(canShot==true)
-                     Instantiate(bullet, bulletStart.transform.position, Quaternion.identity);
+                    {
+                        Debug.Log("Shoot");
+                        Instantiate(bullet, bulletStart.transform.position, Quaternion.identity);
+                    }
+                     
                     
 
                 }
@@ -73,11 +77,30 @@ public class TurretEnemyController : MonoBehaviour
     {
         if (other.gameObject.tag == "bullet")
         {
+            StartCoroutine(getHit());
             HP -= other.gameObject.GetComponent<BulletController>().Power;
             if (HP <= 0)
             {
                 Destroy(gameObject);
             }
+        }
+        else if(other.gameObject.tag == "enableEnemy")
+        {
+            canShot = true;
+        }
+    }
+    IEnumerator getHit()
+    {
+        Debug.Log("Get hit");
+        StopCoroutine("getHit");
+        SpriteRenderer sr = transform.GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            color = Color.red;
+            sr.color = color;
+            yield return new WaitForSeconds(0.1f);
+            color = Color.white;
+            sr.color = color;
         }
     }
 }

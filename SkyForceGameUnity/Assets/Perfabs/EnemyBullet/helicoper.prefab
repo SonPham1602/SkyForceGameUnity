@@ -4850,6 +4850,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe4a0c53718bf845ba2411060cfec9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundExplosion: {fileID: 8300000, guid: 8134aa7382e1a184888ae210cb849fd6, type: 3}
+  audioSourceExplosion: {fileID: 978106443347442573}
   ScoreTake: 0
   gravity: 20
   anchor: 0
@@ -4868,6 +4870,7 @@ MonoBehaviour:
   startTimeBtwShots: 1
   bullet: {fileID: 3483345227818446284, guid: 3921a75a425eaac48aee8e5451bce84a, type: 3}
   smokeEffect: {fileID: 485896527604793732}
+  wingHelocoper: {fileID: 485896528406126895}
 --- !u!61 &485896528404674386
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4881,7 +4884,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.27436545, y: 0.059916213}
+  m_Offset: {x: -0.27436543, y: 0.05023104}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4892,7 +4895,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7063365, y: 0.44345626}
+  m_Size: {x: 1.7063365, y: 1.0310329}
   m_EdgeRadius: 0
 --- !u!82 &978106443347442573
 AudioSource:
@@ -4914,7 +4917,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 1.0717894
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

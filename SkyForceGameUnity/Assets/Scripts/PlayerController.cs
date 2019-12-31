@@ -294,6 +294,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "bulletEnemy")
         {
             Destroy(other.gameObject);
+            hitLayer.GetComponent<Animator>().SetTrigger("ShowOneHit");
         }
         else if (other.gameObject.tag == "enemy")
         {
