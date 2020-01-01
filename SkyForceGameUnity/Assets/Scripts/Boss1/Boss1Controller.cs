@@ -18,6 +18,7 @@ public class Boss1Controller : MonoBehaviour
     private bool checkTurretStillCanWork;
     private bool checkAlive;// if check alive == false win game;
     // Start is called before the first frame update
+    public bool canShootTurret;
     void Start()
     {
         checkTurretStillCanWork = true;
@@ -30,7 +31,11 @@ public class Boss1Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBarBoss.fillAmount = hp/1000;
+        if(canShootTurret == true)
+        {
+            TurnOnAllTurret();
+        }
+        healthBarBoss.fillAmount = hp / 1000;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -38,9 +43,9 @@ public class Boss1Controller : MonoBehaviour
         {
             if (other.gameObject.tag == "bullet")
             {
-                int damageOfBullet=  FindObjectOfType<BulletController>().Power;
-                hp= hp - damageOfBullet;
-                if(hp <= 0)
+                int damageOfBullet = FindObjectOfType<BulletController>().Power;
+                hp = hp - damageOfBullet;
+                if (hp <= 0)
                 {
                     HideHealthBar();
                     FindObjectOfType<GameManager>().gameWin();
@@ -52,14 +57,22 @@ public class Boss1Controller : MonoBehaviour
     }
     public void ShowHealthBar()
     {
-        healthBar.gameObject.GetComponent<Animator>().SetBool("Show",true);
-        healthBar.gameObject.GetComponent<Animator>().SetBool("Hide",false);
+        healthBar.gameObject.GetComponent<Animator>().SetBool("Show", true);
+        healthBar.gameObject.GetComponent<Animator>().SetBool("Hide", false);
 
     }
     public void HideHealthBar()
     {
-        healthBar.gameObject.GetComponent<Animator>().SetBool("Hide",true);
-        healthBar.gameObject.GetComponent<Animator>().SetBool("Show",false);
+        healthBar.gameObject.GetComponent<Animator>().SetBool("Hide", true);
+        healthBar.gameObject.GetComponent<Animator>().SetBool("Show", false);
+    }
+    public void TurnOnAllTurret()
+    {
+        //turret1.gameObject.GetComponent<TurretEnemyController>().EnableTurret();
+        //turret2.gameObject.GetComponent<TurretEnemyController>().EnableTurret();
+        //turret3.gameObject.GetComponent<TurretEnemyController>().EnableTurret();
+        //turret4.gameObject.GetComponent<TurretEnemyController>().EnableTurret();
+        MainTurret.gameObject.GetComponent<TurretEnemyController>().EnableTurret();
     }
 
 

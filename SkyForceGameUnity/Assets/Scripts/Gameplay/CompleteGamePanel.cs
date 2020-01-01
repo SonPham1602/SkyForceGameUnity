@@ -18,6 +18,7 @@ public class CompleteGamePanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale=0;
         textScore.GetComponent<Text>().text = numberScore.ToString();
         textStar.GetComponent<Text>().text = numberStar.ToString();
     }

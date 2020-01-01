@@ -450,7 +450,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1901894330}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &57213511
 GameObject:
@@ -1879,15 +1879,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68dd0991cc7f7cb41a7ebd4794373e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfBulletInOneTurn: 0
   rotationObject: -90
   turret: {fileID: 324610580}
-  startTimeBtwShots: 1
+  startTimeBtwShots: 3
   speedOfBullet: 20
   spriteOfBrokenTurret: {fileID: 0}
-  timeToStartShoot: 0.75
+  timeToStartShoot: 2
   bullet: {fileID: 5698948991174161390, guid: cb43722ee02b4634b866f9486e1ff82e, type: 3}
-  bulletStart: {fileID: 0}
-  canShot: 0
+  bulletStart: {fileID: 683549096}
+  canShot: 1
   color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &324610583
 SpriteRenderer:
@@ -3880,15 +3881,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68dd0991cc7f7cb41a7ebd4794373e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfBulletInOneTurn: 0
   rotationObject: -90
   turret: {fileID: 896088259}
-  startTimeBtwShots: 1
+  startTimeBtwShots: 3
   speedOfBullet: 20
   spriteOfBrokenTurret: {fileID: 0}
   timeToStartShoot: 0.25
   bullet: {fileID: 5698948991174161390, guid: cb43722ee02b4634b866f9486e1ff82e, type: 3}
-  bulletStart: {fileID: 0}
-  canShot: 0
+  bulletStart: {fileID: 609408897}
+  canShot: 1
   color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &907894120
 GameObject:
@@ -4288,6 +4290,85 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1010524327
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3269554899798425758, guid: 0b943cab73fddfe40b6b1b157511fe70,
+        type: 3}
+      propertyPath: m_Name
+      value: battleShip
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269554899798425758, guid: 0b943cab73fddfe40b6b1b157511fe70,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269554899798425759, guid: 0b943cab73fddfe40b6b1b157511fe70,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269554899798425759, guid: 0b943cab73fddfe40b6b1b157511fe70,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269554899798425759, guid: 0b943cab73fddfe40b6b1b157511fe70,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269554899798425759, guid: 0b943cab73fddfe40b6b1b157511fe70,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269554899798425759, guid: 0b943cab73fddfe40b6b1b157511fe70,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269554899798425759, guid: 0b943cab73fddfe40b6b1b157511fe70,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269554899798425759, guid: 0b943cab73fddfe40b6b1b157511fe70,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269554899798425759, guid: 0b943cab73fddfe40b6b1b157511fe70,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269554899798425759, guid: 0b943cab73fddfe40b6b1b157511fe70,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269554899798425759, guid: 0b943cab73fddfe40b6b1b157511fe70,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269554899798425759, guid: 0b943cab73fddfe40b6b1b157511fe70,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269554899798425757, guid: 0b943cab73fddfe40b6b1b157511fe70,
+        type: 3}
+      propertyPath: speedRotation
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0b943cab73fddfe40b6b1b157511fe70, type: 3}
 --- !u!1 &1037694935
 GameObject:
   m_ObjectHideFlags: 0
@@ -4316,7 +4397,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1901894330}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1080177292
 GameObject:
@@ -4880,15 +4961,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68dd0991cc7f7cb41a7ebd4794373e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfBulletInOneTurn: 0
   rotationObject: -90
   turret: {fileID: 1277648747}
-  startTimeBtwShots: 1
+  startTimeBtwShots: 3
   speedOfBullet: 20
   spriteOfBrokenTurret: {fileID: 0}
-  timeToStartShoot: 0.5
+  timeToStartShoot: 3
   bullet: {fileID: 5698948991174161390, guid: cb43722ee02b4634b866f9486e1ff82e, type: 3}
-  bulletStart: {fileID: 0}
-  canShot: 0
+  bulletStart: {fileID: 677778922}
+  canShot: 1
   color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1277648750
 SpriteRenderer:
@@ -5773,15 +5855,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68dd0991cc7f7cb41a7ebd4794373e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfBulletInOneTurn: 0
   rotationObject: -90
   turret: {fileID: 1595430618}
-  startTimeBtwShots: 1
+  startTimeBtwShots: 3
   speedOfBullet: 20
   spriteOfBrokenTurret: {fileID: 0}
-  timeToStartShoot: 5
+  timeToStartShoot: 1
   bullet: {fileID: 5698948991174161390, guid: cb43722ee02b4634b866f9486e1ff82e, type: 3}
-  bulletStart: {fileID: 0}
-  canShot: 0
+  bulletStart: {fileID: 1251888347}
+  canShot: 1
   color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1595430621
 SpriteRenderer:
@@ -6386,7 +6469,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672867615}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.8, y: 206.2, z: 0}
+  m_LocalPosition: {x: -8.3, y: 2.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 896088260}
@@ -6395,8 +6478,8 @@ Transform:
   - {fileID: 1595430619}
   - {fileID: 196341880}
   - {fileID: 1826568065}
-  m_Father: {fileID: 1901894330}
-  m_RootOrder: 5
+  m_Father: {fileID: 0}
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1672867618
 MonoBehaviour:
@@ -6419,6 +6502,7 @@ MonoBehaviour:
   healthBarBoss: {fileID: 443703038}
   healthBar: {fileID: 1708512059}
   hp: 1000
+  canShootTurret: 1
 --- !u!61 &1672867619
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6654,7 +6738,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1748532794
 Transform:
   m_ObjectHideFlags: 0
@@ -7222,14 +7306,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68dd0991cc7f7cb41a7ebd4794373e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberOfBulletInOneTurn: 1
   rotationObject: -90
   turret: {fileID: 1826568064}
-  startTimeBtwShots: 0.2
+  startTimeBtwShots: 5
   speedOfBullet: 10
   spriteOfBrokenTurret: {fileID: 0}
   timeToStartShoot: 0
   bullet: {fileID: 5698948991174161390, guid: cb43722ee02b4634b866f9486e1ff82e, type: 3}
-  bulletStart: {fileID: 0}
+  bulletStart: {fileID: 499438124}
   canShot: 0
   color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!212 &1826568067
@@ -7389,7 +7474,6 @@ Transform:
   - {fileID: 1619169747}
   - {fileID: 80098813}
   - {fileID: 137883846}
-  - {fileID: 1672867617}
   - {fileID: 18984143}
   - {fileID: 1037694936}
   m_Father: {fileID: 0}

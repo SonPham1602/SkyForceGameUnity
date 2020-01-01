@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TurretEnemyController : MonoBehaviour
 {
+    public bool numberOfBulletInOneTurn;
     public float rotationObject;
     public GameObject turret;
     public float startTimeBtwShots;//time to shot 
@@ -45,13 +46,37 @@ public class TurretEnemyController : MonoBehaviour
             {
                 if (isBroken == false)
                 {
-                    if(canShot==true)
+                    if (canShot == true)
                     {
-                        Debug.Log("Shoot");
-                        Instantiate(bullet, bulletStart.transform.position, Quaternion.identity);
+                        if (numberOfBulletInOneTurn == false)
+                        {
+                            Instantiate(bullet, bulletStart.transform.position, Quaternion.identity);
+                        }
+                        else
+                        {
+                            
+                        //     int numberBullet = 4;
+                        //     float timeShoot = 0.5f;
+                        //    Debug.Log(timeShoot);
+                        //     while (numberBullet <= 0)
+                        //     {
+                        //         if (timeShoot <= 0 && numberBullet >= 0)
+                        //         {
+                        //             Instantiate(bullet, bulletStart.transform.position, Quaternion.identity);
+                        //             timeShoot=0.5f;
+                        //             numberBullet--;
+                        //         }
+                        //          timeShoot -= Time.deltaTime;
+                        //     }
+                        StartCoroutine(shot());
+                        }
+
+
+
+
                     }
-                     
-                    
+
+
 
                 }
                 timeBtwShots = startTimeBtwShots;
@@ -67,10 +92,18 @@ public class TurretEnemyController : MonoBehaviour
         }
 
 
-       
+
         Vector3 difference = player.position - gameObject.transform.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         turret.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ - rotationObject);
+    }
+    IEnumerator shot()
+    {
+        for(int i=0;i<5;i++)
+        {
+               Instantiate(bullet, bulletStart.transform.position, Quaternion.identity);
+               yield return new WaitForSeconds(0.1f);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -84,7 +117,7 @@ public class TurretEnemyController : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        else if(other.gameObject.tag == "enableEnemy")
+        else if (other.gameObject.tag == "enableEnemy")
         {
             canShot = true;
         }
@@ -102,5 +135,9 @@ public class TurretEnemyController : MonoBehaviour
             color = Color.white;
             sr.color = color;
         }
+    }
+    public void EnableTurret()
+    {
+        canShot = true;
     }
 }

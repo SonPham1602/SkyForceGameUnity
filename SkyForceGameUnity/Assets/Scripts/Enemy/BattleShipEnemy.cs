@@ -41,7 +41,8 @@ public class BattleShipEnemy : MonoBehaviour
         }
         Vector3 difference = player.position-gameObject.transform.position;
         float rotationZ = Mathf.Atan2(difference.y,difference.x)*Mathf.Rad2Deg;
-        turret.transform.rotation=Quaternion.Euler(0.0f,0.0f,speedRotation+90);
+//        Debug.Log(rotationZ);
+        turret.transform.rotation=Quaternion.Euler(0.0f,0.0f,rotationZ+90);
         if(isBroken==true)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y - 2*speed * Time.deltaTime, transform.position.z);
