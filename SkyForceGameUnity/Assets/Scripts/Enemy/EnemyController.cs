@@ -73,6 +73,7 @@ public class EnemyController : MonoBehaviour
 
             GameSetting.ScoreGame += ScoreTake;
             audioSourceExplosion.Play();
+            Instantiate(starItem,transform.position,Quaternion.identity);
             //StartCoroutine(PlayExplosion());
             gameObject.GetComponent<SpriteRenderer>().enabled =  false;
             gameObject.GetComponent<BoxCollider2D>().enabled= false;
