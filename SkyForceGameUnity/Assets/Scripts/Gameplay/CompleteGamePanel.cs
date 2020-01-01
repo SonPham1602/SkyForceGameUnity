@@ -18,7 +18,7 @@ public class CompleteGamePanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale=0;
+        //Time.timeScale=0;
         textScore.GetComponent<Text>().text = numberScore.ToString();
         textStar.GetComponent<Text>().text = numberStar.ToString();
     }
@@ -28,6 +28,14 @@ public class CompleteGamePanel : MonoBehaviour
     {
         if(GameSetting.typeControllerGame == TypeControllerGame.GamePad)
         {
+            if(Input.GetKeyDown("joystick button 0"))
+            {
+                GameObject.FindObjectOfType<GameManager>().GoToMapGame();
+            }
+            else if(Input.GetKeyDown("joystck button 3"))
+            {
+                 GameObject.FindObjectOfType<GameManager>().ResetLevel();
+            }
 
         }
         else if(GameSetting.typeControllerGame==TypeControllerGame.MouseAndKeyboard)

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Boss1Controller : MonoBehaviour
 {
+    private int Direction;
     public bool CanMove;
     public GameObject turret1;
     public GameObject turret2;
@@ -19,8 +20,11 @@ public class Boss1Controller : MonoBehaviour
     private bool checkAlive;// if check alive == false win game;
     // Start is called before the first frame update
     public bool canShootTurret;
+    float fEnemyX;
     void Start()
     {
+        Direction=1;
+        fEnemyX = gameObject.transform.position.x;
         checkTurretStillCanWork = true;
         if (CanMove == false)
         {
@@ -31,11 +35,12 @@ public class Boss1Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canShootTurret == true)
+        if (canShootTurret == true)
         {
             TurnOnAllTurret();
         }
         healthBarBoss.fillAmount = hp / 1000;
+        MovingRandom();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -68,11 +73,46 @@ public class Boss1Controller : MonoBehaviour
     }
     public void TurnOnAllTurret()
     {
-        //turret1.gameObject.GetComponent<TurretEnemyController>().EnableTurret();
-        //turret2.gameObject.GetComponent<TurretEnemyController>().EnableTurret();
-        //turret3.gameObject.GetComponent<TurretEnemyController>().EnableTurret();
-        //turret4.gameObject.GetComponent<TurretEnemyController>().EnableTurret();
+        turret1.gameObject.GetComponent<TurretEnemyController>().EnableTurret();
+        turret2.gameObject.GetComponent<TurretEnemyController>().EnableTurret();
+        turret3.gameObject.GetComponent<TurretEnemyController>().EnableTurret();
+        turret4.gameObject.GetComponent<TurretEnemyController>().EnableTurret();
         MainTurret.gameObject.GetComponent<TurretEnemyController>().EnableTurret();
+    }
+    void MovingRandom()
+    {
+       
+        switch (Direction)
+        {
+            case -1:
+                // Moving Left
+                if (fEnemyX > -9)
+                {
+                     fEnemyX-= 1.0f*Time.deltaTime;
+                }
+                else
+                {
+                    // Hit left boundary, change direction
+                    Direction = 1;
+                }
+                break;
+
+            case 1:
+                // Moving Right
+                if (fEnemyX < 9)
+                {
+                    fEnemyX += 1.0f*Time.deltaTime;
+                }
+                else
+                {
+                    // Hit right boundary, change direction
+                    Direction = -1;
+                }
+                break;
+        }
+
+        gameObject.transform.position = new Vector3(fEnemyX, gameObject.transform.position.y, 0.0f);
+
     }
 
 

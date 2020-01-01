@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WaveEnemyController : MonoBehaviour
 {
+    [SerializeField] GameObject nextWaveEnemy;
     [SerializeField]
     GameObject[] waveEnemy;
     int currentWave;
@@ -58,15 +59,17 @@ public class WaveEnemyController : MonoBehaviour
             currentWave++;
             if (currentWave >= waveEnemy.Length)
             {
-                Debug.Log("test");
+               
                 // time deplay giua cac way
                 yield return new WaitForSeconds(Timedelay);
-                WaveEnemyController[] wave = FindObjectsOfType<WaveEnemyController>();
-                wave[0].StartWaveEnenmy();
-                if (wave.Length <= 1)
-                {
-                    //gameManager.gameWin();
-                }
+                nextWaveEnemy.gameObject.GetComponent<WaveEnemyController>().StartWaveEnenmy();
+                // WaveEnemyController[] wave = FindObjectsOfType<WaveEnemyController>();
+                // Debug.Log("Do dai cua wave"+ wave.Length);
+                // wave[0].StartWaveEnenmy();
+                // if (wave.Length <= 1)
+                // {
+                //     //gameManager.gameWin();
+                // }
                 
                
                 Destroy(gameObject);
