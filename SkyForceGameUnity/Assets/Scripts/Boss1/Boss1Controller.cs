@@ -16,6 +16,7 @@ public class Boss1Controller : MonoBehaviour
     public Image healthBarBoss;
     public GameObject healthBar;
     public float hp;
+    private float HpOfBoss;
     private bool checkTurretStillCanWork;
     private bool checkAlive;// if check alive == false win game;
     // Start is called before the first frame update
@@ -23,6 +24,7 @@ public class Boss1Controller : MonoBehaviour
     float fEnemyX;
     void Start()
     {
+        HpOfBoss=hp;
         Direction=1;
         fEnemyX = gameObject.transform.position.x;
         checkTurretStillCanWork = true;
@@ -39,7 +41,7 @@ public class Boss1Controller : MonoBehaviour
         {
             TurnOnAllTurret();
         }
-        healthBarBoss.fillAmount = hp / 1000;
+        healthBarBoss.fillAmount = hp / HpOfBoss;
         MovingRandom();
     }
     private void OnTriggerEnter2D(Collider2D other)

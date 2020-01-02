@@ -274,6 +274,11 @@ PrefabInstance:
       propertyPath: audioSourceExplosion
       value: 
       objectReference: {fileID: 3139749288123789828}
+    - target: {fileID: 485896528404674385, guid: 2f43726f3e641e44eb3020b5807c9f76,
+        type: 3}
+      propertyPath: typePath
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f43726f3e641e44eb3020b5807c9f76, type: 3}
 --- !u!4 &2359340460888964826 stripped

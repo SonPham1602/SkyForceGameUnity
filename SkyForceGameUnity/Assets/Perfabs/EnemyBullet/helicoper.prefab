@@ -4861,7 +4861,8 @@ MonoBehaviour:
   speedMove: 0
   canMove: 0
   color: {r: 0, g: 0, b: 0, a: 0}
-  starItem: {fileID: 0}
+  starItem: {fileID: 3584385979561779101, guid: a003813cca37bfd4796a9aa70e9ddd52,
+    type: 3}
   explostionEffect: {fileID: 4942461388837684430, guid: a5df4a97011d56140ab24de4313a8bfc,
     type: 3}
   soundFlyHelicoper: {fileID: 8300000, guid: 5199c1104ffaacf4785e82d1b7c69d07, type: 3}

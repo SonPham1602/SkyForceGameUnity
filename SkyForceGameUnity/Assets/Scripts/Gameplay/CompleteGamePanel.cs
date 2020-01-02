@@ -32,7 +32,7 @@ public class CompleteGamePanel : MonoBehaviour
             {
                 GameObject.FindObjectOfType<GameManager>().GoToMapGame();
             }
-            else if(Input.GetKeyDown("joystck button 3"))
+            else if(Input.GetKeyDown("joystick button 3"))
             {
                  GameObject.FindObjectOfType<GameManager>().ResetLevel();
             }

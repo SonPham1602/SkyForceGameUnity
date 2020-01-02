@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject missionController;
     [SerializeField] GameObject panelGameOver;
     [SerializeField] GameObject panelGameComplete;
+    [SerializeField] GameObject missionBar;
     void Start()
     {
         titleStartGame.GetComponent<Animator>().SetBool("Show", true);
@@ -50,6 +51,8 @@ public class GameManager : MonoBehaviour
                     return; //Do Nothing
                 Debug.Log("Press Any Key");
                 // titleStartGame.SetActive(false);
+                missionBar.GetComponent<Animator>().SetBool("Show",true);
+                missionBar.GetComponent<Animator>().SetBool("Hide",false);
                 titleStartGame.GetComponent<Animator>().SetBool("Show", false);
                 titleStartGame.GetComponent<Animator>().SetBool("Hide", true);
 
