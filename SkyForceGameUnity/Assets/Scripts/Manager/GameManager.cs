@@ -29,17 +29,30 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject panelGameOver;
     [SerializeField] GameObject panelGameComplete;
     [SerializeField] GameObject missionBar;
+    public bool CheckCompleteMisson1;
+    public bool CheckCompleteMisson2;
+    public bool CheckCompleteMisson3;
     void Start()
     {
         titleStartGame.GetComponent<Animator>().SetBool("Show", true);
         titleStartGame.GetComponent<Animator>().SetBool("Hide", false);
         
         SetupMissionGame();
+
+        // Set all mission complete
+        CheckCompleteMisson1 = true;
+        CheckCompleteMisson2 = true;
+        CheckCompleteMisson3 = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
+
+
+        CheckCompleteMissonGame();
         typeControllerGame = GameSetting.typeControllerGame;
         if (typeControllerGame == TypeControllerGame.GamePad)
         {
@@ -119,7 +132,21 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("MapGame");
     }
-
+    void CheckCompleteMissonGame()
+    {
+        if(CheckCompleteMisson1==false)
+        {
+            missionBar.GetComponent<MissionBarController>().SetFailMission(1);
+        }
+        if(CheckCompleteMisson2==false)
+        {
+            missionBar.GetComponent<MissionBarController>().SetFailMission(2);
+        }
+        if(CheckCompleteMisson3==false)
+        {
+            missionBar.GetComponent<MissionBarController>().SetFailMission(3);
+        }
+    }
     
 
 }

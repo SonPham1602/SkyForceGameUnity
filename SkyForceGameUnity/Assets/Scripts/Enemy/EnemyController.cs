@@ -76,7 +76,7 @@ public class EnemyController : MonoBehaviour
             Instantiate(starItem,transform.position,Quaternion.identity);
             //StartCoroutine(PlayExplosion());
             gameObject.GetComponent<SpriteRenderer>().enabled =  false;
-            gameObject.GetComponent<BoxCollider2D>().enabled= false;
+            gameObject.GetComponent<PolygonCollider2D>().enabled= false;
             Instantiate(explostionEffect, transform.position, Quaternion.identity);
             
         }

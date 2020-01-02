@@ -5,7 +5,7 @@ public enum TypeControllerGame
 {
     MouseAndKeyboard,
     GamePad
-   
+
 }
 public class PlayerController : MonoBehaviour
 {
@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public int damageOfBullet;
     public float timeSpeedShot;
     public GameObject target;
-     public GameObject startShot;
+    public GameObject startShot;
     public GameObject bullet;
     public int numberBullet = 1;
     public float hp;// hp cua may bay
@@ -29,18 +29,18 @@ public class PlayerController : MonoBehaviour
     private bool isMove;
     public TypeControllerGame typeControllerGame;
     [SerializeField] GameObject hitLayer;
-    
+
 
     public bool canMove;
 
     public float HP
     {
-        
+
         get => hp;
         set
         {
             hp = value;
-            if (hp <= 30 && hp >0)
+            if (hp <= 30 && hp > 0)
             {
 
                 hitLayer.GetComponent<Animator>().SetTrigger("ShowLowHealth");
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         radius = Vector3.Magnitude(target.transform.position - gameObject.transform.position);
         this.HP = 100;
         rb = GetComponent<Rigidbody2D>();
-        
+
     }
     private void OnMouseOver()
     {
@@ -158,7 +158,7 @@ public class PlayerController : MonoBehaviour
             {
                 lastTimeFire = Time.time;
                 //CreateBullet(bullet);
-                CreateOneBullet(target.transform.position,bullet,15);
+                CreateOneBullet(target.transform.position, bullet, 15);
                 audioSource.clip = shootBulletSound;
                 audioSource.Play();
             }
@@ -170,13 +170,13 @@ public class PlayerController : MonoBehaviour
         {
             float translationY = Input.GetAxis("Vertical") * speedShip * Time.deltaTime;
             float translationX = Input.GetAxis("Horizontal") * speedShip * Time.deltaTime;
-            
+
             //float MoveX = Mathf.Clamp(translationX+transform.position,GameSetting.sizeCam.x*-1,GameSetting.sizeCam.x);
-            if(Mathf.Abs(transform.position.x + translationX)<=GameSetting.screenBound.x && Mathf.Abs(transform.position.y + translationY)<=GameSetting.screenBound.y)
+            if (Mathf.Abs(transform.position.x + translationX) <= GameSetting.screenBound.x && Mathf.Abs(transform.position.y + translationY) <= GameSetting.screenBound.y)
             {
                 transform.Translate(translationX, translationY, 0);
             }
-         
+
             //transform.position = viewPos;
 
 
@@ -295,14 +295,20 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);
             hitLayer.GetComponent<Animator>().SetTrigger("ShowOneHit");
+            // Mission 1 fail
+            GameObject.FindObjectOfType<GameManager>().CheckCompleteMisson1 = false;
         }
         else if (other.gameObject.tag == "enemy")
         {
             hitLayer.GetComponent<Animator>().SetTrigger("ShowOneHit");
+            // Mission 1 fail
+            GameObject.FindObjectOfType<GameManager>().CheckCompleteMisson1 = false;
         }
-        else if(other.gameObject.tag == "misileEnemy")
+        else if (other.gameObject.tag == "misileEnemy")
         {
             hitLayer.GetComponent<Animator>().SetTrigger("ShowOneHit");
+            // Mission 1 fail
+            GameObject.FindObjectOfType<GameManager>().CheckCompleteMisson1 = false;
         }
 
     }

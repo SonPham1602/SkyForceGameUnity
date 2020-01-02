@@ -151,7 +151,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.24317932, y: -22.349657}
+  m_Offset: {x: 0.24317932, y: -20.861118}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -162,7 +162,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 60.825775, y: 1.9041939}
+  m_Size: {x: 60.825775, y: 0.91184235}
   m_EdgeRadius: 0
 --- !u!4 &653788
 Transform:
@@ -1084,6 +1084,9 @@ MonoBehaviour:
   panelGameOver: {fileID: 885891054}
   panelGameComplete: {fileID: 1323783074}
   missionBar: {fileID: 1442969129}
+  CheckCompleteMisson1: 0
+  CheckCompleteMisson2: 0
+  CheckCompleteMisson3: 0
 --- !u!114 &140415101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1513,7 +1516,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f17fb7cf2b9e95c44a08a99f80886030, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.526
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5040,9 +5043,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47bed9e9da0737c489e6b0c42f48df97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mission1: {fileID: 0}
-  mission2: {fileID: 0}
-  mission3: {fileID: 0}
+  mission1: {fileID: 1494411956}
+  mission2: {fileID: 1555067839}
+  mission3: {fileID: 1625930407}
+  missionfail1: {fileID: 21300000, guid: 2d82b2841332c684399cadc16b816150, type: 3}
+  missionfail2: {fileID: 21300000, guid: 3fbed8f1acd6c3d4b84a01a16930f3f4, type: 3}
+  missionfail3: {fileID: 21300000, guid: 47e0bc06c090ec44bba85b3f5d4ddc79, type: 3}
 --- !u!1 &1445104527
 GameObject:
   m_ObjectHideFlags: 0
@@ -7466,6 +7472,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TurretEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1044214884515293317, guid: 879e4a0f3a6fd7f4c81c1eb8d4252fed,
+        type: 3}
+      propertyPath: m_TagString
+      value: enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1044214885049242858, guid: 879e4a0f3a6fd7f4c81c1eb8d4252fed,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7520,6 +7531,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5256772851599628226, guid: 879e4a0f3a6fd7f4c81c1eb8d4252fed,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.44
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 879e4a0f3a6fd7f4c81c1eb8d4252fed, type: 3}

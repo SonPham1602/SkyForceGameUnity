@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TurretEnemyController : MonoBehaviour
 {
+    [SerializeField] AudioClip turretSoundShot;
+    [SerializeField] AudioSource audioSource;
     public bool numberOfBulletInOneTurn;
     public float rotationObject;
     public GameObject turret;
@@ -30,6 +32,7 @@ public class TurretEnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource.clip = turretSoundShot;
         canShot = false;
         numberBulletTurret = 0;
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -50,6 +53,7 @@ public class TurretEnemyController : MonoBehaviour
                     {
                         if (numberOfBulletInOneTurn == false)
                         {
+                            audioSource.Play();
                             Instantiate(bullet, bulletStart.transform.position, Quaternion.identity);
                         }
                         else
@@ -68,6 +72,7 @@ public class TurretEnemyController : MonoBehaviour
                         //         }
                         //          timeShoot -= Time.deltaTime;
                         //     }
+                         audioSource.Play();
                         StartCoroutine(shot());
                         }
 
@@ -120,6 +125,10 @@ public class TurretEnemyController : MonoBehaviour
         else if (other.gameObject.tag == "enableEnemy")
         {
             canShot = true;
+        }
+        else if(other.gameObject.tag == "destroyEnemy")
+        {
+            Destroy(gameObject);
         }
     }
     IEnumerator getHit()
