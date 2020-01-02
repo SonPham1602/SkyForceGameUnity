@@ -84,8 +84,10 @@ public class HelicoperEnemy : EnemyController
         {
             OnTriggerBulletEnter(other.gameObject);
             HP -= other.gameObject.GetComponent<BulletController>().Power;
+
             if (HP <= 0)
             {
+                GameObject.FindObjectOfType<CameraShakingController>().ShakeIt();
                 gameObject.AddComponent<RotateObjectGame>();
                 gameObject.GetComponent<RotateObjectGame>().speedSpin = 5;
                 smokeEffect.SetActive(true);
