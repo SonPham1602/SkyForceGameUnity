@@ -24,8 +24,8 @@ public class Boss1Controller : MonoBehaviour
     float fEnemyX;
     void Start()
     {
-        HpOfBoss=hp;
-        Direction=1;
+        HpOfBoss = hp;
+        Direction = 1;
         fEnemyX = gameObject.transform.position.x;
         checkTurretStillCanWork = true;
         if (CanMove == false)
@@ -59,6 +59,10 @@ public class Boss1Controller : MonoBehaviour
                     Destroy(gameObject);
                 }
             }
+            else if (other.gameObject.tag == "enableEnemy")
+            {
+                canShootTurret = true;
+            }
         }
 
     }
@@ -83,14 +87,14 @@ public class Boss1Controller : MonoBehaviour
     }
     void MovingRandom()
     {
-       
+
         switch (Direction)
         {
             case -1:
                 // Moving Left
                 if (fEnemyX > -9)
                 {
-                     fEnemyX-= 1.0f*Time.deltaTime;
+                    fEnemyX -= 1.0f * Time.deltaTime;
                 }
                 else
                 {
@@ -103,7 +107,7 @@ public class Boss1Controller : MonoBehaviour
                 // Moving Right
                 if (fEnemyX < 9)
                 {
-                    fEnemyX += 1.0f*Time.deltaTime;
+                    fEnemyX += 1.0f * Time.deltaTime;
                 }
                 else
                 {

@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject panelGameOver;
     [SerializeField] GameObject panelGameComplete;
     [SerializeField] GameObject missionBar;
+    [SerializeField] GameObject healthBar;
+    [SerializeField] GameObject pauseButton;
     public bool CheckCompleteMisson1;
     public bool CheckCompleteMisson2;
     public bool CheckCompleteMisson3;
@@ -66,8 +68,16 @@ public class GameManager : MonoBehaviour
                 // titleStartGame.SetActive(false);
                 missionBar.GetComponent<Animator>().SetBool("Show",true);
                 missionBar.GetComponent<Animator>().SetBool("Hide",false);
+                healthBar.GetComponent<Animator>().SetBool("Show",true);
+                healthBar.GetComponent<Animator>().SetBool("Hide",false);
+                  pauseButton.GetComponent<Animator>().SetBool("Show", true);
+                pauseButton.GetComponent<Animator>().SetBool("Hide", false);
+                
                 titleStartGame.GetComponent<Animator>().SetBool("Show", false);
                 titleStartGame.GetComponent<Animator>().SetBool("Hide", true);
+
+              
+                
 
                 // Destroy(titleStartGame);
                 FindObjectOfType<GameManager>().gameState = GameState.Play;
