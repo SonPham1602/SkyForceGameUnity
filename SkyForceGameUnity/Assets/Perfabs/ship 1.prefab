@@ -224,6 +224,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41fe18c59c63f846b4c793a6f549205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelOfBulletPlayer: 0
+  levelOfHealthPlayer: 0
+  LevelOfRocketPlayer: 0
+  HomingMissile: {fileID: 4866333490060136588, guid: 0cdd301878ac86d4d948174fd5ffee8c,
+    type: 3}
   shootBulletSound: {fileID: 8300000, guid: 8532131775eace7448c1e5d695486a78, type: 3}
   audioSource: {fileID: 6851573055850199822}
   damageOfBullet: 50

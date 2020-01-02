@@ -7,8 +7,47 @@ public enum TypeControllerGame
     GamePad
 
 }
+public enum LevelOfBulletPlayer
+{
+    Level1,
+    Level2,
+    Level3,
+    Level4,
+    Level5
+}
+public enum LevelOfHealthPlayer
+{
+    Level1,
+    Level2,
+    Level3,
+    Level4,
+    Level5
+}
+public enum LevelOfRocketPlayer
+{
+    None,
+    Level1,
+    Level2,
+    Level3,
+    Level4,
+    Level5
+}
+public enum LevelOfSpeedPlayer
+{
+
+    Level1,
+    Level2,
+    Level3,
+    Level4,
+    Level5
+}
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] LevelOfBulletPlayer levelOfBulletPlayer;
+    [SerializeField] LevelOfHealthPlayer levelOfHealthPlayer;
+    [SerializeField] LevelOfRocketPlayer levelOfRocketPlayer;
+    [SerializeField] GameObject HomingMissile;
+
     public AudioClip shootBulletSound;
     public AudioSource audioSource;
     public int damageOfBullet;
@@ -22,6 +61,7 @@ public class PlayerController : MonoBehaviour
 
     private float radius;
     private float lastTimeFire = 0;
+    private float timeToShot;
 
     public GameObject[] planeChild;
     private Rigidbody2D rb;
@@ -68,7 +108,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        timeToShot = 5f;
         radius = Vector3.Magnitude(target.transform.position - gameObject.transform.position);
         this.HP = 100;
         rb = GetComponent<Rigidbody2D>();
@@ -162,6 +202,10 @@ public class PlayerController : MonoBehaviour
                 audioSource.clip = shootBulletSound;
                 audioSource.Play();
             }
+            if (GameObject.FindObjectOfType<GameManager>().gameState == GameState.Play)
+            {
+                ControllerRocketPlayer();
+            }
 
 
             //rb.velocity = Vector2.zero;
@@ -188,10 +232,16 @@ public class PlayerController : MonoBehaviour
                 audioSource.clip = shootBulletSound;
                 audioSource.Play();
             }
+            if (GameObject.FindObjectOfType<GameManager>().gameState == GameState.Play)
+            {
+                ControllerRocketPlayer();
+            }
         }
 
 
         // check low health of player
+
+
 
     }
 
@@ -311,6 +361,23 @@ public class PlayerController : MonoBehaviour
             GameObject.FindObjectOfType<GameManager>().CheckCompleteMisson1 = false;
         }
 
+    }
+    private void ControllerRocketPlayer()
+    {
+        if (levelOfRocketPlayer == LevelOfRocketPlayer.Level1)
+        {
+
+            if (timeToShot <= 0)
+            {
+                Instantiate(HomingMissile, transform.position, Quaternion.Euler(0f,0f,-130f));
+                timeToShot = 5f;
+
+            }
+            else
+            {
+                timeToShot -= Time.deltaTime;
+            }
+        }
     }
 
 }
