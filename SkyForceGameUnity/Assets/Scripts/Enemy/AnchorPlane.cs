@@ -84,7 +84,7 @@ public class AnchorPlane : MonoBehaviour
         //Set up plane
         for(int i = transform.childCount-1;i>=0;i--)
         {
-            EnemyController enemy = transform.GetChild(i).GetComponent<EnemyController>();
+            FlyingEnemyController enemy = transform.GetChild(i).GetComponent<FlyingEnemyController>();
             if(enemy!=null)
             {
                 enemy.anchor = anchor_start;

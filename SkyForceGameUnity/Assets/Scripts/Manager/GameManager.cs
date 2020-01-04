@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     {
 
 
-
+//        Debug.Log( "So luong enemy"+ GameObject.FindGameObjectsWithTag("enemy").Length);
 
         CheckCompleteMissonGame();
         typeControllerGame = GameSetting.typeControllerGame;
@@ -94,8 +94,15 @@ public class GameManager : MonoBehaviour
         {
             if(Input.GetKeyDown(KeyCode.Space))
             {
-                titleStartGame.GetComponent<Animator>().SetBool("Show",false);
-                titleStartGame.GetComponent<Animator>().SetBool("Hide",true);
+                missionBar.GetComponent<Animator>().SetBool("Show",true);
+                missionBar.GetComponent<Animator>().SetBool("Hide",false);
+                healthBar.GetComponent<Animator>().SetBool("Show",true);
+                healthBar.GetComponent<Animator>().SetBool("Hide",false);
+                  pauseButton.GetComponent<Animator>().SetBool("Show", true);
+                pauseButton.GetComponent<Animator>().SetBool("Hide", false);
+                
+                titleStartGame.GetComponent<Animator>().SetBool("Show", false);
+                titleStartGame.GetComponent<Animator>().SetBool("Hide", true);
                 FindObjectOfType<GameManager>().gameState = GameState.Play;
             }
             if(gameState == GameState.Play)

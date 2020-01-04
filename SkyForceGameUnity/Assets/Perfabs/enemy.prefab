@@ -146,11 +146,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5372251327051273425}
   - component: {fileID: 5372251327051273424}
-  - component: {fileID: 8807276820569914129}
   - component: {fileID: 3354200682888993872}
   - component: {fileID: 6886438486159389421}
   - component: {fileID: 7376027988122285234}
   - component: {fileID: 1696668974521194383}
+  - component: {fileID: 1202662737934939929}
   m_Layer: 0
   m_Name: enemy
   m_TagString: enemy
@@ -165,7 +165,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5372251327051273427}
-  m_LocalRotation: {x: -0, y: -0, z: -0.99999946, w: -0.0010863034}
+  m_LocalRotation: {x: -0, y: 0, z: -0.9999994, w: -0.0010819505}
   m_LocalPosition: {x: -1.306, y: 6.813, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 0}
   m_Children:
@@ -223,33 +223,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8807276820569914129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5372251327051273427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd79fe177aa6924449e2e5f7b06ce428, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundExplosion: {fileID: 8300000, guid: 9920aac90d726b243a32a32c69d5aa5d, type: 3}
-  audioSourceExplosion: {fileID: 6886438486159389421}
-  ScoreTake: 10
-  gravity: 20
-  anchor: 0
-  typePath: 1
-  fly_up: 0
-  speedTurn: 0.5
-  speedMove: 10
-  canMove: 0
-  color: {r: 0, g: 0, b: 0, a: 0}
-  starItem: {fileID: 3584385979561779101, guid: a003813cca37bfd4796a9aa70e9ddd52,
-    type: 3}
-  explostionEffect: {fileID: 3466153542694025480, guid: 39c5cdd680fb8e447ab2fdd7ae4803e0,
-    type: 3}
 --- !u!50 &3354200682888993872
 Rigidbody2D:
   serializedVersion: 4
@@ -421,6 +394,34 @@ PolygonCollider2D:
       - {x: 0.092550546, y: -0.07703418}
       - {x: 0.30867738, y: -0.008683027}
       - {x: 0.31, y: 0.04}
+--- !u!114 &1202662737934939929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5372251327051273427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 158d8b6c3e6183741a13c330ccd57b4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowInCamera: 0
+  soundExplosion: {fileID: 8300000, guid: 9920aac90d726b243a32a32c69d5aa5d, type: 3}
+  audioSourceExplosion: {fileID: 6886438486159389421}
+  ScoreTake: 0
+  gravity: 20
+  speedTurn: 0.5
+  speedMove: 10
+  canMove: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
+  starItem: {fileID: 3584385979561779101, guid: a003813cca37bfd4796a9aa70e9ddd52,
+    type: 3}
+  explostionEffect: {fileID: 3466153542694025480, guid: 39c5cdd680fb8e447ab2fdd7ae4803e0,
+    type: 3}
+  fly_up: 0
+  typePath: 0
+  anchor: 0
 --- !u!1 &5763550513748883768
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,6 +432,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8631198448448304629}
   - component: {fileID: 8038628885941078737}
+  - component: {fileID: 4869642481662260167}
   m_Layer: 0
   m_Name: Trail1
   m_TagString: Untagged
@@ -557,3 +559,29 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &4869642481662260167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5763550513748883768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 158d8b6c3e6183741a13c330ccd57b4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowInCamera: 0
+  soundExplosion: {fileID: 0}
+  audioSourceExplosion: {fileID: 0}
+  ScoreTake: 0
+  gravity: 20
+  speedTurn: 0
+  speedMove: 0
+  canMove: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
+  starItem: {fileID: 0}
+  explostionEffect: {fileID: 0}
+  fly_up: 0
+  typePath: 0
+  anchor: 0

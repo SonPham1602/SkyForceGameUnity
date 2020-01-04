@@ -7773,6 +7773,11 @@ PrefabInstance:
       propertyPath: timeSpeedShot
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 2044952476517342740, guid: 146e8d5d9ae8d1f49b888fb855c5a0c7,
+        type: 3}
+      propertyPath: levelOfRocketPlayer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2044952476027459894, guid: 146e8d5d9ae8d1f49b888fb855c5a0c7,
         type: 3}
       propertyPath: m_IsTrigger
@@ -8015,5 +8020,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1708512059}
+    - target: {fileID: 6556956533619168483, guid: 633b878c457456c4eb5751b14096babb,
+        type: 3}
+      propertyPath: canShootTurret
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 633b878c457456c4eb5751b14096babb, type: 3}

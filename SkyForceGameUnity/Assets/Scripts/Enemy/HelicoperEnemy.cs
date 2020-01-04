@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HelicoperEnemy : EnemyController
+public class HelicoperEnemy : FlyingEnemyController
 {
     public AudioClip soundFlyHelicoper;
     public AudioSource audioSource;
+
     public float speedBullet;//speed of bullet
     public float startTimeBtwShots;
     private float timeBtwShots;

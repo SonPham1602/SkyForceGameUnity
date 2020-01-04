@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public bool ShowInCamera;// check co xuat hien tren camera ko
     public AudioClip soundExplosion;
     public AudioSource audioSourceExplosion;
     public int ScoreTake;// Quy dinh bao nhieu diem khi tieu diet enemy
     public float gravity = 20.0f;
     // public float speed = 6.0f;
     protected Rigidbody2D rigidbody2d;
-    public Anchor_Plane anchor;
-    public TypePath typePath;
-    public bool fly_up;
+    //public Anchor_Plane anchor;
+    //public TypePath typePath;
+    //public bool fly_up;
     public float speedTurn;
     protected float offset;
     public float speedMove;
@@ -29,9 +30,10 @@ public class EnemyController : MonoBehaviour
 
     public float HP { get; set; }
 
-    void Start()
+    protected void Start()
     {
-        audioSourceExplosion.clip = soundExplosion;
+        Debug.Log("Class Cha");
+        
 
         offset = Time.deltaTime * speedMove;
         rigidbody2d = GetComponent<Rigidbody2D>();
@@ -43,7 +45,7 @@ public class EnemyController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         if (Mathf.Abs(transform.position.x) > screenBounds.x + 10)
         {
@@ -55,15 +57,17 @@ public class EnemyController : MonoBehaviour
         }
         //transform.Translate(0,1*Time.deltaTime,0);
     }
-    protected void FixedUpdate()
-    {
-        offset = Time.deltaTime * speedMove;
-        if (canMove == true)
-        {
-            Move();
-        }
+  
+    // protected void FixedUpdate()
+    // {
+    //     offset = Time.deltaTime * speedMove;
+    //     if (canMove == true)
+    //     {
+    //         Move();
+    //     }
 
-    }
+    // }
+     
     protected void OnTriggerBulletEnter(GameObject other)
     {
         StartCoroutine(getHit());
@@ -93,19 +97,19 @@ public class EnemyController : MonoBehaviour
         Instantiate(explostionEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "bullet")
-        {
-            OnTriggerBulletEnter(other.gameObject);
-            gameObject.GetComponent<ControllerTrailEnemy>().DestroyTrailOfEnemy();
-            Destroy(gameObject,soundExplosion.length+0.5f);
-        }
-        else if (other.gameObject.tag == "Player")
-        {
-            OnTriggerPlayerEnter(other.gameObject);
-        }
-    }
+    // void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.gameObject.tag == "bullet")
+    //     {
+    //         OnTriggerBulletEnter(other.gameObject);
+    //         gameObject.GetComponent<ControllerTrailEnemy>().DestroyTrailOfEnemy();
+    //         Destroy(gameObject,soundExplosion.length+0.5f);
+    //     }
+    //     else if (other.gameObject.tag == "Player")
+    //     {
+    //         OnTriggerPlayerEnter(other.gameObject);
+    //     }
+    // }
     IEnumerator getHit()
     {
         Debug.Log("Get hit");
@@ -120,62 +124,62 @@ public class EnemyController : MonoBehaviour
             sr.color = color;
         }
     }
-    public void Move()
-    {
-        int direc;
-        if (fly_up)
-        {
-            direc = -1;
-        }
-        else
-        {
-            direc = 1;
-        }
+    // public void Move()
+    // {
+    //     int direc;
+    //     if (fly_up)
+    //     {
+    //         direc = -1;
+    //     }
+    //     else
+    //     {
+    //         direc = 1;
+    //     }
 
-        if (typePath == TypePath.curve_up)
-        {
-            transform.localScale = new Vector3(direc * saveScale.x, saveScale.y, 0);
-            transform.localRotation = Quaternion.Euler(new Vector3(0, 0, transform.eulerAngles.z - speedTurn));
-            transform.position += direc * transform.right * offset;
-        }
-        if (typePath == TypePath.curve_down)
-        {
-            transform.localScale = new Vector3(-direc * saveScale.x, saveScale.y, 0);
-            transform.localRotation = Quaternion.Euler(new Vector3(0, 0, transform.eulerAngles.z + speedTurn));
-            transform.position -= direc * transform.right * offset;
-        }
-        if (typePath == TypePath.line)
-        {
-            if (anchor == Anchor_Plane.top)
-            {
-                //transform.localScale = new Vector3(direc*saveScale.x,saveScale.y,0);
-                transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -90));
-                transform.position += transform.right * offset;
-            }
-            else if (anchor == Anchor_Plane.right)
-            {
-                //transform.localScale = new Vector3(saveScale.x, saveScale.y, 0);
-                transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 180));
-                transform.position += transform.right * offset;
-            }
-            else if (anchor == Anchor_Plane.left)
-            {
-                // transform.localScale = new Vector3(saveScale.x, saveScale.y, 0);
-                transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
-                transform.position += transform.right * offset;
-            }
-            else if (anchor == Anchor_Plane.top_left)
-            {
-                //transform.localScale = new Vector3(direc * saveScale.x, saveScale.y, 0);
-                transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -60));
-                transform.position += transform.right * offset;
-            }
-            else if (anchor == Anchor_Plane.top_right)
-            {
-                //transform.localScale = new Vector3(direc * saveScale.x,saveScale.y,0);
-                transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -120));
-                transform.position += transform.right * offset;
-            }
-        }
-    }
+    //     if (typePath == TypePath.curve_up)
+    //     {
+    //         transform.localScale = new Vector3(direc * saveScale.x, saveScale.y, 0);
+    //         transform.localRotation = Quaternion.Euler(new Vector3(0, 0, transform.eulerAngles.z - speedTurn));
+    //         transform.position += direc * transform.right * offset;
+    //     }
+    //     if (typePath == TypePath.curve_down)
+    //     {
+    //         transform.localScale = new Vector3(-direc * saveScale.x, saveScale.y, 0);
+    //         transform.localRotation = Quaternion.Euler(new Vector3(0, 0, transform.eulerAngles.z + speedTurn));
+    //         transform.position -= direc * transform.right * offset;
+    //     }
+    //     if (typePath == TypePath.line)
+    //     {
+    //         if (anchor == Anchor_Plane.top)
+    //         {
+    //             //transform.localScale = new Vector3(direc*saveScale.x,saveScale.y,0);
+    //             transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -90));
+    //             transform.position += transform.right * offset;
+    //         }
+    //         else if (anchor == Anchor_Plane.right)
+    //         {
+    //             //transform.localScale = new Vector3(saveScale.x, saveScale.y, 0);
+    //             transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 180));
+    //             transform.position += transform.right * offset;
+    //         }
+    //         else if (anchor == Anchor_Plane.left)
+    //         {
+    //             // transform.localScale = new Vector3(saveScale.x, saveScale.y, 0);
+    //             transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+    //             transform.position += transform.right * offset;
+    //         }
+    //         else if (anchor == Anchor_Plane.top_left)
+    //         {
+    //             //transform.localScale = new Vector3(direc * saveScale.x, saveScale.y, 0);
+    //             transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -60));
+    //             transform.position += transform.right * offset;
+    //         }
+    //         else if (anchor == Anchor_Plane.top_right)
+    //         {
+    //             //transform.localScale = new Vector3(direc * saveScale.x,saveScale.y,0);
+    //             transform.localRotation = Quaternion.Euler(new Vector3(0, 0, -120));
+    //             transform.position += transform.right * offset;
+    //         }
+    //     }
+    // }
 }
