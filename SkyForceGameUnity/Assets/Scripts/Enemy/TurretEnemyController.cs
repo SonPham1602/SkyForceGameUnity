@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class TurretEnemyController : MonoBehaviour
 {
+    [SerializeField] AudioClip turretSoundShot;
+    [SerializeField] AudioSource audioSource;
+    public bool numberOfBulletInOneTurn;
     public float rotationObject;
     public GameObject turret;
     public float startTimeBtwShots;//time to shot 
-    public float health;
     public float speedOfBullet;
     private float numberBulletTurret;
     public Sprite spriteOfBrokenTurret;
@@ -17,21 +19,25 @@ public class TurretEnemyController : MonoBehaviour
 
     private bool isBroken;
     private Transform player;
-    public GameObject bulletMain;
+
     public GameObject bullet;
-    public GameObject[] bulletStart;
+    public GameObject bulletStart;
+    public bool canShot;
 
     private int hp;
 
     public int HP { get => hp; set => hp = value; }
+    public Color color;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSource.clip = turretSoundShot;
+        canShot = false;
         numberBulletTurret = 0;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         timeBtwShots = startTimeBtwShots;
-        HP = 100;
+        HP = 200;
     }
 
     // Update is called once per frame
@@ -43,10 +49,39 @@ public class TurretEnemyController : MonoBehaviour
             {
                 if (isBroken == false)
                 {
-                    for (int i = 0; i < bulletStart.Length; i++)
+                    if (canShot == true)
                     {
-                        Instantiate(bullet, bulletStart[i].transform.position, Quaternion.identity);
+                        if (numberOfBulletInOneTurn == false)
+                        {
+                            audioSource.Play();
+                            Instantiate(bullet, bulletStart.transform.position, Quaternion.identity);
+                        }
+                        else
+                        {
+                            
+                        //     int numberBullet = 4;
+                        //     float timeShoot = 0.5f;
+                        //    Debug.Log(timeShoot);
+                        //     while (numberBullet <= 0)
+                        //     {
+                        //         if (timeShoot <= 0 && numberBullet >= 0)
+                        //         {
+                        //             Instantiate(bullet, bulletStart.transform.position, Quaternion.identity);
+                        //             timeShoot=0.5f;
+                        //             numberBullet--;
+                        //         }
+                        //          timeShoot -= Time.deltaTime;
+                        //     }
+                         audioSource.Play();
+                        StartCoroutine(shot());
+                        }
+
+
+
+
                     }
+
+
 
                 }
                 timeBtwShots = startTimeBtwShots;
@@ -62,21 +97,56 @@ public class TurretEnemyController : MonoBehaviour
         }
 
 
-       
+
         Vector3 difference = player.position - gameObject.transform.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         turret.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ - rotationObject);
+    }
+    IEnumerator shot()
+    {
+        for(int i=0;i<5;i++)
+        {
+               Instantiate(bullet, bulletStart.transform.position, Quaternion.identity);
+               yield return new WaitForSeconds(0.1f);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "bullet")
         {
+            StartCoroutine(getHit());
             HP -= other.gameObject.GetComponent<BulletController>().Power;
             if (HP <= 0)
             {
                 Destroy(gameObject);
             }
         }
+        else if (other.gameObject.tag == "enableEnemy")
+        {
+            canShot = true;
+        }
+        else if(other.gameObject.tag == "destroyEnemy")
+        {
+            Destroy(gameObject);
+        }
+    }
+    IEnumerator getHit()
+    {
+        Debug.Log("Get hit");
+        StopCoroutine("getHit");
+        SpriteRenderer sr = transform.GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            color = Color.red;
+            sr.color = color;
+            yield return new WaitForSeconds(0.1f);
+            color = Color.white;
+            sr.color = color;
+        }
+    }
+    public void EnableTurret()
+    {
+        canShot = true;
     }
 }

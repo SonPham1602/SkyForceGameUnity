@@ -21,7 +21,7 @@ public class BulletEnemyController : MonoBehaviour
         target = new Vector3(player.position.x, player.position.y,player.position.z);
         difference = target-transform.position;
         RotationZ = Mathf.Atan2(difference.y,difference.x)*Mathf.Rad2Deg;
-        Debug.Log("Vi tri player trong bullet enmey: x "+player.position.x+" y "+player.position.y);
+//        Debug.Log("Vi tri player trong bullet enmey: x "+player.position.x+" y "+player.position.y);
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height,Camera.main.transform.position.z));
         Power = 10;
     }
@@ -52,7 +52,7 @@ public class BulletEnemyController : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP -= Power;
-            Debug.Log("HP" + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP);
+//            Debug.Log("HP" + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP);
             Destroy(gameObject);
         }
     }

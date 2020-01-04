@@ -29,7 +29,8 @@ public class AnchorPlane : MonoBehaviour
     {
         positionCam = GameSetting.positionCam;
 
-        size = new Vector2(Mathf.Abs(GameSetting.sizeCam.x / 2) + 2, Mathf.Abs(GameSetting.sizeCam.y / 2) + 2);
+       size = new Vector2(Mathf.Abs(GameSetting.sizeCam.x / 2) + 3, Mathf.Abs(GameSetting.sizeCam.y / 2)+3 );
+
         top = new Vector2(0, positionCam.y + size.y);
         top_left = new Vector2(positionCam.x - size.x, positionCam.y + size.y);
         top_right = new Vector2(positionCam.x + size.x, positionCam.y + size.y);
@@ -37,8 +38,8 @@ public class AnchorPlane : MonoBehaviour
         right = new Vector2(positionCam.x + size.x, positionCam.y);
         botton_left = new Vector2(-5, positionCam.y - size.y);
         botton_right = new Vector2(5, positionCam.y - size.y);
-        Debug.Log("Top:x " + top.x + " y:" + top.y);
-        Debug.Log("Size:x " + size.x + " y:" + size.y);
+        //Debug.Log("Top:x " + top.x + " y:" + top.y);
+        //Debug.Log("Size:x " + size.x + " y:" + size.y);
         transform.position = resultPosition();
     }
 
@@ -83,7 +84,7 @@ public class AnchorPlane : MonoBehaviour
         //Set up plane
         for(int i = transform.childCount-1;i>=0;i--)
         {
-            EnemyController enemy = transform.GetChild(i).GetComponent<EnemyController>();
+            FlyingEnemyController enemy = transform.GetChild(i).GetComponent<FlyingEnemyController>();
             if(enemy!=null)
             {
                 enemy.anchor = anchor_start;

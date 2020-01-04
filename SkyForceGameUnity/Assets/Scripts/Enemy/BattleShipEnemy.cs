@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class BattleShipEnemy : MonoBehaviour
 {
+    public float speedRotation;
     public float speed;//speed of bullet
     public float startTimeBtwShots;
     private bool stopPoint;
@@ -40,6 +41,7 @@ public class BattleShipEnemy : MonoBehaviour
         }
         Vector3 difference = player.position-gameObject.transform.position;
         float rotationZ = Mathf.Atan2(difference.y,difference.x)*Mathf.Rad2Deg;
+//        Debug.Log(rotationZ);
         turret.transform.rotation=Quaternion.Euler(0.0f,0.0f,rotationZ+90);
         if(isBroken==true)
         {

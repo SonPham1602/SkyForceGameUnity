@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RotateObjectGame : MonoBehaviour
 {
-    public float speedSpin;
+    public int speedSpin;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,12 +14,9 @@ public class RotateObjectGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.rotation.z + speedSpin >= 360)
-        {
-            transform.Rotate(0.0f, 0.0f, speedSpin);
-        } else
-        {
-            transform.Rotate(0.0f, 0.0f, transform.rotation.z + speedSpin);
-        }
+      
+        
+            transform.Rotate(Vector3.forward*speedSpin*Time.deltaTime);
+        
     }
 }

@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HelicoperEnemy : MonoBehaviour
+public class HelicoperEnemy : FlyingEnemyController
 {
-    public float speed;//speed of bullet
+    public AudioClip soundFlyHelicoper;
+    public AudioSource audioSource;
+
+    public float speedBullet;//speed of bullet
     public float startTimeBtwShots;
     private float timeBtwShots;
     private Transform player;
@@ -12,13 +15,18 @@ public class HelicoperEnemy : MonoBehaviour
     public GameObject smokeEffect;
     private bool isBroken;//Check enemy can shoot
     private float angle;
-    private int hp;
     private float maxNextPosition = 0.03f;
-    public int HP { get => hp; set => hp = value; }
+
+    private bool shooted;
+    [SerializeField] GameObject wingHelocoper;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Play sound Moving
+        audioSource.clip = soundFlyHelicoper;
+        audioSource.Play();
+        HP = 100;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         angle = Vector3.Angle(player.transform.position - transform.position, Vector3.right);
         if (angle < 70)
@@ -26,7 +34,7 @@ public class HelicoperEnemy : MonoBehaviour
             angle = 70;
         }
         timeBtwShots = startTimeBtwShots;
-        HP = 10;
+        HP = 100;
         smokeEffect.SetActive(false);
     }
 
@@ -35,42 +43,76 @@ public class HelicoperEnemy : MonoBehaviour
     {
         if (FindObjectOfType<GameManager>().gameState != GameState.Play)
             return;
-        if (timeBtwShots <= 0)
+        if (timeBtwShots <= 0 && shooted == false && canMove == true)
         {
+
             if (isBroken == false)
             {
+                
+                //Debug.Log("Ten lua");
                 Instantiate(bullet, transform.position, Quaternion.identity);
+                shooted = true;
             }
-            timeBtwShots = startTimeBtwShots;
+            //timeBtwShots = startTimeBtwShots;
         }
-        else
+        else if(canMove == true)
         {
             timeBtwShots -= Time.deltaTime;
         }
         if (HP > 0)
         {
-            transform.parent.transform.position = new Vector3(transform.position.x + maxNextPosition, transform.position.y + Mathf.Abs(Mathf.Tan(angle)) * maxNextPosition, transform.position.z);
+            //transform.transform.position = new Vector3(transform.position.x + maxNextPosition, transform.position.y + Mathf.Abs(Mathf.Tan(angle)) * maxNextPosition, transform.position.z);
             angle -= 0.001f;
         }
         else
         {
-            transform.parent.transform.position = new Vector3(transform.position.x + maxNextPosition, transform.position.y - 5 * maxNextPosition, transform.position.z);
+            isBroken = true;
+            //transform.transform.position = new Vector3(transform.position.x + maxNextPosition, transform.position.y - 5 * maxNextPosition, transform.position.z);
         }
     }
-
-
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "bullet" && HP > 0)
+        Debug.Log("On aaa");
+        if (other.gameObject.tag == "Player")
         {
+            OnTriggerPlayerEnter(other.gameObject);
+        }
+        if (other.gameObject.tag == "destroyEnemy")
+        {
+            Destroy(gameObject);
+        }
+        if (other.gameObject.tag == "bullet")
+        {
+            OnTriggerBulletEnter(other.gameObject);
             HP -= other.gameObject.GetComponent<BulletController>().Power;
+
             if (HP <= 0)
             {
+                GameObject.FindObjectOfType<CameraShakingController>().ShakeIt();
                 gameObject.AddComponent<RotateObjectGame>();
                 gameObject.GetComponent<RotateObjectGame>().speedSpin = 5;
                 smokeEffect.SetActive(true);
-                Destroy(gameObject, 10f);
+                Destroy(wingHelocoper);
+                Destroy(gameObject,0.5f);
+                
             }
         }
+
     }
+
+
+    // void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.gameObject.tag == "bullet" && HP > 0)
+    //     {
+    //         HP -= other.gameObject.GetComponent<BulletController>().Power;
+    //         if (HP <= 0)
+    //         {
+    //             gameObject.AddComponent<RotateObjectGame>();
+    //             gameObject.GetComponent<RotateObjectGame>().speedSpin = 5;
+    //             smokeEffect.SetActive(true);
+    //             Destroy(gameObject, 10f);
+    //         }
+    //     }
+    // }
 }

@@ -1,26 +1,92 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum TypeControllerGame
+{
+    MouseAndKeyboard,
+    GamePad
 
+}
+public enum LevelOfBulletPlayer
+{
+    Level1,
+    Level2,
+    Level3,
+    Level4,
+    Level5
+}
+public enum LevelOfHealthPlayer
+{
+    Level1,
+    Level2,
+    Level3,
+    Level4,
+    Level5
+}
+public enum LevelOfRocketPlayer
+{
+    None,
+    Level1,
+    Level2,
+    Level3,
+    Level4,
+    Level5
+}
+public enum LevelOfSpeedPlayer
+{
+
+    Level1,
+    Level2,
+    Level3,
+    Level4,
+    Level5
+}
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] LevelOfBulletPlayer levelOfBulletPlayer;
+    [SerializeField] LevelOfHealthPlayer levelOfHealthPlayer;
+    [SerializeField] LevelOfRocketPlayer levelOfRocketPlayer;
+    [SerializeField] GameObject HomingMissile;
+
+    public AudioClip shootBulletSound;
+    public AudioSource audioSource;
+    public int damageOfBullet;
+    public float timeSpeedShot;
     public GameObject target;
+    public GameObject startShot;
     public GameObject bullet;
     public int numberBullet = 1;
-    private float hp;
-    private float speedShip = 20f;
+    public float hp;// hp cua may bay
+    public float speedShip = 100f;
 
     private float radius;
     private float lastTimeFire = 0;
+    private float timeToShot;
 
     public GameObject[] planeChild;
+    private Rigidbody2D rb;
+    Vector2 direction;
+    private bool isMove;
+    public TypeControllerGame typeControllerGame;
+    [SerializeField] GameObject hitLayer;
 
-    public float HP {
+
+    public bool canMove;
+
+    public float HP
+    {
+
         get => hp;
         set
         {
             hp = value;
-            if (hp <= 0)
+            if (hp <= 30 && hp > 0)
+            {
+
+                hitLayer.GetComponent<Animator>().SetTrigger("ShowLowHealth");
+
+            }
+            else if (hp <= 0)
             {
                 FindObjectOfType<GameManager>().gameOver();
             }
@@ -42,25 +108,141 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timeToShot = 5f;
         radius = Vector3.Magnitude(target.transform.position - gameObject.transform.position);
-        this.HP = 5000f;
+        this.HP = 100;
+        rb = GetComponent<Rigidbody2D>();
+
+    }
+    private void OnMouseOver()
+    {
+        isMove = false;
+        //Debug.Log("Move false");
+    }
+    /// <summary>
+    /// Called when the mouse is not any longer over the GUIElement or Collider.
+    /// </summary>
+    void OnMouseExit()
+    {
+        isMove = true;
+        //Debug.Log("Move true");
     }
 
     // Update is called once per frame
     void Update()
     {
+        typeControllerGame = GameSetting.typeControllerGame;
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if(Mathf.Abs(mousePosition.x)<=28 && Mathf.Abs(mousePosition.y)<=16)
+        if (typeControllerGame == TypeControllerGame.MouseAndKeyboard && canMove == true)
         {
-            gameObject.transform.Translate((mousePosition - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y)) * Time.deltaTime * speedShip);
-        }
-       
+            if (Mathf.Abs(mousePosition.x) <= 28 && Mathf.Abs(mousePosition.y) <= 16)
+            {
 
-        if (Input.GetMouseButton(0) && Time.time - lastTimeFire >= 0.2f)
-        {
-            lastTimeFire = Time.time;
-            CreateBullet(bullet);
+                direction = (mousePosition - new Vector2(transform.position.x, transform.position.y)).normalized;
+                // Debug.Log(direction.x+ "   " + direction.y);
+                //Debug.Log(mousePosition.x + "   " + mousePosition.y + "   " + transform.position.x + "  " + transform.position.y);
+                if (isMove != false)
+                {
+                    rb.velocity = new Vector2(direction.x * speedShip, direction.y * speedShip);
+                }
+                else
+                {
+                    rb.velocity = Vector2.zero;
+                    gameObject.transform.Translate((mousePosition - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y)) * Time.deltaTime * speedShip);
+                }
+            }
+            else
+            {
+
+                if (((mousePosition.x) > 28))
+                {
+                    mousePosition.x = 26;
+                    isMove = false;
+                }
+                else if (mousePosition.x < -28)
+                {
+                    mousePosition.x = -26;
+                    isMove = false;
+                }
+                if (((mousePosition.y) > 16))
+                {
+                    mousePosition.y = 14;
+                    isMove = false;
+                }
+                else if (mousePosition.y < -16)
+                {
+                    mousePosition.y = -14;
+                    isMove = false;
+                }
+                direction = (mousePosition - new Vector2(transform.position.x, transform.position.y)).normalized;
+                if (isMove != false)
+                {
+                    rb.velocity = new Vector2(direction.x * speedShip, direction.y * speedShip);
+                }
+                else
+                {
+                    if (Mathf.Abs(mousePosition.x) > 24 || Mathf.Abs(mousePosition.y) > 12)
+                    {
+                        rb.velocity = Vector2.zero;
+                        gameObject.transform.Translate((mousePosition - new Vector2(gameObject.transform.position.x, gameObject.transform.position.y)) * Time.deltaTime * speedShip);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(direction.x * speedShip, direction.y * speedShip);
+                    }
+
+                }
+            }
+            // Ship will shot when press enter
+            if (Time.time - lastTimeFire >= timeSpeedShot && GameObject.FindObjectOfType<GameManager>().gameState == GameState.Play)
+            {
+                lastTimeFire = Time.time;
+                //CreateBullet(bullet);
+                CreateOneBullet(target.transform.position, bullet, 15);
+                audioSource.clip = shootBulletSound;
+                audioSource.Play();
+            }
+            if (GameObject.FindObjectOfType<GameManager>().gameState == GameState.Play)
+            {
+                ControllerRocketPlayer();
+            }
+
+
+            //rb.velocity = Vector2.zero;
         }
+        else if (typeControllerGame == TypeControllerGame.GamePad && canMove == true)
+        {
+            float translationY = Input.GetAxis("Vertical") * speedShip * Time.deltaTime;
+            float translationX = Input.GetAxis("Horizontal") * speedShip * Time.deltaTime;
+
+            //float MoveX = Mathf.Clamp(translationX+transform.position,GameSetting.sizeCam.x*-1,GameSetting.sizeCam.x);
+            if (Mathf.Abs(transform.position.x + translationX) <= GameSetting.screenBound.x && Mathf.Abs(transform.position.y + translationY) <= GameSetting.screenBound.y)
+            {
+                transform.Translate(translationX, translationY, 0);
+            }
+
+            //transform.position = viewPos;
+
+
+
+            if (Time.time - lastTimeFire >= timeSpeedShot && GameObject.FindObjectOfType<GameManager>().gameState == GameState.Play)
+            {
+                lastTimeFire = Time.time;
+                CreateBullet(bullet);
+                audioSource.clip = shootBulletSound;
+                audioSource.Play();
+            }
+            if (GameObject.FindObjectOfType<GameManager>().gameState == GameState.Play)
+            {
+                ControllerRocketPlayer();
+            }
+        }
+
+
+        // check low health of player
+
+
+
     }
 
     //Create bullet
@@ -90,11 +272,11 @@ public class PlayerController : MonoBehaviour
     }
 
     void CreateOneBullet(Vector3 pos, GameObject bullet, float speed)
-	{
-		GameObject b = Instantiate(bullet, gameObject.transform.position, Quaternion.identity);
+    {
+        GameObject b = Instantiate(bullet, startShot.transform.position, Quaternion.identity);
         b.GetComponent<BulletController>().targetPosition = pos;
         b.GetComponent<BulletController>().moveSpeed = speed;
-        b.GetComponent<BulletController>().Power = 50;
+        b.GetComponent<BulletController>().Power = damageOfBullet;
     }
 
     private void setBulletPos(out BulletPos pos, float goc)
@@ -159,9 +341,43 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag=="bulletEnemy")
+        if (other.gameObject.tag == "bulletEnemy")
         {
             Destroy(other.gameObject);
+            hitLayer.GetComponent<Animator>().SetTrigger("ShowOneHit");
+            // Mission 1 fail
+            GameObject.FindObjectOfType<GameManager>().CheckCompleteMisson1 = false;
+        }
+        else if (other.gameObject.tag == "enemy")
+        {
+            hitLayer.GetComponent<Animator>().SetTrigger("ShowOneHit");
+            // Mission 1 fail
+            GameObject.FindObjectOfType<GameManager>().CheckCompleteMisson1 = false;
+        }
+        else if (other.gameObject.tag == "misileEnemy")
+        {
+            hitLayer.GetComponent<Animator>().SetTrigger("ShowOneHit");
+            // Mission 1 fail
+            GameObject.FindObjectOfType<GameManager>().CheckCompleteMisson1 = false;
+        }
+
+    }
+    private void ControllerRocketPlayer()
+    {
+        if (levelOfRocketPlayer == LevelOfRocketPlayer.Level1)
+        {
+
+            if (timeToShot <= 0)
+            {
+                Instantiate(HomingMissile, transform.position, Quaternion.Euler(0f,0f,-130f));
+                timeToShot = 5f;
+
+            }
+            else
+            {
+                timeToShot -= Time.deltaTime;
+            }
         }
     }
+
 }

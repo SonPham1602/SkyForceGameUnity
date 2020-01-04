@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     public Vector3 targetPosition;
-    public float moveSpeed = 10f;
+    public float moveSpeed;
     private int power;
 
     Rigidbody2D myBody;
@@ -39,6 +39,10 @@ public class BulletController : MonoBehaviour
         {
             Debug.Log("Button touch enemy");
             Destroy(gameObject);
+        }
+        else if(other.gameObject.tag == "destroyBulletPlayer")
+        {
+             Destroy(gameObject);
         }
     }
 }
