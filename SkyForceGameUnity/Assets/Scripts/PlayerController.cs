@@ -43,10 +43,10 @@ public enum LevelOfSpeedPlayer
 }
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] LevelOfBulletPlayer levelOfBulletPlayer;
-    [SerializeField] LevelOfHealthPlayer levelOfHealthPlayer;
-    [SerializeField] LevelOfRocketPlayer levelOfRocketPlayer;
-    [SerializeField] GameObject HomingMissile;
+    [SerializeField] protected LevelOfBulletPlayer levelOfBulletPlayer;
+    [SerializeField] protected LevelOfHealthPlayer levelOfHealthPlayer;
+    [SerializeField] protected LevelOfRocketPlayer levelOfRocketPlayer;
+    [SerializeField] protected GameObject HomingMissile;
 
     public AudioClip shootBulletSound;
     public AudioSource audioSource;
@@ -59,16 +59,16 @@ public class PlayerController : MonoBehaviour
     public float hp;// hp cua may bay
     public float speedShip = 100f;
 
-    private float radius;
-    private float lastTimeFire = 0;
-    private float timeToShot;
+    protected float radius;
+    protected float lastTimeFire = 0;
+    protected float timeToShot;
 
     public GameObject[] planeChild;
-    private Rigidbody2D rb;
-    Vector2 direction;
-    private bool isMove;
+    protected Rigidbody2D rb;
+    protected Vector2 direction;
+    protected bool isMove;
     public TypeControllerGame typeControllerGame;
-    [SerializeField] GameObject hitLayer;
+    [SerializeField] protected GameObject hitLayer;
 
 
     public bool canMove;
@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
     };
 
     // Start is called before the first frame update
-    void Start()
+    protected void Start()
     {
         timeToShot = 5f;
         radius = Vector3.Magnitude(target.transform.position - gameObject.transform.position);
@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
     }
-    private void OnMouseOver()
+    void OnMouseOver()
     {
         isMove = false;
         //Debug.Log("Move false");
@@ -129,7 +129,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         typeControllerGame = GameSetting.typeControllerGame;
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -246,7 +246,7 @@ public class PlayerController : MonoBehaviour
     }
 
     //Create bullet
-    void CreateBullet(GameObject bullet)
+    protected void CreateBullet(GameObject bullet)
     {
         float Goc = 0.1f;
         BulletPos bulletPos;
@@ -271,7 +271,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void CreateOneBullet(Vector3 pos, GameObject bullet, float speed)
+    protected void CreateOneBullet(Vector3 pos, GameObject bullet, float speed)
     {
         GameObject b = Instantiate(bullet, startShot.transform.position, Quaternion.identity);
         b.GetComponent<BulletController>().targetPosition = pos;
@@ -339,7 +339,7 @@ public class PlayerController : MonoBehaviour
             nghiem.x2 = (-heSoPtBac2.y - Mathf.Sqrt(delta)) / (2 * heSoPtBac2.x);
         }
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "bulletEnemy")
         {
@@ -362,7 +362,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    private void ControllerRocketPlayer()
+    protected void ControllerRocketPlayer()
     {
         if (levelOfRocketPlayer == LevelOfRocketPlayer.Level1)
         {
