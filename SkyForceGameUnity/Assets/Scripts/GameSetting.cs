@@ -59,7 +59,7 @@ public class GameSetting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Diem"+ScoreGame.ToString());
+       // Debug.Log("Diem"+ScoreGame.ToString());
         //Xu ly diem trong game
         titleScoreGame.text=CreateStringCharZero(12-ScoreGame.ToString().Length)+ScoreGame.ToString();
         names = Input.GetJoystickNames();

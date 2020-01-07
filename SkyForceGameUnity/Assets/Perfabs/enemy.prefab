@@ -409,7 +409,7 @@ MonoBehaviour:
   ShowInCamera: 0
   soundExplosion: {fileID: 8300000, guid: 9920aac90d726b243a32a32c69d5aa5d, type: 3}
   audioSourceExplosion: {fileID: 6886438486159389421}
-  ScoreTake: 0
+  ScoreTake: 10
   gravity: 20
   speedTurn: 0.5
   speedMove: 10

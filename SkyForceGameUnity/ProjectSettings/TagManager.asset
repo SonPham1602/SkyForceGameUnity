@@ -51,12 +51,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: aa
+  - name: background
     uniqueID: 18473531
     locked: 0
-  - name: sss
+  - name: OnGround
     uniqueID: 2939958821
     locked: 0
-  - name: sff
+  - name: Fly
     uniqueID: 3775982229
+    locked: 0
+  - name: ShipPlayer
+    uniqueID: 2296519525
     locked: 0

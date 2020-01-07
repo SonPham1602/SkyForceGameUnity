@@ -20,6 +20,7 @@ public class VerticalMainMenuXbox : MonoBehaviour
     [SerializeField] GameObject[] listButton;
     private int select;
     private MainMenuController mainMenuController;
+    private SoundController soundController;
     [SerializeField] TypeXboxGamepad typeXboxGamepad;
     public UnityEvent eventBack;
     private bool check;
@@ -30,8 +31,11 @@ public class VerticalMainMenuXbox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        select = 0;
         mainMenuController = GameObject.FindObjectOfType<MainMenuController>();
+        soundController = GameObject.FindObjectOfType<SoundController>();
+
+        select = 0;
+
 
         if (GameSetting.typeControllerGame == TypeControllerGame.GamePad && listButton.Length != 0)
         {
@@ -59,6 +63,7 @@ public class VerticalMainMenuXbox : MonoBehaviour
                             Debug.Log("up");
                             select--;
                             UnpressAllButton();
+                            soundController.PlaySoundSwith();
                             listButton[select].GetComponent<ButtonInSetting>().SetPressedSprite();
 
                             check = false;
@@ -72,6 +77,7 @@ public class VerticalMainMenuXbox : MonoBehaviour
                             Debug.Log("down");
                             select++;
                             UnpressAllButton();
+                            soundController.PlaySoundSwith();
                             listButton[select].GetComponent<ButtonInSetting>().SetPressedSprite();
                             check = false;
                         }
@@ -80,7 +86,7 @@ public class VerticalMainMenuXbox : MonoBehaviour
                     else if (updowncheck == 0)
                     {
                         check = true;
-                       // Debug.Log("stand");
+                        // Debug.Log("stand");
                     }
                     Debug.Log(select);
                 }
@@ -97,6 +103,7 @@ public class VerticalMainMenuXbox : MonoBehaviour
                                 Debug.Log("right");
                                 select--;
                                 UnpressAllButton();
+                                soundController.PlaySoundSwith();
                                 listButton[select].GetComponent<ButtonInSetting>().SetPressedSprite();
                             }
 
@@ -108,6 +115,7 @@ public class VerticalMainMenuXbox : MonoBehaviour
                                 Debug.Log("left");
                                 select++;
                                 UnpressAllButton();
+                                soundController.PlaySoundSwith();
                                 listButton[select].GetComponent<ButtonInSetting>().SetPressedSprite();
                             }
 
@@ -122,6 +130,7 @@ public class VerticalMainMenuXbox : MonoBehaviour
                             {
                                 select++;
                                 UnpressAllButton();
+                                soundController.PlaySoundSwith();
                                 listButton[select].GetComponent<ButtonInSetting>().SetPressedSprite();
                             }
                         }
@@ -131,6 +140,7 @@ public class VerticalMainMenuXbox : MonoBehaviour
                             {
                                 select--;
                                 UnpressAllButton();
+                                soundController.PlaySoundSwith();
                                 listButton[select].GetComponent<ButtonInSetting>().SetPressedSprite();
                             }
                             Debug.Log("Left");
@@ -142,10 +152,12 @@ public class VerticalMainMenuXbox : MonoBehaviour
 
                 if (Input.GetKeyDown("joystick button 0"))
                 {
+
                     listButton[select].GetComponent<Button>().onClick.Invoke();
                 }
                 if (Input.GetKeyDown("joystick button 1"))
                 {
+
                     eventBack.Invoke();
                 }
                 //Debug.Log(updowncheck);
@@ -176,5 +188,6 @@ public class VerticalMainMenuXbox : MonoBehaviour
         }
 
     }
+
 
 }

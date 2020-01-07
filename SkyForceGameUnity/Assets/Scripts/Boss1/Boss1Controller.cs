@@ -37,9 +37,15 @@ public class Boss1Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckTurretAlive();
         if (canShootTurret == true)
         {
             TurnOnAllTurret();
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        }
+        else 
+        {
+            gameObject.GetComponent<BoxCollider2D>().enabled  =true;
         }
         healthBarBoss.fillAmount = hp / HpOfBoss;
         MovingRandom();
@@ -84,6 +90,17 @@ public class Boss1Controller : MonoBehaviour
         turret3.gameObject.GetComponent<TurretEnemyController>().EnableTurret();
         turret4.gameObject.GetComponent<TurretEnemyController>().EnableTurret();
         MainTurret.gameObject.GetComponent<TurretEnemyController>().EnableTurret();
+    }
+    void CheckTurretAlive()
+    {
+        
+        if(turret1.GetComponent<TurretEnemyController>().isBroken == true 
+        && turret2.GetComponent<TurretEnemyController>().isBroken == true 
+        && turret3.GetComponent<TurretEnemyController>().isBroken == true 
+        && turret4.GetComponent<TurretEnemyController>().isBroken == true)
+        {
+            canShootTurret = false;
+        }
     }
     void MovingRandom()
     {
