@@ -38,11 +38,13 @@ public class MainMenuController : MonoBehaviour
     CursorMode cursorMode = CursorMode.Auto;
     public AudioMixer audioMixer;
     public TypeControllerGame typeControllerGame;
-    string[] names ;// name of controller
+    string[] names;// name of controller
+    private SoundController soundController;
 
     // Start is called before the first frame update
     void Start()
     {
+        soundController = GameObject.FindObjectOfType<SoundController>();
         Time.timeScale = 1f;
         Debug.Log("Khoi tao" + gameState.ToString());
         gameState = GameState.None;
@@ -55,17 +57,18 @@ public class MainMenuController : MonoBehaviour
         SetupLevelSpriteScreen();
         SetSelectListButton();
 
-         names = Input.GetJoystickNames();
+        names = Input.GetJoystickNames();
         for (int x = 0; x < names.Length; x++)
         {
-           // print(names[x].Length);
-            if(names[x].Length==33)
+            // print(names[x].Length);
+            if (names[x].Length == 33)
             {
-               // Debug.Log("Xbox 360 Connected");
-                typeControllerGame=TypeControllerGame.GamePad;
+                // Debug.Log("Xbox 360 Connected");
+                typeControllerGame = TypeControllerGame.GamePad;
             }
-            else{
-                typeControllerGame=TypeControllerGame.MouseAndKeyboard;
+            else
+            {
+                typeControllerGame = TypeControllerGame.MouseAndKeyboard;
             }
 
         }
@@ -97,14 +100,15 @@ public class MainMenuController : MonoBehaviour
         names = Input.GetJoystickNames();
         for (int x = 0; x < names.Length; x++)
         {
-           // print(names[x].Length);
-            if(names[x].Length==33)
+            // print(names[x].Length);
+            if (names[x].Length == 33)
             {
                 //Debug.Log("Xbox 360 Connected");
-                typeControllerGame=TypeControllerGame.GamePad;
+                typeControllerGame = TypeControllerGame.GamePad;
             }
-            else{
-                typeControllerGame=TypeControllerGame.MouseAndKeyboard;
+            else
+            {
+                typeControllerGame = TypeControllerGame.MouseAndKeyboard;
             }
 
         }
@@ -122,6 +126,7 @@ public class MainMenuController : MonoBehaviour
 
     public void OpenSettingGame()
     {
+        soundController.PlaySoundPress();
         SetUnselectListButton();
         PanelSetting.gameObject.GetComponent<VerticalMainMenuXbox>().selectPanel();
         PanelSetting.GetComponent<Animator>().SetBool("Show", true);
@@ -130,6 +135,7 @@ public class MainMenuController : MonoBehaviour
     }
     public void CloseSettingGame()
     {
+        soundController.PlaySoundBack();
         SetSelectListButton();
         PanelSetting.GetComponent<VerticalMainMenuXbox>().unselectPanel();
         PanelSetting.GetComponent<Animator>().SetBool("Hide", true);
@@ -137,6 +143,7 @@ public class MainMenuController : MonoBehaviour
     }
     public void OpenUpgradeGame()
     {
+        soundController.PlaySoundPress();
         SetUnselectListButton();
         PanelUpgrade.gameObject.GetComponent<VerticalMainMenuXbox>().selectPanel();
         //PanelUpgrade.SetActive(true);
@@ -145,6 +152,8 @@ public class MainMenuController : MonoBehaviour
     }
     public void CloseUpgradeGame()
     {
+
+        soundController.PlaySoundBack();
         SetSelectListButton();
         PanelUpgrade.GetComponent<VerticalMainMenuXbox>().unselectPanel();
         //PanelUpgrade.SetActive(false);
@@ -153,12 +162,14 @@ public class MainMenuController : MonoBehaviour
     }
     public void OpenMapGame()
     {
+        soundController.PlaySoundPress();
         SetUnselectListButton();
         PanelMapGame.SetActive(true);
         PanelMapGame.GetComponent<VerticalMainMenuXbox>().selectPanel();
     }
     public void HideMapGame()
     {
+        soundController.PlaySoundBack();
         SetSelectListButton();
         PanelMapGame.GetComponent<VerticalMainMenuXbox>().unselectPanel();
         PanelMapGame.SetActive(false);
@@ -198,7 +209,7 @@ public class MainMenuController : MonoBehaviour
     }
     public void QuitGame()
     {
-
+        soundController.PlaySoundPress();
         SetUnselectListButton();
         PanelExit.gameObject.GetComponent<VerticalMainMenuXbox>().selectPanel();
         PanelExit.gameObject.GetComponent<Animator>().SetBool("Show", true);
@@ -210,6 +221,7 @@ public class MainMenuController : MonoBehaviour
     }
     public void CancelExitGame()
     {
+        soundController.PlaySoundBack();
         SetSelectListButton();
         PanelExit.gameObject.GetComponent<VerticalMainMenuXbox>().unselectPanel();
         PanelExit.gameObject.GetComponent<Animator>().SetBool("Hide", true);
