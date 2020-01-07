@@ -27,7 +27,7 @@ public class SoundController : MonoBehaviour
     }
     public void PlaySoundSwith()
     {
-        audioSource.clip = soundClickButton;
+        audioSource.clip = soundSwitchButton;
         audioSource.Play();
     }
     public void PlaySoundBack()

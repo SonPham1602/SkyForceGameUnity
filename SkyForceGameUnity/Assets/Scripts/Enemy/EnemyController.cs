@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     Vector2 screenBounds;
 
-    public float HP { get; set; }
+    public float HP;
 
     protected void Start()
     {
@@ -41,7 +41,6 @@ public class EnemyController : MonoBehaviour
         _gameManager = FindObjectOfType<GameManager>();
 
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        HP = 10;
     }
 
     // Update is called once per frame
