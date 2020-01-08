@@ -6,6 +6,7 @@ public class PlayerHostController : PlayerController
 {
     public Player user;
     public static PlayerHostController Instance;
+    private Vector3 oldPosition;
 
     void Start() {
         Instance = this;
@@ -17,5 +18,9 @@ public class PlayerHostController : PlayerController
     void Update()
     {
         base.Update();
+        if (transform.position != oldPosition && OnlineGameController.Instance.startGame) {
+            SocketClient.Instance.AddMessage(MessageWriter.getMessageChangePosition(0, transform.position));
+            oldPosition = transform.position;
+        }
     }
 }

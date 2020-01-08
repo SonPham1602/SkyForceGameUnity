@@ -724,7 +724,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8411565762715342832}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -752,17 +752,18 @@ MonoBehaviour:
   levelOfBulletPlayer: 0
   levelOfHealthPlayer: 0
   levelOfRocketPlayer: 0
-  HomingMissile: {fileID: 0}
-  shootBulletSound: {fileID: 0}
-  audioSource: {fileID: 0}
-  damageOfBullet: 0
-  timeSpeedShot: 0
-  target: {fileID: 0}
-  startShot: {fileID: 0}
-  bullet: {fileID: 0}
+  HomingMissile: {fileID: 4866333490060136588, guid: 0cdd301878ac86d4d948174fd5ffee8c,
+    type: 3}
+  shootBulletSound: {fileID: 8300000, guid: 8532131775eace7448c1e5d695486a78, type: 3}
+  audioSource: {fileID: 4021554399459799703}
+  damageOfBullet: 50
+  timeSpeedShot: 0.1
+  target: {fileID: 4381860082552513417}
+  startShot: {fileID: 3125271550617424192}
+  bullet: {fileID: 7696924828118341869, guid: ffbb673cc0e4cd941be3506157a56cc3, type: 3}
   numberBullet: 1
   hp: 0
-  speedShip: 100
+  speedShip: 15
   planeChild: []
   typeControllerGame: 0
   hitLayer: {fileID: 0}

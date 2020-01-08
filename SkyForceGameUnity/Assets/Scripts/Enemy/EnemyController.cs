@@ -32,9 +32,6 @@ public class EnemyController : MonoBehaviour
 
     protected void Start()
     {
-        Debug.Log("Class Cha");
-        
-
         offset = Time.deltaTime * speedMove;
         rigidbody2d = GetComponent<Rigidbody2D>();
         saveScale = transform.localScale;

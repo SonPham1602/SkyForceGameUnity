@@ -28,6 +28,10 @@ public class PlayerNetworkController : PlayerController
         Instance = this;
         newPositions = new List<Vector3>();
         base.Start();
+
+        rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0f;
+        rb.fixedAngle = true;
     }
 
     // Update is called once per frame
@@ -42,6 +46,7 @@ public class PlayerNetworkController : PlayerController
     }
     public void AddNewPosition(Vector3 newPos)
     {
+        Debug.Log(newPos);
         newPositions.Add(newPos);
     }
 
