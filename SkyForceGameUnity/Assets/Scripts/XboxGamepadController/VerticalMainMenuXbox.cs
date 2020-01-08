@@ -16,6 +16,7 @@ public enum TypeControllerGamepad
 }
 public class VerticalMainMenuXbox : MonoBehaviour
 {
+    public bool dontHaveFunctionEventClick;
     bool selectedPanel;
     [SerializeField] GameObject[] listButton;
     public int select;
@@ -31,6 +32,7 @@ public class VerticalMainMenuXbox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         mainMenuController = GameObject.FindObjectOfType<MainMenuController>();
         soundController = GameObject.FindObjectOfType<SoundController>();
 
@@ -95,21 +97,21 @@ public class VerticalMainMenuXbox : MonoBehaviour
                     if (typeControllerGamepad == TypeControllerGamepad.JoystickController)
                     {
                         float updowncheck = Input.GetAxis("Horizontal");
-                        if (updowncheck < 0 )
+                        if (updowncheck < 0)
                         {
                             if (select >= 1 && check == true)
                             {
 
                                 Debug.Log("right");
                                 select--;
-                                if(listButton[0].GetComponent<ButtonInSetting>() != null)
+                                if (listButton[0].GetComponent<ButtonInSetting>() != null)
                                 {
                                     UnpressAllButton();
                                     listButton[select].GetComponent<ButtonInSetting>().SetPressedSprite();
                                 }
-                                
+
                                 soundController.PlaySoundSwith();
-                              
+
                                 check = false;
                             }
 
@@ -120,15 +122,15 @@ public class VerticalMainMenuXbox : MonoBehaviour
                             {
                                 Debug.Log("left");
                                 select++;
-                                if(listButton[0].GetComponent<ButtonInSetting>() != null)
+                                if (listButton[0].GetComponent<ButtonInSetting>() != null)
                                 {
                                     UnpressAllButton();
                                     listButton[select].GetComponent<ButtonInSetting>().SetPressedSprite();
                                 }
-                                
-                               
+
+
                                 soundController.PlaySoundSwith();
-                                
+
                                 check = false;
                             }
 
@@ -138,7 +140,7 @@ public class VerticalMainMenuXbox : MonoBehaviour
                             check = true;
                             // Debug.Log("stand");
                         }
-                         Debug.Log(select);
+                       // Debug.Log(select);
                     }
                     else if (typeControllerGamepad == TypeControllerGamepad.LRBController)
                     {
@@ -168,12 +170,14 @@ public class VerticalMainMenuXbox : MonoBehaviour
 
 
                 }
-
-                if (Input.GetKeyDown("joystick button 0"))
+                if (dontHaveFunctionEventClick == false)
                 {
-
-                    listButton[select].GetComponent<Button>().onClick.Invoke();
+                    if (Input.GetKeyDown("joystick button 0"))
+                    {
+                        listButton[select].GetComponent<Button>().onClick.Invoke();
+                    }
                 }
+
                 if (Input.GetKeyDown("joystick button 1"))
                 {
 

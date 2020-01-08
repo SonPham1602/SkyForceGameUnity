@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour
 {
+    public SaveGame saveGame;
     public int currentLevel;
     public int numberOfLevel;
     public GameObject[] ButtonLevels;
@@ -44,6 +45,9 @@ public class MainMenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        //Set up Load Save game
+        currentLevel=saveGame.currentLevelComplete;
         soundController = GameObject.FindObjectOfType<SoundController>();
         Time.timeScale = 1f;
         Debug.Log("Khoi tao" + gameState.ToString());
@@ -178,36 +182,6 @@ public class MainMenuController : MonoBehaviour
     public void OpenShopGame()
     {
 
-    }
-    public void RunLevel1()
-    {
-
-        GameObject star = ButtonLevels[0].transform.GetChild(0).gameObject;
-        star.GetComponent<StarLevelController>().SetStar(1);
-        Debug.Log("Run Level 1");
-
-    }
-    public void SetupLevelSpriteScreen()
-    {
-
-        for (int i = 0; i < currentLevel - 1; i++)
-        {
-            ButtonLevels[i].gameObject.GetComponent<LevelController>().SetStatusComplete();
-
-
-        }
-        for (int i = numberOfLevel - 1; i > currentLevel - 1; i--)
-        {
-            ButtonLevels[i].gameObject.transform.GetChild(0).gameObject.SetActive(false);
-            ButtonLevels[i].GetComponent<LevelController>().SetStatusLockGame();
-        }
-        ButtonLevels[currentLevel - 1].gameObject.GetComponent<LevelController>().SetStatusAttackGame();
-         ButtonLevels[currentLevel-1].gameObject.transform.GetChild(0).gameObject.SetActive(false);
-    }
-
-    public void StartLevel()
-    {
-        SceneManager.LoadScene("Level1");
     }
     public void QuitGame()
     {
