@@ -54,7 +54,7 @@ public class MainMenuController : MonoBehaviour
         ImagePressAnyKey.GetComponent<Animator>().Play("PressAnyKey");
         PanelButtons.SetActive(false);
         // PanelSetting.SetActive(false);
-        SetupLevelSpriteScreen();
+        //SetupLevelSpriteScreen();
         SetSelectListButton();
 
         names = Input.GetJoystickNames();
@@ -199,8 +199,10 @@ public class MainMenuController : MonoBehaviour
         for (int i = numberOfLevel - 1; i > currentLevel - 1; i--)
         {
             ButtonLevels[i].gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            ButtonLevels[i].GetComponent<LevelController>().SetStatusLockGame();
         }
         ButtonLevels[currentLevel - 1].gameObject.GetComponent<LevelController>().SetStatusAttackGame();
+         ButtonLevels[currentLevel-1].gameObject.transform.GetChild(0).gameObject.SetActive(false);
     }
 
     public void StartLevel()

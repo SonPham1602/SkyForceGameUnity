@@ -18,7 +18,7 @@ public class VerticalMainMenuXbox : MonoBehaviour
 {
     bool selectedPanel;
     [SerializeField] GameObject[] listButton;
-    private int select;
+    public int select;
     private MainMenuController mainMenuController;
     private SoundController soundController;
     [SerializeField] TypeXboxGamepad typeXboxGamepad;
@@ -88,38 +88,57 @@ public class VerticalMainMenuXbox : MonoBehaviour
                         check = true;
                         // Debug.Log("stand");
                     }
-                    Debug.Log(select);
+                    //Debug.Log(select);
                 }
                 else if (typeXboxGamepad == TypeXboxGamepad.HorizontalGamepad)
                 {
                     if (typeControllerGamepad == TypeControllerGamepad.JoystickController)
                     {
                         float updowncheck = Input.GetAxis("Horizontal");
-                        if (updowncheck > 0)
+                        if (updowncheck < 0 )
                         {
-                            if (select >= 1)
+                            if (select >= 1 && check == true)
                             {
 
                                 Debug.Log("right");
                                 select--;
-                                UnpressAllButton();
+                                if(listButton[0].GetComponent<ButtonInSetting>() != null)
+                                {
+                                    UnpressAllButton();
+                                    listButton[select].GetComponent<ButtonInSetting>().SetPressedSprite();
+                                }
+                                
                                 soundController.PlaySoundSwith();
-                                listButton[select].GetComponent<ButtonInSetting>().SetPressedSprite();
+                              
+                                check = false;
                             }
 
                         }
-                        else if (updowncheck < 0)
+                        else if (updowncheck > 0)
                         {
-                            if (select < listButton.Length - 1)
+                            if (select < listButton.Length - 1 && check == true)
                             {
                                 Debug.Log("left");
                                 select++;
-                                UnpressAllButton();
+                                if(listButton[0].GetComponent<ButtonInSetting>() != null)
+                                {
+                                    UnpressAllButton();
+                                    listButton[select].GetComponent<ButtonInSetting>().SetPressedSprite();
+                                }
+                                
+                               
                                 soundController.PlaySoundSwith();
-                                listButton[select].GetComponent<ButtonInSetting>().SetPressedSprite();
+                                
+                                check = false;
                             }
 
                         }
+                        else if (updowncheck == 0)
+                        {
+                            check = true;
+                            // Debug.Log("stand");
+                        }
+                         Debug.Log(select);
                     }
                     else if (typeControllerGamepad == TypeControllerGamepad.LRBController)
                     {
