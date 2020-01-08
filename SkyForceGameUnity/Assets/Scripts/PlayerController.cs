@@ -108,6 +108,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     protected void Start()
     {
+        transform.position = new Vector3(0,0,1);
         timeToShot = 5f;
         radius = Vector3.Magnitude(target.transform.position - gameObject.transform.position);
         this.HP = 100;
