@@ -1,5 +1,8 @@
+using System;
+
+[Serializable]
 public class Player {
-    public int id {get;set;}
-    public string name {get; set;}
-    public bool ready{get; set;}
+    public int id;
+    public string name;
+    public bool ready;
 }

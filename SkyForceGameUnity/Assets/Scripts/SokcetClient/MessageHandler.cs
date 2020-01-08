@@ -27,7 +27,6 @@ public static class MessageHandler
             case MessageCode.GET_PLAYER_IN_ROOM:
                 short size = binaryReader.ReadInt16();
                 string userInfo = Encoding.ASCII.GetString(binaryReader.ReadBytes(size));
-                Debug.Log(userInfo);
                 Player player = JsonUtility.FromJson<Player>(userInfo);
                 UnityMainThread.wkr.AddJob(new Action(() =>
                 {

@@ -11,10 +11,14 @@ public class OnlineGameController : MonoBehaviour
     private float timeStart;
 
     [SerializeField]
-    private GameObject SelectModePanel, RegisterPlayerPanel, JoinRoomPanel, HostWatingPanel, NotifyPanel;
+    private GameObject SelectModePanel, RegisterPlayerPanel, JoinRoomPanel,
+                    HostWatingPanel, NotifyPanel, DisplayPlayerHostName, DisplayPlayerNetworkName;
 
     [SerializeField]
-    private Text txtPlayerName, txtRoomId, txtMessageNotify;
+    private GameObject buttonExitHostWaiting;
+
+    [SerializeField]
+    private Text txtPlayerName, txtRoomId, txtMessageNotify, txtPlayerNameWating, txtPlayerNetworkName, txtCountDown;
 
     [SerializeField]
     private InputField edtPlayerName, edtRoomId;
@@ -30,39 +34,49 @@ public class OnlineGameController : MonoBehaviour
     void Start()
     {
         Instance = this;
-        DontDestroyOnLoad(this);
         oldTime = Time.time;
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (!startGame)
-        {
-            oldTime = Time.time;
-        }
-        else if (Time.time - oldTime >= 5)
-        {
-            GameObject.FindObjectOfType<GameManager>().gameState = GameState.Play;
-        }
-    }
+    {}
 
     public void StartGame()
     {
+        HostWatingPanel.SetActive(false);
         startGame = true;
+        GameObject.FindObjectOfType<GameManager>().gameState = GameState.Play;
+    }
+
+    IEnumerator CountDownStartGame()
+    {
+        int i = 0;
+        while (i < 5)
+        {
+            txtCountDown.text = "" + (5 - i);
+            yield return new WaitForSeconds(1);
+            i++;
+        }
+        StartGame();
     }
 
     public void AddNetworkPlayer(Player player)
     {
-        HostWatingPanel.SetActive(false);
+        JoinRoomPanel.SetActive(false);
+        HostWatingPanel.SetActive(true);
         PlayerNetworkController.Instance.user = player;
-        StartGame();
+        txtPlayerNetworkName.text = player.name;
+        DisplayPlayerNetworkName.SetActive(true);
+        buttonExitHostWaiting.SetActive(false);
+        txtCountDown.gameObject.SetActive(true);
+        StartCoroutine(CountDownStartGame());
     }
 
     public void AddPlayerHost(int id)
     {
         PlayerHostController.Instance.user = new Player() { id = id, name = namePlayer };
         txtPlayerName.text = namePlayer;
+        txtPlayerNameWating.text = namePlayer;
         RegisterPlayerPanel.SetActive(false);
         SelectModePanel.SetActive(true);
     }
@@ -88,13 +102,16 @@ public class OnlineGameController : MonoBehaviour
     public void CreateRoomSuccess(short roomId)
     {
         this.roomId = roomId;
-        txtRoomId.text = roomId.ToString();
+        txtRoomId.text = "ROOM " + roomId.ToString();
+        DisplayPlayerHostName.SetActive(true);
+        DisplayPlayerNetworkName.SetActive(false);
         SelectModePanel.SetActive(false);
         HostWatingPanel.SetActive(true);
     }
 
     public void StartClient()
     {
+        isHost = false;
         SelectModePanel.SetActive(false);
         JoinRoomPanel.SetActive(true);
     }
@@ -107,7 +124,6 @@ public class OnlineGameController : MonoBehaviour
 
     public void JoinRoomSuccess()
     {
-        JoinRoomPanel.SetActive(false);
         SocketClient.Instance.AddMessage(MessageWriter.getPlayerInRoomMessage());
     }
 

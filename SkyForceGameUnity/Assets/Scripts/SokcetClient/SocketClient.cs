@@ -24,7 +24,6 @@ public class SocketClient : MonoBehaviour
         Instance = this;
         Messages = new List<Message>();
         ConnectToTcpServer();
-        DontDestroyOnLoad(gameObject);
     }
 
     void Update()
