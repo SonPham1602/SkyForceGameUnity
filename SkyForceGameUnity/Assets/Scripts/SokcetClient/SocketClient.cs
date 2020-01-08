@@ -13,7 +13,11 @@ public class SocketClient : MonoBehaviour
     private TcpClient socketConnection;
     private Thread clientReceiveThread;
     private List<Message> Messages;
-    private String host = "localhost";
+
+    [SerializeField]
+    private String host = "172.16.2.203";
+    
+    [SerializeField]
     private int port = 1234;
 
     void Start()

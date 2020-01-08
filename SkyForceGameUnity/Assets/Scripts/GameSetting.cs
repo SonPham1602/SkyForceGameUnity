@@ -25,8 +25,6 @@ public class GameSetting : MonoBehaviour
     string[] names;
     // Start is called before the first frame update
     private void Awake() {
-        Debug.Log("Goi lai");
-       
         instance = this;
         sizeCam = new Vector2(2f*Camera.main.aspect*Camera.main.orthographicSize,2f * Camera.main.orthographicSize);
         positionCam = Camera.main.transform.position;

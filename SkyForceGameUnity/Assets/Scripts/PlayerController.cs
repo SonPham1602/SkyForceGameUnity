@@ -112,7 +112,6 @@ public class PlayerController : MonoBehaviour
         radius = Vector3.Magnitude(target.transform.position - gameObject.transform.position);
         this.HP = 100;
         rb = GetComponent<Rigidbody2D>();
-
     }
     void OnMouseOver()
     {

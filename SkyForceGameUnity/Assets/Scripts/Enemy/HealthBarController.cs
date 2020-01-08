@@ -23,7 +23,7 @@ public class HealthBarController : MonoBehaviour
     void Update()
     {
        
-        Debug.Log("mau cau turret" + enemyController.HP);
+        // Debug.Log("mau cau turret" + enemyController.HP);
         valueHealth = enemyController.HP;
         if (valueHealth <= 0)
         {
@@ -34,7 +34,7 @@ public class HealthBarController : MonoBehaviour
             health.transform.localScale = new Vector3(valueHealth / divisor, 1, 1);
         }
 
-        Debug.Log("Local Scale " + health.transform.localScale.x);
+        // Debug.Log("Local Scale " + health.transform.localScale.x);
 
     }
 
