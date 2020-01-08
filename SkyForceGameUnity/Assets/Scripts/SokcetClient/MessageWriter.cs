@@ -54,6 +54,14 @@ public class MessageWriter
         };
     }
 
+     public static Message getShotBulletMessage(byte type) {
+        return new Message()
+        {
+            Command = MessageCode.SHOT_BULLET_CODE,
+            Data = new byte[1] {type},
+        };
+    }
+
     public static Message getMessageJoinRoom(short roomId) {
         byte[] data = BitConverterMapping.GetBytes(roomId);
         return new Message()

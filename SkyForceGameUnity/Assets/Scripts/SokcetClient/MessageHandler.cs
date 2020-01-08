@@ -83,6 +83,13 @@ public static class MessageHandler
                     OnlineGameController.Instance.PlayerLeftRoom();
                 }));
                 break;
+            case MessageCode.SHOT_BULLET_CODE:
+                byte type = binaryReader.ReadByte();
+                UnityMainThread.wkr.AddJob(new Action(() =>
+                {
+                    PlayerNetworkController.Instance.AddNewShotBullet();
+                }));
+                break;
             default:
                 Debug.Log("Command " + message.Command + " not found");
                 break;

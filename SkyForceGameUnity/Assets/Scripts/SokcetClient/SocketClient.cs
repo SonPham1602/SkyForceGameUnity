@@ -14,8 +14,7 @@ public class SocketClient : MonoBehaviour
     private Thread clientReceiveThread;
     private List<Message> Messages;
 
-    [SerializeField]
-    private String host = "172.16.2.203";
+    private String host = "34.87.115.224";
     
     [SerializeField]
     private int port = 1234;
