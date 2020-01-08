@@ -8,23 +8,30 @@ using UnityEngine.UI;
 public class MapGameController : MonoBehaviour
 {
     [SerializeField] SaveGame saveGame;
-    [SerializeField] VerticalMainMenuXbox verticalMainMenuXbox;
-     int currentLevel;
+    public VerticalMainMenuXbox verticalMainMenuXbox;
+    public int currentLevel;
+    private int selectLevel;
     public int numberOfLevel;
     public GameObject[] ButtonLevels;
 
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale =1;
        currentLevel = saveGame.currentLevelComplete;
+    
         verticalMainMenuXbox.selectPanel();
+        gameObject.GetComponent<VerticalMainMenuXbox>().selectPanel();
         SetupLevelSpriteScreen();
+        verticalMainMenuXbox.select = currentLevel-1;
+         
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentLevel = verticalMainMenuXbox.select;
+        
+        selectLevel = verticalMainMenuXbox.select;
         SetAnimationAttackLevel();
     }
     public void BackToMenu()
@@ -61,11 +68,11 @@ public class MapGameController : MonoBehaviour
         {
             ButtonLevels[i].gameObject.GetComponent<Animator>().SetBool("Select",false);
         }
-        ButtonLevels[currentLevel].gameObject.GetComponent<Animator>().SetBool("Select",true);
+        ButtonLevels[selectLevel].gameObject.GetComponent<Animator>().SetBool("Select",true);
     }
     public void PlayLevel()
     {
-        int n = currentLevel;
+        int n = selectLevel;
         if(n==0)
         {
             PlayLevel1();

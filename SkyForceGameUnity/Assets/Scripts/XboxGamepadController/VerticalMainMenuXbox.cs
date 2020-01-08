@@ -20,7 +20,7 @@ public class VerticalMainMenuXbox : MonoBehaviour
     bool selectedPanel;
     [SerializeField] GameObject[] listButton;
     public int select;
-    private MainMenuController mainMenuController;
+    private DetectController detectController;
     private SoundController soundController;
     [SerializeField] TypeXboxGamepad typeXboxGamepad;
     public UnityEvent eventBack;
@@ -33,10 +33,9 @@ public class VerticalMainMenuXbox : MonoBehaviour
     void Start()
     {
 
-        mainMenuController = GameObject.FindObjectOfType<MainMenuController>();
+        detectController = GameObject.FindObjectOfType<DetectController>();
         soundController = GameObject.FindObjectOfType<SoundController>();
 
-        select = 0;
 
 
         if (GameSetting.typeControllerGame == TypeControllerGame.GamePad && listButton.Length != 0)
@@ -53,7 +52,7 @@ public class VerticalMainMenuXbox : MonoBehaviour
     {
         if (selectedPanel == true)
         {
-            if (mainMenuController.typeControllerGame == TypeControllerGame.GamePad)
+            if (detectController.typeControllerGame == TypeControllerGame.GamePad)
             {
                 if (typeXboxGamepad == TypeXboxGamepad.VerticalGamepad)
                 {
