@@ -19,9 +19,9 @@ public class PlayerNetworkController : PlayerController
 
     private List<Vector3> newPositions;
 
-    public static PlayerNetworkController Instance{get; set;}
+    public static PlayerNetworkController Instance { get; set; }
     public Player user;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,14 +40,25 @@ public class PlayerNetworkController : PlayerController
         if (newPositions.Count > 0)
         {
             Vector3 newPos = newPositions[0];
-            rb.MovePosition(new Vector2(newPos.x, newPos.y));
+            if (newPos.z == 0f)
+            {
+                rb.MovePosition(new Vector2(newPos.x, newPos.y));
+            }
+            else if (newPos.z == 1f) // shot bullet
+            {
+                ShotBullet();
+            }
             newPositions.Remove(newPos);
         }
     }
     public void AddNewPosition(Vector3 newPos)
     {
-        Debug.Log(newPos);
-        newPositions.Add(newPos);
+        newPositions.Add(new Vector3(newPos.x, newPos.y, 0));
+    }
+
+    public void AddNewShotBullet()
+    {
+        newPositions.Add(new Vector3(0, 0, 1));
     }
 
     public void ShotBullet()

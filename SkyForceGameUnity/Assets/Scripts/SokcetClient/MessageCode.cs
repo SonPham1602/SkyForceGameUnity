@@ -12,6 +12,6 @@ public static class MessageCode
     public const byte GET_PLAYER_IN_ROOM = 5;
     public const byte PLAYER_LEFT_AREROOM_CODE = 6;
     public const byte REGISTER_PLAYER = 7;
-
     public const byte CHANGE_POSITION_CODE = 8;
+    public const byte SHOT_BULLET_CODE = 9;
 }
