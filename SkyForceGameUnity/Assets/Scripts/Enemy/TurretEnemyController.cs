@@ -131,6 +131,7 @@ public class TurretEnemyController : EnemyController
             HP -= other.gameObject.GetComponent<BulletController>().Power;
             if (HP <= 0)
             {
+                Instantiate(explostionEffect,transform.position,Quaternion.identity);
                 gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 isBroken = true;
                 canShot = false;

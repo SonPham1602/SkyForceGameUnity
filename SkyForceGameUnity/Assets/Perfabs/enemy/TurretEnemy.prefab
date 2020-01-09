@@ -289,18 +289,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68dd0991cc7f7cb41a7ebd4794373e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deleteSpriteWhenDead: 0
   levelMapEnemy: 0
   ShowInCamera: 0
-  soundExplosion: {fileID: 0}
-  audioSourceExplosion: {fileID: 0}
+  soundExplosion: {fileID: 8300000, guid: 2301aba2794a9294aa3288247e14b7b7, type: 3}
+  audioSourceExplosion: {fileID: 5256772851599628226}
   ScoreTake: 0
   gravity: 20
   speedTurn: 0
   speedMove: 0
   canMove: 0
   color: {r: 0, g: 0, b: 0, a: 0}
-  starItem: {fileID: 0}
-  explostionEffect: {fileID: 0}
+  starItem: {fileID: 3584385979561779101, guid: a003813cca37bfd4796a9aa70e9ddd52,
+    type: 3}
+  explostionEffect: {fileID: 2883022197508708958, guid: 4bfbb7399eb86ec4e959e34623de6f50,
+    type: 3}
   HP: 0
   turretSoundShot: {fileID: 8300000, guid: 2162f2a26c7cdcf47a081ff902e2ca30, type: 3}
   audioSource: {fileID: 5256772851599628226}
