@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
 
     public bool canMove;
-
+    public int starCollect;
     public float HP
     {
 
@@ -359,6 +359,10 @@ public class PlayerController : MonoBehaviour
             hitLayer.GetComponent<Animator>().SetTrigger("ShowOneHit");
             // Mission 1 fail
             GameObject.FindObjectOfType<GameManager>().CheckCompleteMisson1 = false;
+        }
+        else if(other.gameObject.tag == "star")
+        {
+            GameSetting.StarGame++;
         }
 
     }

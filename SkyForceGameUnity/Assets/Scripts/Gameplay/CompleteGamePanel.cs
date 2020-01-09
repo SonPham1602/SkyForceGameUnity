@@ -19,32 +19,33 @@ public class CompleteGamePanel : MonoBehaviour
     void Start()
     {
         //Time.timeScale=0;
-        textScore.GetComponent<Text>().text = numberScore.ToString();
-        textStar.GetComponent<Text>().text = numberStar.ToString();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(GameSetting.typeControllerGame == TypeControllerGame.GamePad)
+        textScore.GetComponent<Text>().text = numberScore.ToString();
+        textStar.GetComponent<Text>().text = numberStar.ToString();
+        if (GameSetting.typeControllerGame == TypeControllerGame.GamePad)
         {
-            if(Input.GetKeyDown("joystick button 0"))
+            if (Input.GetKeyDown("joystick button 0"))
             {
                 GameObject.FindObjectOfType<GameManager>().GoToMapGame();
             }
-            else if(Input.GetKeyDown("joystick button 3"))
-            {
-                 GameObject.FindObjectOfType<GameManager>().ResetLevel();
-            }
-
-        }
-        else if(GameSetting.typeControllerGame==TypeControllerGame.MouseAndKeyboard)
-        {
-            if(Input.GetKeyDown(KeyCode.R))
+            else if (Input.GetKeyDown("joystick button 3"))
             {
                 GameObject.FindObjectOfType<GameManager>().ResetLevel();
             }
-            else if(Input.GetKeyDown(KeyCode.Return))
+
+        }
+        else if (GameSetting.typeControllerGame == TypeControllerGame.MouseAndKeyboard)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                GameObject.FindObjectOfType<GameManager>().ResetLevel();
+            }
+            else if (Input.GetKeyDown(KeyCode.Return))
             {
                 GameObject.FindObjectOfType<GameManager>().GoToMapGame();
             }
@@ -53,19 +54,20 @@ public class CompleteGamePanel : MonoBehaviour
 
     public void SetupPanelCompleteGame(int score, int star, int numberMission)
     {
-        textScore.GetComponent<Text>().text = score.ToString();
-        textStar.GetComponent<Text>().text = star.ToString();
+        
+        numberScore = score;
+        numberStar = star;
         if (numberMission == 1)
         {
             numberMissionComplete.gameObject.GetComponent<Image>().sprite = oneStar;
         }
         else if (numberMission == 2)
         {
-             numberMissionComplete.gameObject.GetComponent<Image>().sprite = twoStar;
+            numberMissionComplete.gameObject.GetComponent<Image>().sprite = twoStar;
         }
         else if (numberMission == 3)
         {
-             numberMissionComplete.gameObject.GetComponent<Image>().sprite = threeStar;
+            numberMissionComplete.gameObject.GetComponent<Image>().sprite = threeStar;
         }
     }
 

@@ -14,6 +14,7 @@ TagManager:
   - destroyEnemy
   - FightBoss
   - enableEnemy
+  - star
   layers:
   - Default
   - TransparentFX

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class BattleShipEnemy : MonoBehaviour
+public class BattleShipEnemy : EnemyController
 {
     public float speedRotation;
     public float speed;//speed of bullet
@@ -10,7 +10,6 @@ public class BattleShipEnemy : MonoBehaviour
     private float timeBtwShots;
     private Transform player;
     public GameObject bullet;
-    public float Health;
     private float NumberBulletShip;
     public Sprite brokenSpriteBattleship;
     public GameObject turret;
@@ -56,8 +55,8 @@ public class BattleShipEnemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag=="bullet")
         {
-            NumberBulletShip++;
-            if(NumberBulletShip==Health)
+           
+        
             {
                 isBroken = true;
                 GetComponent<SpriteRenderer>().sprite = brokenSpriteBattleship;
