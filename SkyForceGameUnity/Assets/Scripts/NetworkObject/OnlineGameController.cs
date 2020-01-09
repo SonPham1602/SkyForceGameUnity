@@ -149,7 +149,7 @@ public class OnlineGameController : MonoBehaviour
     public void PlayerLeftRoom()
     {
         Time.timeScale = 0f;
-        txtMessageNotify.text = PlayerNetworkController.Instance.name + " đã rời phòng.";
+        txtMessageNotify.text = PlayerNetworkController.Instance.user.name + " đã rời phòng.";
         NotifyPanel.SetActive(true);
         Destroy(PlayerNetworkController.Instance.gameObject);
     }

@@ -15,6 +15,7 @@ TagManager:
   - FightBoss
   - enableEnemy
   - star
+  - PlayerNetwork
   layers:
   - Default
   - TransparentFX

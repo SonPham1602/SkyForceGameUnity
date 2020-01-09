@@ -11,21 +11,27 @@ public class UIGameplayController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>() != null)
+        {
+            defaultValue = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().defaultHP;
+        }
+        else
+        {
+            defaultValue = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHostController>().defaultHP;
+        }
         UIHeartValue = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-         defaultValue = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().defaultHP;
-        if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>() != null)
+        if (GameObject.FindObjectOfType<PlayerController>() != null)
         {
-            UIHeartValue = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().hp / defaultValue;
+            UIHeartValue = GameObject.FindObjectOfType<PlayerController>().hp / defaultValue;
         }
         else
         {
-            UIHeartValue = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHostController>().hp / defaultValue;
+            UIHeartValue = GameObject.FindObjectOfType<PlayerHostController>().hp / defaultValue;
         }
         UIHeart.fillAmount = UIHeartValue;
     }
