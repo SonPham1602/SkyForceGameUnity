@@ -2115,6 +2115,11 @@ PrefabInstance:
       propertyPath: speedMove
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6886438486159389421, guid: 171c77abb6d1574408999b436e9c93d1,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5372251327051273436, guid: 171c77abb6d1574408999b436e9c93d1, type: 3}
     - {fileID: 5372251327051273438, guid: 171c77abb6d1574408999b436e9c93d1, type: 3}
@@ -7432,7 +7437,12 @@ PrefabInstance:
     - target: {fileID: 2044952476517342740, guid: 146e8d5d9ae8d1f49b888fb855c5a0c7,
         type: 3}
       propertyPath: levelOfBulletPlayer
-      value: 4
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2044952476517342740, guid: 146e8d5d9ae8d1f49b888fb855c5a0c7,
+        type: 3}
+      propertyPath: levelOfHealthPlayer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2044952476027459894, guid: 146e8d5d9ae8d1f49b888fb855c5a0c7,
         type: 3}

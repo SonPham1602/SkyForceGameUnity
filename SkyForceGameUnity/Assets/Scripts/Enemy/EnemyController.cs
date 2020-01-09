@@ -77,7 +77,11 @@ public class EnemyController : MonoBehaviour
     //     }
 
     // }
-     
+    protected void PlayExplosionSound()
+    {
+        audioSourceExplosion.clip = soundExplosion;
+        audioSourceExplosion.Play();
+    }
     protected void OnTriggerBulletEnter(GameObject other)
     {
         StartCoroutine(getHit());
@@ -86,7 +90,7 @@ public class EnemyController : MonoBehaviour
         {
 
             GameSetting.ScoreGame += ScoreTake;
-            audioSourceExplosion.Play();
+            PlayExplosionSound();
             Instantiate(starItem,transform.position,Quaternion.identity);
             //StartCoroutine(PlayExplosion());
             gameObject.GetComponent<SpriteRenderer>().enabled =  false;
