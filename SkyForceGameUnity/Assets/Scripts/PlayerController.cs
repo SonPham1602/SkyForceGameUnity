@@ -213,18 +213,20 @@ public class PlayerController : MonoBehaviour
                 }
             }
             // Ship will shot when press enter
-            if (Time.time - lastTimeFire >= timeSpeedShot && GameObject.FindObjectOfType<GameManager>().gameState == GameState.Play)
-            {
-                lastTimeFire = Time.time;
-                //CreateBullet(bullet);
-                //CreateOneBullet(target.transform.position, bullet, 15);
-                audioSource.clip = shootBulletSound;
-                audioSource.Play();
-            }
-            if (GameObject.FindObjectOfType<GameManager>().gameState == GameState.Play)
-            {
-                ControllerRocketPlayer();
-            }
+            // if (Time.time - lastTimeFire >= timeSpeedShot && GameObject.FindObjectOfType<GameManager>().gameState == GameState.Play)
+            // {
+            //     lastTimeFire = Time.time;
+            //     //CreateBullet(bullet);
+            //     //CreateOneBullet(target.transform.position, bullet, 15);
+            //     audioSource.clip = shootBulletSound;
+            //     audioSource.Play();
+            // }
+            // if (GameObject.FindObjectOfType<GameManager>().gameState == GameState.Play)
+            // {
+            //     ControllerRocketPlayer();
+            // }
+            ShootingBullet();
+
 
 
             //rb.velocity = Vector2.zero;
