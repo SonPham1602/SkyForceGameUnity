@@ -39,7 +39,7 @@ public class OnlineGameController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {}
+    { }
 
     public void StartGame()
     {
@@ -142,12 +142,20 @@ public class OnlineGameController : MonoBehaviour
 
     public void HideNotifyPanel()
     {
+        Time.timeScale = 1f;
         NotifyPanel.SetActive(false);
     }
 
     public void PlayerLeftRoom()
     {
-        DestroyObject(PlayerNetworkController.Instance.gameObject);
+        Time.timeScale = 0f;
+        txtMessageNotify.text = PlayerNetworkController.Instance.name + " đã rời phòng.";
+        NotifyPanel.SetActive(true);
+        Destroy(PlayerNetworkController.Instance.gameObject);
+    }
+
+    public void Exit() {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 
 }
