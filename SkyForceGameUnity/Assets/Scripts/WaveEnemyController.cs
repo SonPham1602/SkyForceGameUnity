@@ -12,12 +12,13 @@ public class WaveEnemyController : MonoBehaviour
     OnlineGameManager onlineGameManager;
     public bool StartWave;// kiem luon bool cua first Wave
     public float Timedelay;// thoi gian delay giua cac wave voi nhau
+    public bool EndWave;// kiem tra co phai end wave ko
     public void StartWaveEnenmy()
     {
         StartWave = true;
-        
+
     }
-     
+
     IEnumerator Start()
     {
         if (waveEnemy.Length == 0)
@@ -30,16 +31,16 @@ public class WaveEnemyController : MonoBehaviour
         {
             //Chan khong cho bat dau
             //Muc dich la de chan ko tu bat dau o wave tiep theo
-            while (StartWave == false )
+            while (StartWave == false)
             {
                 yield return 0;
             }
-            while ((gameManager != null && gameManager.gameState != GameState.Play) || 
-                (onlineGameManager != null && onlineGameManager.gameState != GameState.Play)) 
+            while ((gameManager != null && gameManager.gameState != GameState.Play) ||
+                (onlineGameManager != null && onlineGameManager.gameState != GameState.Play))
             {
                 yield return 0;
             }
-          
+
             //   Debug.Log("current wave:"+currentWave);
             if (currentWave < waveEnemy.Length)
             {
@@ -60,10 +61,14 @@ public class WaveEnemyController : MonoBehaviour
             currentWave++;
             if (currentWave >= waveEnemy.Length)
             {
-               
+
                 // time deplay giua cac way
                 yield return new WaitForSeconds(Timedelay);
-                nextWaveEnemy.gameObject.GetComponent<WaveEnemyController>().StartWaveEnenmy();
+                if (EndWave == false)
+                {
+                    nextWaveEnemy.gameObject.GetComponent<WaveEnemyController>().StartWaveEnenmy();
+                }
+
                 Destroy(gameObject);
             }
         }

@@ -13,20 +13,24 @@ public class SmallPlaneEnemyController : FlyingEnemyController
     {
         base.Start();
     }
-     void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-       // Debug.Log("On Strigger Con");
+        // Debug.Log("On Strigger Con");
         if (other.gameObject.tag == "bullet")
         {
-            OnTriggerBulletEnter(other.gameObject);
-            gameObject.GetComponent<ControllerTrailEnemy>().DestroyTrailOfEnemy();
-            Destroy(gameObject, soundExplosion.length + 0.5f);
+            if (HP > 0)
+            {
+                OnTriggerBulletEnter(other.gameObject);
+                gameObject.GetComponent<ControllerTrailEnemy>().DestroyTrailOfEnemy();
+                Destroy(gameObject, soundExplosion.length + 0.5f);
+            }
+
         }
         else if (other.gameObject.tag == "Player")
         {
             OnTriggerPlayerEnter(other.gameObject);
             //other.gameObject.GetComponent<PlayerController>().hp-=20;
-            
+
         }
     }
 }

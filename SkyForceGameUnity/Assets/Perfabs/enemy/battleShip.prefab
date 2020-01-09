@@ -207,9 +207,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318ba1d48ead987449f833c62223ce5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deleteSpriteWhenDead: 0
   levelMapEnemy: 0
   ShowInCamera: 0
-  soundExplosion: {fileID: 0}
+  soundExplosion: {fileID: 8300000, guid: 33374a755e5ab424c81edc060ebb8577, type: 3}
   audioSourceExplosion: {fileID: 3625965833102912647}
   ScoreTake: 0
   gravity: 20
@@ -222,6 +223,7 @@ MonoBehaviour:
   explostionEffect: {fileID: 417232156928098769, guid: 381d74b2272007942a5b9c19cc17fa8b,
     type: 3}
   HP: 150
+  soundTurret: {fileID: 8300000, guid: b25463c64184d12438af0298b17c2dd4, type: 3}
   speedRotation: 0
   speed: 0.5
   startTimeBtwShots: 5

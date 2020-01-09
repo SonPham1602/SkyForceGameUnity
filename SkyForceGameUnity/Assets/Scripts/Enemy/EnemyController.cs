@@ -91,6 +91,11 @@ public class EnemyController : MonoBehaviour
         HP -= other.gameObject.GetComponent<BulletController>().Power;
         if (HP <= 0 && isAlive == true)
         {
+            if (deleteSpriteWhenDead == true)
+            {
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+            }
             isAlive = false;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
             gameObject.GetComponent<PolygonCollider2D>().enabled = false;
@@ -98,11 +103,7 @@ public class EnemyController : MonoBehaviour
             PlayExplosionSound();
             Instantiate(starItem, transform.position, Quaternion.identity);
             //StartCoroutine(PlayExplosion());
-            if (deleteSpriteWhenDead == true)
-            {
-                gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                gameObject.GetComponent<PolygonCollider2D>().enabled = false;
-            }
+
 
             Instantiate(explostionEffect, transform.position, Quaternion.identity);
 

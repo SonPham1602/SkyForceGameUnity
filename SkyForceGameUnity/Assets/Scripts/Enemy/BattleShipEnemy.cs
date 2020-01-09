@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class BattleShipEnemy : EnemyController
 {
+    [SerializeField] AudioClip soundTurret;
     public float speedRotation;
     public float speed;//speed of bullet
     public float startTimeBtwShots;
@@ -14,6 +15,7 @@ public class BattleShipEnemy : EnemyController
     public Sprite brokenSpriteBattleship;
     public GameObject turret;
     public GameObject startFire;
+    public bool canShot;
     private bool isBroken;//Check enemy can shoot
     // Start is called before the first frame update
     void Start()
@@ -30,7 +32,13 @@ public class BattleShipEnemy : EnemyController
         {
             if (isBroken == false)
             {
-                Instantiate(bullet, startFire.transform.position, Quaternion.identity);
+                if (canShot == true)
+                {
+                    audioSourceExplosion.clip = soundTurret;
+                    audioSourceExplosion.Play();
+                    Instantiate(bullet, startFire.transform.position, Quaternion.identity);
+                }
+
             }
             timeBtwShots = startTimeBtwShots;
         }
@@ -51,6 +59,10 @@ public class BattleShipEnemy : EnemyController
             transform.position = new Vector3(transform.position.x, transform.position.y + speed * Time.deltaTime, transform.position.z);
         }
 
+    }
+    public void EnableTurret()
+    {
+        canShot = true;
     }
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -77,6 +89,14 @@ public class BattleShipEnemy : EnemyController
 
 
 
+        }
+        else if (other.gameObject.tag == "enableEnemy")
+        {
+            canShot = true;
+        }
+        else if (other.gameObject.tag == "destroyEnemy")
+        {
+            Destroy(gameObject);
         }
     }
 }

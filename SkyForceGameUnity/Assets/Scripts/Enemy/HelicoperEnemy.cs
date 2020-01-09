@@ -84,16 +84,20 @@ public class HelicoperEnemy : FlyingEnemyController
         }
         if (other.gameObject.tag == "bullet")
         {
-            OnTriggerBulletEnter(other.gameObject);
+            //OnTriggerBulletEnter(other.gameObject);
             HP -= other.gameObject.GetComponent<BulletController>().Power;
-
+            StartCoroutine(getHit());
             if (HP <= 0)
             {
                 GameObject.FindObjectOfType<CameraShakingController>().ShakeIt();
-                gameObject.AddComponent<RotateObjectGame>();
-                gameObject.GetComponent<RotateObjectGame>().speedSpin = 5;
-                smokeEffect.SetActive(true);
-                Destroy(wingHelocoper);
+                Instantiate(explostionEffect,transform.position,Quaternion.identity);
+                gameObject.GetComponent<SpriteRenderer>().enabled =false;
+                gameObject.GetComponent<PolygonCollider2D>().enabled=false;
+                wingHelocoper.GetComponent<SpriteRenderer>().enabled = false;
+                // gameObject.AddComponent<RotateObjectGame>();
+                // gameObject.GetComponent<RotateObjectGame>().speedSpin = 5;
+                //smokeEffect.SetActive(true);
+                //Destroy(wingHelocoper);
                 Destroy(gameObject, 0.5f);
 
             }
