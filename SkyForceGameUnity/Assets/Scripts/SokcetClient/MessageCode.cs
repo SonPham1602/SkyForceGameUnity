@@ -14,4 +14,6 @@ public static class MessageCode
     public const byte REGISTER_PLAYER = 7;
     public const byte CHANGE_POSITION_CODE = 8;
     public const byte SHOT_BULLET_CODE = 9;
+    public const byte INCREASE_POINT = 10;
+    public const byte WIN_GAME = 11;
 }

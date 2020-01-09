@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UIGameplayController : MonoBehaviour
 {
     [SerializeField] Image UIHeart;
-    [SerializeField] [Range(0,1)] float UIHeartValue;
+    [SerializeField] [Range(0, 1)] float UIHeartValue;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +16,14 @@ public class UIGameplayController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         UIHeartValue = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().hp/100;
-         UIHeart.fillAmount = UIHeartValue;
-         
+        if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>() != null)
+        {
+            UIHeartValue = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().hp / 100;
+        }
+        else
+        {
+            UIHeartValue = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHostController>().hp / 100;
+        }
+        UIHeart.fillAmount = UIHeartValue;
     }
 }

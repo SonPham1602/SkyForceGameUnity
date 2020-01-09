@@ -9,6 +9,7 @@ public class WaveEnemyController : MonoBehaviour
     GameObject[] waveEnemy;
     int currentWave;
     GameManager gameManager;
+    OnlineGameManager onlineGameManager;
     public bool StartWave;// kiem luon bool cua first Wave
     public float Timedelay;// thoi gian delay giua cac wave voi nhau
     public void StartWaveEnenmy()
@@ -24,6 +25,7 @@ public class WaveEnemyController : MonoBehaviour
             yield break;
         }
         gameManager = FindObjectOfType<GameManager>();
+        onlineGameManager = FindObjectOfType<OnlineGameManager>();
         while (true)
         {
             //Chan khong cho bat dau
@@ -32,13 +34,12 @@ public class WaveEnemyController : MonoBehaviour
             {
                 yield return 0;
             }
-            while (gameManager.gameState != GameState.Play)
+            while ((gameManager != null && gameManager.gameState != GameState.Play) || 
+                (onlineGameManager != null && onlineGameManager.gameState != GameState.Play)) 
             {
-
                 yield return 0;
             }
           
-           
             //   Debug.Log("current wave:"+currentWave);
             if (currentWave < waveEnemy.Length)
             {
@@ -63,15 +64,6 @@ public class WaveEnemyController : MonoBehaviour
                 // time deplay giua cac way
                 yield return new WaitForSeconds(Timedelay);
                 nextWaveEnemy.gameObject.GetComponent<WaveEnemyController>().StartWaveEnenmy();
-                // WaveEnemyController[] wave = FindObjectsOfType<WaveEnemyController>();
-                // Debug.Log("Do dai cua wave"+ wave.Length);
-                // wave[0].StartWaveEnenmy();
-                // if (wave.Length <= 1)
-                // {
-                //     //gameManager.gameWin();
-                // }
-                
-               
                 Destroy(gameObject);
             }
         }

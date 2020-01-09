@@ -78,4 +78,12 @@ public class MessageWriter
             Data = null,
         };
     }
+
+    public static Message getWinGameMessage() {
+        return new Message()
+        {
+            Command = MessageCode.WIN_GAME,
+            Data = new byte[1] {0},
+        };
+    }
 }

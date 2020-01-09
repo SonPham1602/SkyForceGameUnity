@@ -89,6 +89,13 @@ public static class MessageHandler
                     PlayerNetworkController.Instance.AddNewShotBullet();
                 }));
                 break;
+            case MessageCode.WIN_GAME:
+                binaryReader.ReadByte();
+                UnityMainThread.wkr.AddJob(new Action(() =>
+                {
+                    OnlineGameManager.Instance.gameWin();
+                }));
+                break;
             default:
                 Debug.Log("Command " + message.Command + " not found");
                 break;
