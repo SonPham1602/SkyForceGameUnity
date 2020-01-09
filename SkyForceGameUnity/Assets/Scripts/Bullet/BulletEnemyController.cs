@@ -53,17 +53,17 @@ public class BulletEnemyController : MonoBehaviour
         {
             if (FindObjectOfType<GameManager>() != null)
             {
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP -= Power;
+                GameObject.FindObjectOfType<PlayerController>().HP -= Power;
             }
             else
             {
-                if (other.GetComponent<PlayerHostController>() != null)
+                if (GameObject.FindObjectOfType<PlayerHostController>() != null)
                 {
-                    other.GetComponent<PlayerHostController>().HP -= Power;
+                    GameObject.FindObjectOfType<PlayerHostController>().HP -= Power;
                 }
-                else
+                else if (GameObject.FindObjectOfType<PlayerNetworkController>() != null)
                 {
-                    other.GetComponent<PlayerNetworkController>().HP -= Power;
+                    GameObject.FindObjectOfType<PlayerNetworkController>().HP -= Power;
                 }
             }
             Destroy(gameObject);

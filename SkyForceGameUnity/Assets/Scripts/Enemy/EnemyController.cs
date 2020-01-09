@@ -139,7 +139,24 @@ public class EnemyController : MonoBehaviour
     }
     protected void OnTriggerPlayerEnter(GameObject other)
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP -= 20;
+        if (other != null)
+        {
+            if (other.GetComponent<PlayerController>() != null)
+            {
+                other.GetComponent<PlayerController>().HP -= 20;
+            }
+            else
+            {
+                if (GameObject.FindObjectOfType<PlayerHostController>() != null)
+                {
+                    GameObject.FindObjectOfType<PlayerHostController>().HP -= 20;
+                }
+                else if (GameObject.FindObjectOfType<PlayerNetworkController>() != null)
+                {
+                    GameObject.FindObjectOfType<PlayerNetworkController>().HP -= 20;
+                }
+            }
+        }
         Instantiate(explostionEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

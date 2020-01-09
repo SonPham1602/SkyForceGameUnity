@@ -18,7 +18,7 @@ public class TurretEnemyController : EnemyController
     public float timeToStartShoot;
 
     public bool isBroken;
-    private Transform player;
+    private GameObject player;
 
     public GameObject bullet;
     public GameObject bulletStart;
@@ -33,7 +33,7 @@ public class TurretEnemyController : EnemyController
         audioSource.clip = turretSoundShot;
         canShot = false;
         numberBulletTurret = 0;
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
         timeBtwShots = startTimeBtwShots;
     }
 
@@ -96,7 +96,11 @@ public class TurretEnemyController : EnemyController
 
 
 
-        Vector3 difference = player.position - gameObject.transform.position;
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+        Vector3 difference = player.transform.position - gameObject.transform.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         if (isBroken == false)
         {

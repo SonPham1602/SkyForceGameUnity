@@ -20,7 +20,8 @@ public static class MessageHandler
                 float yPos = binaryReader.ReadSingle();
                 UnityMainThread.wkr.AddJob(new Action(() =>
                 {
-                    PlayerNetworkController.Instance.AddNewPosition(new Vector3(xPos, yPos, 0));
+                    if (PlayerNetworkController.Instance != null)
+                        PlayerNetworkController.Instance.AddNewPosition(new Vector3(xPos, yPos, 0));
                 }));
                 break;
             case MessageCode.PLAYER_JOIN_AREROOM_CODE:

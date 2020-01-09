@@ -9,7 +9,7 @@ public class BattleShipEnemy : EnemyController
     public float startTimeBtwShots;
     private bool stopPoint;
     private float timeBtwShots;
-    private Transform player;
+    private GameObject player;
     public GameObject bullet;
     private float NumberBulletShip;
     public Sprite brokenSpriteBattleship;
@@ -21,7 +21,7 @@ public class BattleShipEnemy : EnemyController
     void Start()
     {
         NumberBulletShip = 0;
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
         timeBtwShots = startTimeBtwShots;
     }
 
@@ -46,7 +46,12 @@ public class BattleShipEnemy : EnemyController
         {
             timeBtwShots -= Time.deltaTime;
         }
-        Vector3 difference = player.position - gameObject.transform.position;
+
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+        Vector3 difference = player.transform.position - gameObject.transform.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         //        Debug.Log(rotationZ);
         turret.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ + 90);
