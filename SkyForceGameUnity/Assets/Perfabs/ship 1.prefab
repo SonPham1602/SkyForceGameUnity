@@ -237,8 +237,15 @@ MonoBehaviour:
   damageOfBullet: 50
   timeSpeedShot: 0.3
   target: {fileID: 6058957268163160592}
+  targetWing1: {fileID: 8755133295484078184}
+  targetWing2: {fileID: 6944245980225444633}
   startShot: {fileID: 4865562039064254681}
-  bullet: {fileID: 7696924828118341869, guid: ffbb673cc0e4cd941be3506157a56cc3, type: 3}
+  bullet1: {fileID: 7696924828118341869, guid: ffbb673cc0e4cd941be3506157a56cc3, type: 3}
+  bullet2: {fileID: 7885897745029698454, guid: 515fc9797be176141a9f3083c8f49e77, type: 3}
+  bullet3: {fileID: 641185370118103748, guid: 7c38237c38fc33f41af2ebc1b74257f7, type: 3}
+  bulletWing1: {fileID: 7437051180757526884, guid: cf377428f03598a4ba61acf781aac8e7,
+    type: 3}
+  bulletWing2: {fileID: 0}
   numberBullet: 1
   hp: 0
   speedShip: 15

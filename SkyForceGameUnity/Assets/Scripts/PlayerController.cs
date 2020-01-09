@@ -53,8 +53,16 @@ public class PlayerController : MonoBehaviour
     public int damageOfBullet;
     public float timeSpeedShot;
     public GameObject target;
+    public GameObject targetWing1;
+    public GameObject targetWing2;
     public GameObject startShot;
-    public GameObject bullet;
+    protected GameObject bullet;
+    protected GameObject bulletWing;
+    [SerializeField] GameObject bullet1;
+    [SerializeField] GameObject bullet2;
+    [SerializeField] GameObject bullet3;
+    [SerializeField] GameObject bulletWing1;
+    [SerializeField] GameObject bulletWing2;
     public int numberBullet = 1;
     public float hp;// hp cua may bay
     public float speedShip = 100f;
@@ -132,6 +140,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     protected void Update()
     {
+
+        //Controller bullet Level;
+        ControllerBulletLevel();
+
         typeControllerGame = GameSetting.typeControllerGame;
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (typeControllerGame == TypeControllerGame.MouseAndKeyboard && canMove == true)
@@ -223,20 +235,10 @@ public class PlayerController : MonoBehaviour
             }
 
             //transform.position = viewPos;
+            ShootingBullet();
 
 
 
-            if (Time.time - lastTimeFire >= timeSpeedShot && GameObject.FindObjectOfType<GameManager>().gameState == GameState.Play)
-            {
-                lastTimeFire = Time.time;
-                CreateBullet(bullet);
-                audioSource.clip = shootBulletSound;
-                audioSource.Play();
-            }
-            if (GameObject.FindObjectOfType<GameManager>().gameState == GameState.Play)
-            {
-                ControllerRocketPlayer();
-            }
         }
 
 
@@ -244,6 +246,26 @@ public class PlayerController : MonoBehaviour
 
 
 
+    }
+    protected void ShootingBullet()
+    {
+        if (Time.time - lastTimeFire >= timeSpeedShot && GameObject.FindObjectOfType<GameManager>().gameState == GameState.Play)
+        {
+            lastTimeFire = Time.time;
+            CreateBullet(bullet);
+            if (levelOfBulletPlayer == LevelOfBulletPlayer.Level3 || levelOfBulletPlayer == LevelOfBulletPlayer.Level4 || levelOfBulletPlayer == LevelOfBulletPlayer.Level5)
+            {
+                CreateOneBullet(targetWing1.transform.position, bulletWing, 15);
+                CreateOneBullet(targetWing2.transform.position, bulletWing, 15);
+
+            }
+            audioSource.clip = shootBulletSound;
+            audioSource.Play();
+        }
+        if (GameObject.FindObjectOfType<GameManager>().gameState == GameState.Play)
+        {
+            ControllerRocketPlayer();
+        }
     }
 
     //Create bullet
@@ -364,11 +386,37 @@ public class PlayerController : MonoBehaviour
             // Mission 1 fail
             GameObject.FindObjectOfType<GameManager>().CheckCompleteMisson1 = false;
         }
-        else if(other.gameObject.tag == "star")
+        else if (other.gameObject.tag == "star")
         {
             GameSetting.StarGame++;
         }
 
+    }
+    void ControllerBulletLevel()
+    {
+        if (levelOfBulletPlayer == LevelOfBulletPlayer.Level1)
+        {
+            bullet = bullet1;
+        }
+        else if (levelOfBulletPlayer == LevelOfBulletPlayer.Level2)
+        {
+            bullet = bullet2;
+        }
+        else if (levelOfBulletPlayer == LevelOfBulletPlayer.Level3)
+        {
+            bullet = bullet2;
+            bulletWing = bulletWing1;
+        }
+        else if (levelOfBulletPlayer == LevelOfBulletPlayer.Level4)
+        {
+            bullet = bullet3;
+            bulletWing = bulletWing1;
+        }
+        else if (levelOfBulletPlayer == LevelOfBulletPlayer.Level5)
+        {
+            bulletWing = bulletWing2;
+            bullet = bullet3;
+        }
     }
     protected void ControllerRocketPlayer()
     {
