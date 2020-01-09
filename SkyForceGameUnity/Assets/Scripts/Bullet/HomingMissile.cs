@@ -95,7 +95,7 @@ public class HomingMissile : BulletController
                     {
                         other.GetComponent<PlayerHostController>().HP -= Power;
                     }
-                    else
+                    else if (other.GetComponent<PlayerHostController>() != null)
                     {
                         other.GetComponent<PlayerNetworkController>().HP -= Power;
                     }

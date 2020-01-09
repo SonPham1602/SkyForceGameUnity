@@ -28,6 +28,10 @@ public class PlayerNetworkController : PlayerController
         set
         {
             hp = value;
+            if (hp <= 0) {
+                Instance = null;
+                Destroy(this);
+            }
         }
     }
 
