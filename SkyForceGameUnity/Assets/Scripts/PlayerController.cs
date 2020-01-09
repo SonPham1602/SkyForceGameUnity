@@ -122,6 +122,8 @@ public class PlayerController : MonoBehaviour
         radius = Vector3.Magnitude(target.transform.position - gameObject.transform.position);
         this.HP = 100;
         rb = GetComponent<Rigidbody2D>();
+        //Controller Health Player When start game
+        ControllerHealthLevel();
     }
     void OnMouseOver()
     {
@@ -392,7 +394,30 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    void ControllerBulletLevel()
+    protected void ControllerHealthLevel()
+    {
+        if (levelOfHealthPlayer == LevelOfHealthPlayer.Level1)
+        {
+            hp = 100;
+        }
+        else if (levelOfHealthPlayer == LevelOfHealthPlayer.Level2)
+        {
+            hp = 150;
+        }
+        else if (levelOfHealthPlayer == LevelOfHealthPlayer.Level3)
+        {
+            hp = 200;
+        }
+        else if (levelOfHealthPlayer == LevelOfHealthPlayer.Level4)
+        {
+            hp = 250;
+        }
+        else if (levelOfHealthPlayer == LevelOfHealthPlayer.Level5)
+        {
+            hp = 300;
+        }
+    }
+    protected void ControllerBulletLevel()
     {
         if (levelOfBulletPlayer == LevelOfBulletPlayer.Level1)
         {

@@ -245,7 +245,8 @@ MonoBehaviour:
   bullet3: {fileID: 641185370118103748, guid: 7c38237c38fc33f41af2ebc1b74257f7, type: 3}
   bulletWing1: {fileID: 7437051180757526884, guid: cf377428f03598a4ba61acf781aac8e7,
     type: 3}
-  bulletWing2: {fileID: 0}
+  bulletWing2: {fileID: 7741049839970675734, guid: 4a2cac5cddafb6546ac55a03922cc8d0,
+    type: 3}
   numberBullet: 1
   hp: 0
   speedShip: 15
