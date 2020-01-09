@@ -41,21 +41,22 @@ public class HelicoperEnemy : FlyingEnemyController
     // Update is called once per frameS
     void Update()
     {
-        if (FindObjectOfType<GameManager>().gameState != GameState.Play)
+        if ((FindObjectOfType<GameManager>() != null && FindObjectOfType<GameManager>().gameState != GameState.Play) ||
+        (FindObjectOfType<OnlineGameManager>() != null && FindObjectOfType<OnlineGameManager>().gameState != GameState.Play))
             return;
         if (timeBtwShots <= 0 && shooted == false && canMove == true)
         {
 
             if (isBroken == false)
             {
-                
+
                 //Debug.Log("Ten lua");
                 Instantiate(bullet, transform.position, Quaternion.identity);
                 shooted = true;
             }
             //timeBtwShots = startTimeBtwShots;
         }
-        else if(canMove == true)
+        else if (canMove == true)
         {
             timeBtwShots -= Time.deltaTime;
         }
@@ -93,8 +94,8 @@ public class HelicoperEnemy : FlyingEnemyController
                 gameObject.GetComponent<RotateObjectGame>().speedSpin = 5;
                 smokeEffect.SetActive(true);
                 Destroy(wingHelocoper);
-                Destroy(gameObject,0.5f);
-                
+                Destroy(gameObject, 0.5f);
+
             }
         }
 

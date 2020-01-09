@@ -45,7 +45,7 @@ public class OnlineGameController : MonoBehaviour
     {
         HostWatingPanel.SetActive(false);
         startGame = true;
-        GameObject.FindObjectOfType<GameManager>().gameState = GameState.Play;
+        GameObject.FindObjectOfType<OnlineGameManager>().gameState = GameState.Play;
     }
 
     IEnumerator CountDownStartGame()
