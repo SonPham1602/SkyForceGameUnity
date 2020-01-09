@@ -25,6 +25,7 @@ public class SmallPlaneEnemyController : FlyingEnemyController
         else if (other.gameObject.tag == "Player")
         {
             OnTriggerPlayerEnter(other.gameObject);
+            //other.gameObject.GetComponent<PlayerController>().hp-=20;
             
         }
     }

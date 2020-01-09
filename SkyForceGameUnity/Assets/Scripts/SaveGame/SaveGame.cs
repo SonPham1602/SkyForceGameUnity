@@ -26,6 +26,7 @@ public class SaveGame : MonoBehaviour
     public bool MusicInGame;
     public string ResolutionInGame;
     public string GraphicInGame;
+    public int numberOfStar;
 
     public List<LevelInfomation> levelInfomations = new List<LevelInfomation>();
     // Start is called before the first frame update
@@ -117,6 +118,12 @@ public class SaveGame : MonoBehaviour
         levelInfomations.Add(new LevelInfomation(1,true,false,false,1111,TypeOfLevelGame.Complete));
         levelInfomations.Add(new LevelInfomation(0,true,false,false,1111,TypeOfLevelGame.Lock));
         levelInfomations.Add(new LevelInfomation(0,true,false,false,1111,TypeOfLevelGame.Lock));
+        numberOfStar=99999;
     }
+    public void SaveNumberStar()
+    {
+        PlayerPrefs.SetInt("NumberOfStar",numberOfStar);
+    }
+
 
 }

@@ -20,51 +20,63 @@ public class BattleShipEnemy : EnemyController
     {
         NumberBulletShip = 0;
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        timeBtwShots=startTimeBtwShots; 
+        timeBtwShots = startTimeBtwShots;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(timeBtwShots<=0)
+        if (timeBtwShots <= 0)
         {
-            if(isBroken==false)
+            if (isBroken == false)
             {
-                Instantiate(bullet, startFire.transform.position, Quaternion.identity);   
+                Instantiate(bullet, startFire.transform.position, Quaternion.identity);
             }
             timeBtwShots = startTimeBtwShots;
         }
         else
         {
-            timeBtwShots-=Time.deltaTime;
+            timeBtwShots -= Time.deltaTime;
         }
-        Vector3 difference = player.position-gameObject.transform.position;
-        float rotationZ = Mathf.Atan2(difference.y,difference.x)*Mathf.Rad2Deg;
-//        Debug.Log(rotationZ);
-        turret.transform.rotation=Quaternion.Euler(0.0f,0.0f,rotationZ+90);
-        if(isBroken==true)
+        Vector3 difference = player.position - gameObject.transform.position;
+        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        //        Debug.Log(rotationZ);
+        turret.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ + 90);
+        if (isBroken == true)
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y - 2*speed * Time.deltaTime, transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y - 2 * speed * Time.deltaTime, transform.position.z);
         }
         else
         {
             transform.position = new Vector3(transform.position.x, transform.position.y + speed * Time.deltaTime, transform.position.z);
         }
-       
+
     }
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.tag=="bullet")
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "bullet")
         {
-           
-        
+            StartCoroutine(getHit());
+            HP -= other.gameObject.GetComponent<BulletController>().Power;
+            if (HP <= 0)
             {
-                isBroken = true;
+                gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                GameSetting.ScoreGame += ScoreTake;
+                PlayExplosionSound();
+                Instantiate(starItem, transform.position, Quaternion.identity);
                 GetComponent<SpriteRenderer>().sprite = brokenSpriteBattleship;
-                this.gameObject.tag="brokenEnemy";
-                turret.SetActive(false);      
+
+
+                this.gameObject.tag = "brokenEnemy";
+                turret.SetActive(false);
+                //StartCoroutine(PlayExplosion());
+                Instantiate(explostionEffect, transform.position, Quaternion.identity);
+                isBroken = true;
+
             }
-            
-          
+
+
+
         }
     }
 }

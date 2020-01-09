@@ -61,6 +61,9 @@ TagManager:
   - name: Fly
     uniqueID: 3775982229
     locked: 0
+  - name: effectExplosion
+    uniqueID: 980388249
+    locked: 0
   - name: ShipPlayer
     uniqueID: 2296519525
     locked: 0

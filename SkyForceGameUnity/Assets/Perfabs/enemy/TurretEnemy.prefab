@@ -177,8 +177,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1355008475
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: df13410b44fb2944486ebc3458f67ce1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -263,8 +263,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1355008475
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 46b704bcae3fb5c48bbd3ebd31310e60, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -289,6 +289,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68dd0991cc7f7cb41a7ebd4794373e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelMapEnemy: 0
+  ShowInCamera: 0
+  soundExplosion: {fileID: 0}
+  audioSourceExplosion: {fileID: 0}
+  ScoreTake: 0
+  gravity: 20
+  speedTurn: 0
+  speedMove: 0
+  canMove: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
+  starItem: {fileID: 0}
+  explostionEffect: {fileID: 0}
+  HP: 0
   turretSoundShot: {fileID: 8300000, guid: 2162f2a26c7cdcf47a081ff902e2ca30, type: 3}
   audioSource: {fileID: 5256772851599628226}
   numberOfBulletInOneTurn: 0
@@ -298,10 +311,11 @@ MonoBehaviour:
   speedOfBullet: 20
   spriteOfBrokenTurret: {fileID: 0}
   timeToStartShoot: 1
+  isBroken: 0
   bullet: {fileID: 5698948991174161390, guid: cb43722ee02b4634b866f9486e1ff82e, type: 3}
   bulletStart: {fileID: 1044214883998333910}
   canShot: 1
-  color: {r: 0, g: 0, b: 0, a: 0}
+  bulletShooted: 0
 --- !u!61 &1044214884515293318
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,17 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- public enum LevelMapEnemy
-    {
-        Level1,
-        Level2,
-        Level3,
-        Level4,
-        Level5,
-        Level6
-    }
+public enum LevelMapEnemy
+{
+    Level1,
+    Level2,
+    Level3,
+    Level4,
+    Level5,
+    Level6
+}
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField] bool deleteSpriteWhenDead;
     public LevelMapEnemy levelMapEnemy;
     public bool ShowInCamera;// check co xuat hien tren camera ko
     public AudioClip soundExplosion;
@@ -38,11 +39,13 @@ public class EnemyController : MonoBehaviour
     Vector2 screenBounds;
 
     public float HP;
+    private bool isAlive;
 
-   
+
 
     protected void Start()
     {
+        isAlive = true;
 
         //Controller Heal defend on level
         ControllerLevelEnemyHealth();
@@ -67,7 +70,7 @@ public class EnemyController : MonoBehaviour
         }
         //transform.Translate(0,1*Time.deltaTime,0);
     }
-  
+
     // protected void FixedUpdate()
     // {
     //     offset = Time.deltaTime * speedMove;
@@ -86,17 +89,23 @@ public class EnemyController : MonoBehaviour
     {
         StartCoroutine(getHit());
         HP -= other.gameObject.GetComponent<BulletController>().Power;
-        if (HP <= 0)
+        if (HP <= 0 && isAlive == true)
         {
-
+            isAlive = false;
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<PolygonCollider2D>().enabled = false;
             GameSetting.ScoreGame += ScoreTake;
             PlayExplosionSound();
-            Instantiate(starItem,transform.position,Quaternion.identity);
+            Instantiate(starItem, transform.position, Quaternion.identity);
             //StartCoroutine(PlayExplosion());
-            gameObject.GetComponent<SpriteRenderer>().enabled =  false;
-            gameObject.GetComponent<PolygonCollider2D>().enabled= false;
+            if (deleteSpriteWhenDead == true)
+            {
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+            }
+
             Instantiate(explostionEffect, transform.position, Quaternion.identity);
-            
+
         }
     }
     // IEnumerator PlayExplosion()
@@ -106,30 +115,30 @@ public class EnemyController : MonoBehaviour
     // }
     void ControllerLevelEnemyHealth()
     {
-        if(levelMapEnemy == LevelMapEnemy.Level2)
+        if (levelMapEnemy == LevelMapEnemy.Level2)
         {
-            HP+=100;
+            HP += 100;
         }
-        else if(levelMapEnemy == LevelMapEnemy.Level3)
+        else if (levelMapEnemy == LevelMapEnemy.Level3)
         {
-            HP+=150;
+            HP += 150;
         }
-        else if(levelMapEnemy == LevelMapEnemy.Level4)
+        else if (levelMapEnemy == LevelMapEnemy.Level4)
         {
-            HP+=175;
+            HP += 175;
         }
-        else if(levelMapEnemy == LevelMapEnemy.Level5)
+        else if (levelMapEnemy == LevelMapEnemy.Level5)
         {
-            HP+=200;
+            HP += 200;
         }
-        else if(levelMapEnemy == LevelMapEnemy.Level6)
+        else if (levelMapEnemy == LevelMapEnemy.Level6)
         {
-            HP+=250;
+            HP += 250;
         }
     }
     protected void OnTriggerPlayerEnter(GameObject other)
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP -= HP;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP -= 20;
         Instantiate(explostionEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
@@ -146,7 +155,7 @@ public class EnemyController : MonoBehaviour
     //         OnTriggerPlayerEnter(other.gameObject);
     //     }
     // }
-    IEnumerator getHit()
+    protected IEnumerator getHit()
     {
         Debug.Log("Get hit");
         StopCoroutine("getHit");
