@@ -82,6 +82,8 @@ public class SocketClient : MonoBehaviour
                 {
                     byte[] data = reader.ReadBytes(length);
                     message.Data = data;
+                } else {
+                    message.Data = new byte[0];
                 }
                 MessageHandler.onMessage(message);
             }
