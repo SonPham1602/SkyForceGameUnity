@@ -1,9 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+ public enum LevelMapEnemy
+    {
+        Level1,
+        Level2,
+        Level3,
+        Level4,
+        Level5,
+        Level6
+    }
 public class EnemyController : MonoBehaviour
 {
+    public LevelMapEnemy levelMapEnemy;
     public bool ShowInCamera;// check co xuat hien tren camera ko
     public AudioClip soundExplosion;
     public AudioSource audioSourceExplosion;
@@ -30,8 +39,13 @@ public class EnemyController : MonoBehaviour
 
     public float HP;
 
+   
+
     protected void Start()
     {
+
+        //Controller Heal defend on level
+        ControllerLevelEnemyHealth();
         offset = Time.deltaTime * speedMove;
         rigidbody2d = GetComponent<Rigidbody2D>();
         saveScale = transform.localScale;
@@ -86,7 +100,29 @@ public class EnemyController : MonoBehaviour
     //     audioSourceExplosion.Play();
     //     yield return new WaitWhile(()=>audioSourceExplosion.isPlaying);
     // }
-   
+    void ControllerLevelEnemyHealth()
+    {
+        if(levelMapEnemy == LevelMapEnemy.Level2)
+        {
+            HP+=100;
+        }
+        else if(levelMapEnemy == LevelMapEnemy.Level3)
+        {
+            HP+=150;
+        }
+        else if(levelMapEnemy == LevelMapEnemy.Level4)
+        {
+            HP+=175;
+        }
+        else if(levelMapEnemy == LevelMapEnemy.Level5)
+        {
+            HP+=200;
+        }
+        else if(levelMapEnemy == LevelMapEnemy.Level6)
+        {
+            HP+=250;
+        }
+    }
     protected void OnTriggerPlayerEnter(GameObject other)
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP -= HP;
