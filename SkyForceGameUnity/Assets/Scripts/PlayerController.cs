@@ -60,11 +60,11 @@ public class PlayerController : MonoBehaviour
     public GameObject startShotWing2;
     protected GameObject bullet;
     protected GameObject bulletWing;
-    [SerializeField] GameObject bullet1;
-    [SerializeField] GameObject bullet2;
-    [SerializeField] GameObject bullet3;
-    [SerializeField] GameObject bulletWing1;
-    [SerializeField] GameObject bulletWing2;
+    [SerializeField] protected GameObject bullet1;
+    [SerializeField] protected GameObject bullet2;
+    [SerializeField] protected GameObject bullet3;
+    [SerializeField] protected GameObject bulletWing1;
+    [SerializeField] protected GameObject bulletWing2;
     public int numberBullet = 1;
     public float hp;// hp cua may bay
     public float defaultHP;

@@ -102,7 +102,7 @@ public class PlayerHostController : PlayerController
             if (Time.time - lastTimeFire >= timeSpeedShot && GameObject.FindObjectOfType<OnlineGameManager>().gameState == GameState.Play)
             {
                 lastTimeFire = Time.time;
-                CreateOneBullet(target.transform.position, bullet, 15);
+                CreateOneBullet(target.transform.position, bullet1, 15);
                 audioSource.clip = shootBulletSound;
                 audioSource.Play();
             }
@@ -124,7 +124,7 @@ public class PlayerHostController : PlayerController
             if (Time.time - lastTimeFire >= timeSpeedShot && GameObject.FindObjectOfType<OnlineGameManager>().gameState == GameState.Play)
             {
                 lastTimeFire = Time.time;
-                CreateBullet(bullet);
+                CreateBullet(bullet1);
                 audioSource.clip = shootBulletSound;
                 audioSource.Play();
             }

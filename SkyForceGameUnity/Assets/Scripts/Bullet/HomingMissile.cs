@@ -85,14 +85,27 @@ public class HomingMissile : BulletController
         {
             if (other.gameObject.tag == "Player")
             {
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP -= Power;
-                Debug.Log("HP" + GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP);
+                if (FindObjectOfType<GameManager>() != null)
+                {
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().HP -= Power;
+                }
+                else
+                {
+                    if (other.GetComponent<PlayerHostController>() != null)
+                    {
+                        other.GetComponent<PlayerHostController>().HP -= Power;
+                    }
+                    else
+                    {
+                        other.GetComponent<PlayerNetworkController>().HP -= Power;
+                    }
+                }
                 Destroy(gameObject);
             }
         }
-        else 
+        else
         {
-             if (other.gameObject.tag == "enemy")
+            if (other.gameObject.tag == "enemy")
             {
                 Destroy(target);
                 Destroy(gameObject);
