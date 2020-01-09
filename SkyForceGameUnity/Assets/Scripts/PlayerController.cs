@@ -82,9 +82,10 @@ public class PlayerController : MonoBehaviour
             hp = value;
             if (hp <= 30 && hp > 0)
             {
-
-                hitLayer.GetComponent<Animator>().SetTrigger("ShowLowHealth");
-
+                if (hitLayer != null)
+                {
+                    hitLayer.GetComponent<Animator>().SetTrigger("ShowLowHealth");
+                }
             }
             else if (hp <= 0)
             {
@@ -108,7 +109,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     protected void Start()
     {
-        transform.position = new Vector3(0,0,1);
+        transform.position = new Vector3(0, 0, 1);
         timeToShot = 5f;
         radius = Vector3.Magnitude(target.transform.position - gameObject.transform.position);
         this.HP = 100;
@@ -344,19 +345,22 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "bulletEnemy")
         {
             Destroy(other.gameObject);
-            hitLayer.GetComponent<Animator>().SetTrigger("ShowOneHit");
+            if (hitLayer != null)
+                hitLayer.GetComponent<Animator>().SetTrigger("ShowOneHit");
             // Mission 1 fail
             GameObject.FindObjectOfType<GameManager>().CheckCompleteMisson1 = false;
         }
         else if (other.gameObject.tag == "enemy")
         {
-            hitLayer.GetComponent<Animator>().SetTrigger("ShowOneHit");
+            if (hitLayer != null)
+                hitLayer.GetComponent<Animator>().SetTrigger("ShowOneHit");
             // Mission 1 fail
             GameObject.FindObjectOfType<GameManager>().CheckCompleteMisson1 = false;
         }
         else if (other.gameObject.tag == "misileEnemy")
         {
-            hitLayer.GetComponent<Animator>().SetTrigger("ShowOneHit");
+            if (hitLayer != null)
+                hitLayer.GetComponent<Animator>().SetTrigger("ShowOneHit");
             // Mission 1 fail
             GameObject.FindObjectOfType<GameManager>().CheckCompleteMisson1 = false;
         }
@@ -369,7 +373,7 @@ public class PlayerController : MonoBehaviour
 
             if (timeToShot <= 0)
             {
-                Instantiate(HomingMissile, transform.position, Quaternion.Euler(0f,0f,-130f));
+                Instantiate(HomingMissile, transform.position, Quaternion.Euler(0f, 0f, -130f));
                 timeToShot = 5f;
 
             }

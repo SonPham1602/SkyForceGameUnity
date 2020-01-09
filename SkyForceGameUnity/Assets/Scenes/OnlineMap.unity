@@ -1211,6 +1211,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3269554899798425757, guid: 0b943cab73fddfe40b6b1b157511fe70,
+        type: 3}
+      propertyPath: Health
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b943cab73fddfe40b6b1b157511fe70, type: 3}
 --- !u!4 &137187202 stripped
@@ -5693,6 +5698,11 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.44
       objectReference: {fileID: 0}
+    - target: {fileID: 1044214884515293316, guid: 879e4a0f3a6fd7f4c81c1eb8d4252fed,
+        type: 3}
+      propertyPath: HP
+      value: 300
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 879e4a0f3a6fd7f4c81c1eb8d4252fed, type: 3}
 --- !u!4 &1081784403 stripped
@@ -8031,6 +8041,11 @@ PrefabInstance:
       propertyPath: canShootTurret
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6556956533619168483, guid: 633b878c457456c4eb5751b14096babb,
+        type: 3}
+      propertyPath: hp
+      value: 3000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 633b878c457456c4eb5751b14096babb, type: 3}
 --- !u!4 &1475806786 stripped
@@ -8844,6 +8859,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3269554899798425757, guid: 0b943cab73fddfe40b6b1b157511fe70,
+        type: 3}
+      propertyPath: Health
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b943cab73fddfe40b6b1b157511fe70, type: 3}
@@ -11146,6 +11166,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 1044214884515293316, guid: 879e4a0f3a6fd7f4c81c1eb8d4252fed,
+        type: 3}
+      propertyPath: HP
+      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 879e4a0f3a6fd7f4c81c1eb8d4252fed, type: 3}
