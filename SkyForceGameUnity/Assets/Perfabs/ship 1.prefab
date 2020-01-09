@@ -163,6 +163,8 @@ Transform:
   - {fileID: 5892604739708858879}
   - {fileID: 3081598026911619015}
   - {fileID: 4584698736366958854}
+  - {fileID: 526663804631140513}
+  - {fileID: 5209825856885424619}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -0.388, z: 0}
@@ -237,9 +239,11 @@ MonoBehaviour:
   damageOfBullet: 50
   timeSpeedShot: 0.3
   target: {fileID: 6058957268163160592}
-  targetWing1: {fileID: 8755133295484078184}
-  targetWing2: {fileID: 6944245980225444633}
+  targetWing1: {fileID: 7799982301375522460}
+  targetWing2: {fileID: 2520386058383535967}
   startShot: {fileID: 4865562039064254681}
+  startShotWing1: {fileID: 8755133295484078184}
+  startShotWing2: {fileID: 6944245980225444633}
   bullet1: {fileID: 7696924828118341869, guid: ffbb673cc0e4cd941be3506157a56cc3, type: 3}
   bullet2: {fileID: 7885897745029698454, guid: 515fc9797be176141a9f3083c8f49e77, type: 3}
   bullet3: {fileID: 641185370118103748, guid: 7c38237c38fc33f41af2ebc1b74257f7, type: 3}
@@ -400,6 +404,36 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &2520386058383535967
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 526663804631140513}
+  m_Layer: 0
+  m_Name: targetWing2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &526663804631140513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2520386058383535967}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.85999995, y: 1.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2044952476517342743}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3579373564619187815
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,6 +813,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2044952476517342743}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7799982301375522460
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5209825856885424619}
+  m_Layer: 0
+  m_Name: targetWing1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5209825856885424619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7799982301375522460}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.85, y: 1.11, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2044952476517342743}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8535430004892302128
 GameObject:

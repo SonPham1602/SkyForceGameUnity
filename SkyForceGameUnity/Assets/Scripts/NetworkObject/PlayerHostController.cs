@@ -144,7 +144,7 @@ public class PlayerHostController : PlayerController
     protected void CreateOneBullet(Vector3 pos, GameObject bullet, float speed)
     {
         SocketClient.Instance.AddMessage(MessageWriter.getShotBulletMessage(1));
-        base.CreateOneBullet(pos, bullet, speed);
+        base.CreateOneBullet(pos, bullet, speed,startShot);
     }
 
     protected void OnTriggerEnter2D(Collider2D other)

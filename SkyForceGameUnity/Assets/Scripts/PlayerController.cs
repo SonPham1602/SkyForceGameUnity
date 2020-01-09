@@ -56,6 +56,8 @@ public class PlayerController : MonoBehaviour
     public GameObject targetWing1;
     public GameObject targetWing2;
     public GameObject startShot;
+    public GameObject startShotWing1;
+    public GameObject startShotWing2;
     protected GameObject bullet;
     protected GameObject bulletWing;
     [SerializeField] GameObject bullet1;
@@ -213,7 +215,7 @@ public class PlayerController : MonoBehaviour
             {
                 lastTimeFire = Time.time;
                 //CreateBullet(bullet);
-                CreateOneBullet(target.transform.position, bullet, 15);
+                //CreateOneBullet(target.transform.position, bullet, 15);
                 audioSource.clip = shootBulletSound;
                 audioSource.Play();
             }
@@ -254,11 +256,11 @@ public class PlayerController : MonoBehaviour
         if (Time.time - lastTimeFire >= timeSpeedShot && GameObject.FindObjectOfType<GameManager>().gameState == GameState.Play)
         {
             lastTimeFire = Time.time;
-            CreateBullet(bullet);
+            CreateOneBullet(target.transform.position, bullet, 15,startShot);
             if (levelOfBulletPlayer == LevelOfBulletPlayer.Level3 || levelOfBulletPlayer == LevelOfBulletPlayer.Level4 || levelOfBulletPlayer == LevelOfBulletPlayer.Level5)
             {
-                CreateOneBullet(targetWing1.transform.position, bulletWing, 15);
-                CreateOneBullet(targetWing2.transform.position, bulletWing, 15);
+                CreateOneBullet(targetWing1.transform.position, bulletWing, 15,startShotWing1);
+                CreateOneBullet(targetWing2.transform.position, bulletWing, 15,startShotWing2);
 
             }
             audioSource.clip = shootBulletSound;
@@ -279,7 +281,7 @@ public class PlayerController : MonoBehaviour
 
         if (numberBullet % 2 == 1)
         {
-            CreateOneBullet(target.transform.position, bullet, 10);
+           // CreateOneBullet(target.transform.position, bullet, 10);
             Goc = 0.1f;
             dem--;
         }
@@ -291,14 +293,14 @@ public class PlayerController : MonoBehaviour
         for (int i = 1; i <= dem / 2; i++)
         {
             setBulletPos(out bulletPos, Goc * i);
-            CreateOneBullet(bulletPos.pos1, bullet, 10);
-            CreateOneBullet(bulletPos.pos2, bullet, 10);
+           // CreateOneBullet(bulletPos.pos1, bullet, 10);
+            //CreateOneBullet(bulletPos.pos2, bullet, 10);
         }
     }
 
-    protected void CreateOneBullet(Vector3 pos, GameObject bullet, float speed)
+    protected void CreateOneBullet(Vector3 pos, GameObject bullet, float speed, GameObject startPos)
     {
-        GameObject b = Instantiate(bullet, startShot.transform.position, Quaternion.identity);
+        GameObject b = Instantiate(bullet, startPos.transform.position, Quaternion.identity);
         b.GetComponent<BulletController>().targetPosition = pos;
         b.GetComponent<BulletController>().moveSpeed = speed;
         b.GetComponent<BulletController>().Power = damageOfBullet;

@@ -72,7 +72,7 @@ public class PlayerNetworkController : PlayerController
 
     public void ShotBullet()
     {
-        CreateOneBullet(target.transform.position, bullet, 15);
+        CreateOneBullet(target.transform.position, bullet, 15,startShot);
         audioSource.clip = shootBulletSound;
         audioSource.Play();
     }
