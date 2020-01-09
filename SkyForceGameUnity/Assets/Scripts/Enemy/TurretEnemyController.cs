@@ -50,6 +50,7 @@ public class TurretEnemyController : EnemyController
                     {
                         if (numberOfBulletInOneTurn == false)
                         {
+                            audioSource.clip = turretSoundShot;
                             audioSource.Play();
                             Instantiate(bullet, bulletStart.transform.position, Quaternion.identity);
                         }
@@ -101,10 +102,7 @@ public class TurretEnemyController : EnemyController
         {
             turret.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ - rotationObject);
         }
-        else
-        {
-            turret.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationObject);
-        }
+       
 
     }
     IEnumerator shot()
@@ -131,6 +129,8 @@ public class TurretEnemyController : EnemyController
             HP -= other.gameObject.GetComponent<BulletController>().Power;
             if (HP <= 0)
             {
+                audioSourceExplosion.clip =  soundExplosion;
+                audioSourceExplosion.Play();
                 Instantiate(explostionEffect,transform.position,Quaternion.identity);
                 gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 isBroken = true;

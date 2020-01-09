@@ -22,14 +22,7 @@ public class PlayerNetworkController : PlayerController
     public static PlayerNetworkController Instance { get; set; }
     public Player user;
 
-    public float HP
-    {
-        get => hp;
-        set
-        {
-            hp = value;
-        }
-    }
+  
 
     // Start is called before the first frame update
     void Start()
