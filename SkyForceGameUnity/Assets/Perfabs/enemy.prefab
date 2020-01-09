@@ -406,6 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158d8b6c3e6183741a13c330ccd57b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelMapEnemy: 0
   ShowInCamera: 0
   soundExplosion: {fileID: 8300000, guid: 9920aac90d726b243a32a32c69d5aa5d, type: 3}
   audioSourceExplosion: {fileID: 6886438486159389421}
@@ -419,6 +420,7 @@ MonoBehaviour:
     type: 3}
   explostionEffect: {fileID: 3466153542694025480, guid: 39c5cdd680fb8e447ab2fdd7ae4803e0,
     type: 3}
+  HP: 30
   fly_up: 0
   typePath: 0
   anchor: 0
@@ -571,6 +573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 158d8b6c3e6183741a13c330ccd57b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelMapEnemy: 0
   ShowInCamera: 0
   soundExplosion: {fileID: 0}
   audioSourceExplosion: {fileID: 0}
@@ -582,6 +585,7 @@ MonoBehaviour:
   color: {r: 0, g: 0, b: 0, a: 0}
   starItem: {fileID: 0}
   explostionEffect: {fileID: 0}
+  HP: 0
   fly_up: 0
   typePath: 0
   anchor: 0
