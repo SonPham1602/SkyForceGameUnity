@@ -72,6 +72,8 @@ public class TurretEnemyController : EnemyController
                             //     }
                             audioSource.Play();
                             StartCoroutine(shot());
+                           
+
                         }
 
 

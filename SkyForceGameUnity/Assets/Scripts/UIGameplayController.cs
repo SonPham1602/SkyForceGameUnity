@@ -11,7 +11,7 @@ public class UIGameplayController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GameObject.FindObjectOfType<OnlineGameManager>() != null)
+        if (GameObject.FindObjectOfType<GameManager>() != null)
         {
             defaultValue = GameObject.FindObjectOfType<PlayerController>().defaultHP;
         }

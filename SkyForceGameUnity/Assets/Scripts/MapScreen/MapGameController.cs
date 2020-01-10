@@ -40,7 +40,31 @@ public class MapGameController : MonoBehaviour
     }
     public void GoToPlayGame(int n)
     {
-        SceneManager.LoadScene(n);
+          if(n==0)
+        {
+            PlayLevel1();
+        }
+        else if(n == 1)
+        {
+            PlayLevel2();
+        }
+        else if(n == 2)
+        {
+            PlayLevel3();
+        }
+        else if(n==3)
+        {
+             PlayLevel4();
+        }
+        else if(n==4)
+        {
+            PlayLevel5();
+        }
+        else if(n==5)
+        {
+             PlayLevel6();
+        }
+        
     }
      public void SetupLevelSpriteScreen()
     {
