@@ -287,6 +287,12 @@ public class MainMenuController : MonoBehaviour
     {
         listButton.GetComponent<VerticalMainMenuXbox>().unselectPanel();
     }
+    public void  OpenOnlineMap()
+    {
+        soundController.PlaySoundPress();
+        SceneManager.LoadScene("OnlineMap");
+    }
+    
     
 
 
