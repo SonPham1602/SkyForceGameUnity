@@ -26,6 +26,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] GameObject MiddleButtons;
     [SerializeField] GameObject RightButtons;
     [SerializeField] GameObject PanelExit;
+    [SerializeField] GameObject PanelChooseMode;
     //Button In Setting Screen
 
     //Sound Button Setting
@@ -168,13 +169,17 @@ public class MainMenuController : MonoBehaviour
     {
         soundController.PlaySoundPress();
         SetUnselectListButton();
+        PanelChooseMode.gameObject.GetComponent<VerticalMainMenuXbox>().unselectPanel();
+        PanelChooseMode.SetActive(false);
         PanelMapGame.SetActive(true);
         PanelMapGame.GetComponent<VerticalMainMenuXbox>().selectPanel();
     }
     public void HideMapGame()
     {
         soundController.PlaySoundBack();
-        SetSelectListButton();
+        PanelChooseMode.gameObject.GetComponent<VerticalMainMenuXbox>().selectPanel();
+        PanelChooseMode.SetActive(true);
+        //SetSelectListButton();
         PanelMapGame.GetComponent<VerticalMainMenuXbox>().unselectPanel();
         PanelMapGame.SetActive(false);
 
@@ -224,6 +229,23 @@ public class MainMenuController : MonoBehaviour
         HideAllPanelSettingInSetting();
         PanelHelpSetting.SetActive(true);
     }
+    public void OpenChooseModePanel()
+    {
+        soundController.PlaySoundPress();
+        SetUnselectListButton();
+        listButton.SetActive(false);
+        PanelChooseMode.gameObject.GetComponent<VerticalMainMenuXbox>().selectPanel();
+        PanelChooseMode.SetActive(true);
+    }
+    public void HideChooseModePanel()
+    {
+        soundController.PlaySoundBack();
+        SetSelectListButton();
+        PanelChooseMode.gameObject.GetComponent<VerticalMainMenuXbox>().unselectPanel();
+        PanelChooseMode.SetActive(false);
+        listButton.SetActive(true);
+        
+    }
     public void HideAllPanelSettingInSetting()
     {
         PanelHelpSetting.SetActive(false);
@@ -265,6 +287,7 @@ public class MainMenuController : MonoBehaviour
     {
         listButton.GetComponent<VerticalMainMenuXbox>().unselectPanel();
     }
+    
 
 
 }
