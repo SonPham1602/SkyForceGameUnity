@@ -130,6 +130,7 @@ public class PlayerController : MonoBehaviour
         //Controller Health Player When start game
         ControllerHealthLevel();
         defaultHP = hp;
+        ControllerBulletLevel();
     }
     void OnMouseOver()
     {
